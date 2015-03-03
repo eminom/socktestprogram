@@ -17,10 +17,19 @@ int main()
 	ss->connect();
 	ss->setTimeout(3);
 
+
+	auto start = boost::posix_time::microsec_clock::universal_time();
 	while(true){
+		auto now = boost::posix_time::microsec_clock::universal_time();
 		auto rv = io.poll();
-		if(!rv && ss->isTimeout()){
+		if( !rv && ss->isSocketFailed()){
 			break;
+		}
+		if( (now-start).ticks() > 1000 * 1000 ){
+			const char *either[]={"Hello, world", "Again"};
+			ss->write(either[rand()&1]);
+			std::cout<<"sending one"<<std::endl;
+			start = now;
 		}
 	}
 	return 0;
