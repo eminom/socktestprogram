@@ -26,9 +26,10 @@ int main()
 			break;
 		}
 		if( (now-start).ticks() > 1000 * 1000 ){
-			const char *either[]={"Hello, world", "Again"};
-			ss->write(either[rand()&1]);
-			std::cout<<"sending one"<<std::endl;
+			const char *either[]={"Hello, world", "Ride again"};
+            const char *chosen = either[rand()&1];
+			ss->write(chosen);
+			std::cout<<"<<\""<<chosen<<"\""<<std::endl;
 			start = now;
 		}
 	}
