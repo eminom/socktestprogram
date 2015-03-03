@@ -14,11 +14,14 @@ int main()
 	srand((unsigned int)time(0));
 	boost::asio::io_service io;
 	SockSessionPtr ss(SockSession::create(io));
-	//ss->test();
-	//ss.start();
-	//ss->start();
 	ss->connect();
-	io.run();
-	//io.poll();
+	ss->setTimeout(3);
+
+	while(true){
+		auto rv = io.poll();
+		if(!rv && ss->isTimeout()){
+			break;
+		}
+	}
 	return 0;
 }

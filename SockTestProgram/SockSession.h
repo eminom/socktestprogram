@@ -11,6 +11,7 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/asio.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 class SockSession;
 typedef boost::shared_ptr<SockSession> SockSessionPtr;
@@ -34,6 +35,11 @@ public:
 	void close();
 	void write(const std::string &msg);
 	void read();
+	void setTimeout(float seconds);	//~ in seconds
+	bool isTimeout();
+
+private:
+	void flushOpTime();
 
 private:
 	void handle_connected(const boost::system::error_code &error/*, boost::asio::ip::tcp::resolver::iterator ep_iterator*/);
@@ -43,8 +49,8 @@ private:
 private:
 	boost::asio::io_service &io_service_;
 	boost::asio::ip::tcp::socket socket_;
-
-	friend SockSessionPtr;
+	boost::posix_time::ptime last_op_;
+	float timeout_;
 };
 
 

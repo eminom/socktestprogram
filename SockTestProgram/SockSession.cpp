@@ -9,6 +9,7 @@
 SockSession::SockSession(boost::asio::io_service &io_service)
 	:io_service_(io_service)
 	,socket_(io_service)
+	,timeout_(3)
 {
 	std::cout<<"SockSession"<<std::endl;
 }
@@ -46,6 +47,7 @@ void SockSession::connect()
 	socket_.async_connect(ep, 
 		boost::bind(&SockSession::handle_connected, shared_from_this(), 
 		boost::asio::placeholders::error/*, endpoint_iterator*/));
+	flushOpTime();	//manually. silly but ok. 
 	//std::cout<<"Site 2000A"<<std::endl;
 }
 
@@ -122,6 +124,7 @@ void SockSession::write(const std::string &msg)
 				buffer
 			)
 		);
+		flushOpTime();	//manually. silly but ok. 
 	}
 	catch(std::exception &exception){
 		std::cerr<<"Error writing"<<std::endl;
@@ -130,4 +133,18 @@ void SockSession::write(const std::string &msg)
 	catch(...){
 		std::cerr<<"General exception"<<std::endl;
 	}
+}
+
+void SockSession::flushOpTime(){
+	last_op_ = boost::posix_time::microsec_clock::universal_time();
+}
+
+void SockSession::setTimeout(float s){
+	timeout_ = s;
+}
+
+bool SockSession::isTimeout(){
+	auto now = boost::posix_time::microsec_clock::universal_time();
+	int pass = int(timeout_ * 1000 * 1000);
+	return (now-last_op_).ticks() > pass;
 }
