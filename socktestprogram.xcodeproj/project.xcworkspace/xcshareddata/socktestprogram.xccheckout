@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>621B1719-6C39-42EB-8BC1-411EABA76B4F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>socktestprogram</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CDB0DFB6D6575E8606F2FA71EB430FC41075B256</key>
+		<string>https://github.com/eminom/socktestprogram</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>socktestprogram.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CDB0DFB6D6575E8606F2FA71EB430FC41075B256</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/eminom/socktestprogram</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CDB0DFB6D6575E8606F2FA71EB430FC41075B256</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CDB0DFB6D6575E8606F2FA71EB430FC41075B256</string>
+			<key>IDESourceControlWCCName</key>
+			<string>socktestprogram</string>
+		</dict>
+	</array>
+</dict>
+</plist>

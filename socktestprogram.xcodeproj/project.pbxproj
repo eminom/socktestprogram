@@ -1,0 +1,264 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB2A1D621AA5FE6200E04F93 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB2A1D611AA5FE6200E04F93 /* main.cpp */; };
+		DB2A1D6B1AA5FF1300E04F93 /* SockSession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB2A1D691AA5FF1300E04F93 /* SockSession.cpp */; };
+		DB2A1D6D1AA6009500E04F93 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2A1D6C1AA6009500E04F93 /* libboost_system.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DB2A1D5C1AA5FE6200E04F93 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DB2A1D5E1AA5FE6200E04F93 /* socktestprogram */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = socktestprogram; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB2A1D611AA5FE6200E04F93 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DB2A1D681AA5FF1300E04F93 /* SessionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionProtocol.h; path = SockTestProgram/SessionProtocol.h; sourceTree = SOURCE_ROOT; };
+		DB2A1D691AA5FF1300E04F93 /* SockSession.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SockSession.cpp; path = SockTestProgram/SockSession.cpp; sourceTree = SOURCE_ROOT; };
+		DB2A1D6A1AA5FF1300E04F93 /* SockSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SockSession.h; path = SockTestProgram/SockSession.h; sourceTree = SOURCE_ROOT; };
+		DB2A1D6C1AA6009500E04F93 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../../../dev/boost/macosx/lib/libboost_system.a; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB2A1D5B1AA5FE6200E04F93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB2A1D6D1AA6009500E04F93 /* libboost_system.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB2A1D551AA5FE6200E04F93 = {
+			isa = PBXGroup;
+			children = (
+				DB2A1D6C1AA6009500E04F93 /* libboost_system.a */,
+				DB2A1D601AA5FE6200E04F93 /* socktestprogram */,
+				DB2A1D5F1AA5FE6200E04F93 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB2A1D5F1AA5FE6200E04F93 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB2A1D5E1AA5FE6200E04F93 /* socktestprogram */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB2A1D601AA5FE6200E04F93 /* socktestprogram */ = {
+			isa = PBXGroup;
+			children = (
+				DB2A1D681AA5FF1300E04F93 /* SessionProtocol.h */,
+				DB2A1D691AA5FF1300E04F93 /* SockSession.cpp */,
+				DB2A1D6A1AA5FF1300E04F93 /* SockSession.h */,
+				DB2A1D611AA5FE6200E04F93 /* main.cpp */,
+			);
+			path = socktestprogram;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB2A1D5D1AA5FE6200E04F93 /* socktestprogram */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB2A1D651AA5FE6200E04F93 /* Build configuration list for PBXNativeTarget "socktestprogram" */;
+			buildPhases = (
+				DB2A1D5A1AA5FE6200E04F93 /* Sources */,
+				DB2A1D5B1AA5FE6200E04F93 /* Frameworks */,
+				DB2A1D5C1AA5FE6200E04F93 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = socktestprogram;
+			productName = socktestprogram;
+			productReference = DB2A1D5E1AA5FE6200E04F93 /* socktestprogram */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB2A1D561AA5FE6200E04F93 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = haigamehouse;
+				TargetAttributes = {
+					DB2A1D5D1AA5FE6200E04F93 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = DB2A1D591AA5FE6200E04F93 /* Build configuration list for PBXProject "socktestprogram" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DB2A1D551AA5FE6200E04F93;
+			productRefGroup = DB2A1D5F1AA5FE6200E04F93 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB2A1D5D1AA5FE6200E04F93 /* socktestprogram */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB2A1D5A1AA5FE6200E04F93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB2A1D6B1AA5FF1300E04F93 /* SockSession.cpp in Sources */,
+				DB2A1D621AA5FE6200E04F93 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DB2A1D631AA5FE6200E04F93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DB2A1D641AA5FE6200E04F93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DB2A1D661AA5FE6200E04F93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/eminom/dev/boost/macosx/include,
+				);
+				LIBRARY_SEARCH_PATHS = /Users/eminom/dev/boost/macosx/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DB2A1D671AA5FE6200E04F93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/eminom/dev/boost/macosx/include,
+				);
+				LIBRARY_SEARCH_PATHS = /Users/eminom/dev/boost/macosx/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB2A1D591AA5FE6200E04F93 /* Build configuration list for PBXProject "socktestprogram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB2A1D631AA5FE6200E04F93 /* Debug */,
+				DB2A1D641AA5FE6200E04F93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB2A1D651AA5FE6200E04F93 /* Build configuration list for PBXNativeTarget "socktestprogram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB2A1D661AA5FE6200E04F93 /* Debug */,
+				DB2A1D671AA5FE6200E04F93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB2A1D561AA5FE6200E04F93 /* Project object */;
+}
