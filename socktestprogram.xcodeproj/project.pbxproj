@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB2A1D621AA5FE6200E04F93 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB2A1D611AA5FE6200E04F93 /* main.cpp */; };
-		DB2A1D6B1AA5FF1300E04F93 /* SockSession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB2A1D691AA5FF1300E04F93 /* SockSession.cpp */; };
 		DB2A1D6D1AA6009500E04F93 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2A1D6C1AA6009500E04F93 /* libboost_system.a */; };
+		DB736CA61AAAB1DC00506290 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB736CA21AAAB1DC00506290 /* main.cpp */; };
+		DB736CA71AAAB1DC00506290 /* SockSession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB736CA41AAAB1DC00506290 /* SockSession.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,11 +26,11 @@
 
 /* Begin PBXFileReference section */
 		DB2A1D5E1AA5FE6200E04F93 /* socktestprogram */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = socktestprogram; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB2A1D611AA5FE6200E04F93 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		DB2A1D681AA5FF1300E04F93 /* SessionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionProtocol.h; path = SockTestProgram/SessionProtocol.h; sourceTree = SOURCE_ROOT; };
-		DB2A1D691AA5FF1300E04F93 /* SockSession.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SockSession.cpp; path = SockTestProgram/SockSession.cpp; sourceTree = SOURCE_ROOT; };
-		DB2A1D6A1AA5FF1300E04F93 /* SockSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SockSession.h; path = SockTestProgram/SockSession.h; sourceTree = SOURCE_ROOT; };
 		DB2A1D6C1AA6009500E04F93 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../../../dev/boost/macosx/lib/libboost_system.a; sourceTree = "<group>"; };
+		DB736CA21AAAB1DC00506290 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Source/main.cpp; sourceTree = "<group>"; };
+		DB736CA31AAAB1DC00506290 /* SessionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionProtocol.h; path = Source/SessionProtocol.h; sourceTree = "<group>"; };
+		DB736CA41AAAB1DC00506290 /* SockSession.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SockSession.cpp; path = Source/SockSession.cpp; sourceTree = "<group>"; };
+		DB736CA51AAAB1DC00506290 /* SockSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SockSession.h; path = Source/SockSession.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,8 +48,8 @@
 		DB2A1D551AA5FE6200E04F93 = {
 			isa = PBXGroup;
 			children = (
+				DB736CA11AAAB1C800506290 /* src */,
 				DB2A1D6C1AA6009500E04F93 /* libboost_system.a */,
-				DB2A1D601AA5FE6200E04F93 /* socktestprogram */,
 				DB2A1D5F1AA5FE6200E04F93 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,15 +62,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DB2A1D601AA5FE6200E04F93 /* socktestprogram */ = {
+		DB736CA11AAAB1C800506290 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				DB2A1D681AA5FF1300E04F93 /* SessionProtocol.h */,
-				DB2A1D691AA5FF1300E04F93 /* SockSession.cpp */,
-				DB2A1D6A1AA5FF1300E04F93 /* SockSession.h */,
-				DB2A1D611AA5FE6200E04F93 /* main.cpp */,
+				DB736CA21AAAB1DC00506290 /* main.cpp */,
+				DB736CA31AAAB1DC00506290 /* SessionProtocol.h */,
+				DB736CA41AAAB1DC00506290 /* SockSession.cpp */,
+				DB736CA51AAAB1DC00506290 /* SockSession.h */,
 			);
-			path = socktestprogram;
+			name = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,8 +129,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB2A1D6B1AA5FF1300E04F93 /* SockSession.cpp in Sources */,
-				DB2A1D621AA5FE6200E04F93 /* main.cpp in Sources */,
+				DB736CA71AAAB1DC00506290 /* SockSession.cpp in Sources */,
+				DB736CA61AAAB1DC00506290 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,8 +12,8 @@ SockSession::SockSession(boost::asio::io_service &io_service)
 	,timeout_(3)
 	,connecting_timeout_(false)
 	,socket_failed_(false)
-	,host_("localhost")
-	,port_("4001")
+	,host_("192.168.1.102")
+	,port_("2000")
 {
 	std::cout<<"SockSession"<<std::endl;
 }
@@ -113,12 +113,14 @@ void SockSession::handle_connected(const boost::system::error_code &error/*, boo
 {
 	try{
 		if(!error){
+            /*
 			const char *msg[]={
 				"Stan",
 				"Eric",
 				"Kyle",
 				"Kenny"
 			};
+            */
 			//write("Hello");
 			//write( msg[rand()% (sizeof(msg)/sizeof(*msg))]);
 		} else {
