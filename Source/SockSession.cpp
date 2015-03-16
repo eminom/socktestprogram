@@ -12,8 +12,8 @@ SockSession::SockSession(boost::asio::io_service &io_service)
 	,timeout_(3)
 	,connecting_timeout_(false)
 	,socket_failed_(false)
-	,host_("192.168.1.102")
-	,port_("2000")
+	,host_("192.168.2.2")
+	,port_("8000")
 {
 	std::cout<<"SockSession"<<std::endl;
 }
@@ -104,7 +104,10 @@ void SockSession::handle_bodyRead(const boost::system::error_code &error){
 	}
 	std::string data;
 	//data.swap(buffer_);
-	std::cout<<buffer_<<std::endl;
+
+	std::string payload(&buffer_[2], buffer_.size()-2);
+	callback_(payload.c_str(), payload.size());
+	//std::cout<<buffer_<<std::endl;
 	read();
 }
 
@@ -206,4 +209,8 @@ bool SockSession::isTimeout()const{
 
 bool SockSession::isSocketFailed()const{
 	return socket_failed_ || connecting_timeout_;
+}
+
+void SockSession::setCallback(BufferCallback cb){
+	callback_ = cb;
 }
