@@ -152,7 +152,7 @@ void expandFuncRes(int res)
 void decodeBuffer(const char *buffer, int bufferSize)
 {
 	_DeclareState()
-	lua_getglobal(L, "decoderXEminem");
+	lua_getglobal(L, "decoderX");
 	assert(lua_isfunction(L, -1));
 
 	int top = lua_gettop(L);
