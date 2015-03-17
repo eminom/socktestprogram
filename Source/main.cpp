@@ -23,6 +23,8 @@ extern "C"{
 
 #include "interop/lua_access/lua_access_macros.h"
 
+std::function<void(const char*, int length)> gSender;
+
 #define COUNT 1000000
 static int loadBinaryFileForLua(lua_State * s)
 {
@@ -56,7 +58,7 @@ static int loadBinaryFileForLua(lua_State * s)
 	do {
 		char *p = luaL_prepbuffer(&b);
 		if (rlen > n) rlen = n;  /* cannot read more than asked */
-		memcpy(p,buffer + index,rlen);
+		memcpy(p, buffer + index,rlen);
 		luaL_addsize(&b, rlen);
 		index += rlen;
 		n -= rlen;  /* still have to read `n' chars */
@@ -65,8 +67,17 @@ static int loadBinaryFileForLua(lua_State * s)
 	return 1;
 }
 
+static int sendBuffer(lua_State *L)
+{
+	size_t size = 0;
+	const char *buffer = lua_tolstring(L, 1, &size);
+	gSender(buffer, size);
+	return 0;	// The return values
+}
+
 struct luaL_Reg entries[]={
 	{"loadBinaryFile", loadBinaryFileForLua},
+	{"sendBuffer", sendBuffer},
 	{0,0}
 };
 
@@ -141,8 +152,6 @@ void expandFuncRes(int res)
 void decodeBuffer(const char *buffer, int bufferSize)
 {
 	_DeclareState()
-
-
 	lua_getglobal(L, "decoderXEminem");
 	assert(lua_isfunction(L, -1));
 
@@ -164,10 +173,17 @@ void decodeBuffer(const char *buffer, int bufferSize)
 	int afterTop = lua_gettop(L);
 	int res = lua_pcall(L, 1, 0, 0); 
 	expandFuncRes(res);
-
-
 	printf("Calling done.\n");
 	//lua_pcall(L, 1, 0, 0);
+}
+
+void randSend()
+{
+	_DeclareState()
+	lua_getglobal(L, "encoderX");
+	assert(lua_isfunction(L, -1));
+	int res = lua_pcall(L, 0, 0, 0);
+	expandFuncRes(res);
 }
 
 int main()
@@ -179,6 +195,11 @@ int main()
 	ss->setCallback(decodeBuffer);
 	ss->connect();
 	ss->setTimeout(3);
+
+	gSender = [&ss](const char *buffer, int length){
+		std::cout<<"About to send a buffer to server"<<std::endl;
+		ss->write(buffer, length);
+	};
 
 	lua_State *L = LuaScript::instance()->getLuaState();
 	luaL_register(L, "mm", entries);
@@ -199,13 +220,15 @@ int main()
 			break;
 		}
 
-#if 0
+#if 1
 //#if _TEST
 		if( (now-start).ticks() > 1000 * 1000 ){
-			const char *either[]={"Hello, world", "Ride again"};
-            const char *chosen = either[rand()&1];
-			ss->write(chosen);
-			std::cout<<"<<\""<<chosen<<"\""<<std::endl;
+			//const char *either[]={"Hello, world", "Ride again"};
+   //         const char *chosen = either[rand()&1];
+			//ss->write(chosen);
+			//std::cout<<"<<\""<<chosen<<"\""<<std::endl;
+			randSend();
+
 			start = now;
 		}
 #endif  // End of _TEST

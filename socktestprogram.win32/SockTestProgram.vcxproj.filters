@@ -9,6 +9,24 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="interop">
+      <UniqueIdentifier>{c716692d-079a-4d29-a314-abf62e4caf03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="interop\lua_access">
+      <UniqueIdentifier>{dada24f7-3b6d-41f6-879f-d5fd72c4478c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{c9f9d032-e49c-4a53-9d61-276b410ff157}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependence">
+      <UniqueIdentifier>{4df0b7af-3df9-48bf-8a6e-b24acef38830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependence\lua">
+      <UniqueIdentifier>{28b31301-1c0d-4cbe-bf85-b1b36f88d6cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="interop\class">
+      <UniqueIdentifier>{84cc8c68-b2c6-469e-a548-ddd211d9d0f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
@@ -16,6 +34,123 @@
     </ClCompile>
     <ClCompile Include="..\Source\SockSession.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\interop\lua_access\lua_access.cpp">
+      <Filter>interop\lua_access</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\interop\lua_access\refobj.cpp">
+      <Filter>interop\lua_access</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\interop\lua_access\refproto.cpp">
+      <Filter>interop\lua_access</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\interop\lua_access\refprotobase.cpp">
+      <Filter>interop\lua_access</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\script\lua_script.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lapi.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lauxlib.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lbaselib.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lcode.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ldblib.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ldebug.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ldo.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ldump.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lfunc.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lgc.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\linit.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\liolib.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\llex.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lmathlib.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lmem.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\loadlib.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lobject.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lopcodes.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\loslib.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lparser.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lstate.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lstring.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lstrlib.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ltable.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ltablib.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ltm.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lua.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\luac.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lundump.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lvm.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lzio.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\print.c">
+      <Filter>dependence\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\pbc\binding\lua\pbc-lua.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\interop\class\lextension.c">
+      <Filter>interop\class</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -25,5 +160,100 @@
     <ClInclude Include="..\Source\SockSession.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\Source\interop\lua_access\lua_access.h">
+      <Filter>interop\lua_access</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\interop\lua_access\lua_access_macros.h">
+      <Filter>interop\lua_access</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\interop\lua_access\refobj.h">
+      <Filter>interop\lua_access</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\interop\lua_access\refproto.h">
+      <Filter>interop\lua_access</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\interop\lua_access\refprotobase.h">
+      <Filter>interop\lua_access</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\script\lua_script.h">
+      <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lapi.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lauxlib.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lcode.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\ldebug.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\ldo.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lfunc.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lgc.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\llex.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\llimits.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lmem.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lobject.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lopcodes.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lparser.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lstate.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lstring.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\ltable.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\ltm.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lua.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\luaconf.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lualib.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lundump.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lvm.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lzio.h">
+      <Filter>dependence\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\interop\class\lextension.h">
+      <Filter>interop\class</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Source\dependence\lua-5.1.5\src\Makefile">
+      <Filter>dependence\lua</Filter>
+    </None>
   </ItemGroup>
 </Project>

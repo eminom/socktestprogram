@@ -37,5 +37,16 @@ function decoderXEminem(buffer)
 	print("Decode finished")
 end
 
+function encoderX()
+	local pack = {
+		num = 10,
+		name = 'command name field'
+	}
+	local buffer = protobuf.encode("WorldListCommand", pack)
+	print('length of buffer is [', buffer:len(), ']')
+
+	mm.sendBuffer(buffer)
+	print("sending done")
+end
 
 print("INIT FINISHED")

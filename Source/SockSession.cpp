@@ -166,15 +166,20 @@ void SockSession::handle_written(const boost::system::error_code &error,
 	}
 }
 
-void SockSession::write(const std::string &msg)
+void SockSession::write(const char *msg, int rlength)
 {
 	try{
 		std::string *buffer = new std::string;
-		int length = msg.size() + /*1 +*/ 4;
+		int length = rlength + 4 + 2;
 		buffer->resize(length);
-		*(int*)&((*buffer)[0]) = length;
+		memset(&(*buffer)[0], 0, length * sizeof(char));
+
+		//htonl(
+		//~
+		*(int*)&((*buffer)[0]) = length;   // local seq.
+		*(unsigned short*)&((*buffer)[4]) = 1;	//type code
 		std::string &ref = *buffer;
-		memcpy(&ref[4], &msg[0], msg.size() /*+ 1*/);
+		memcpy(&ref[6], &msg[0], rlength);
 		boost::asio::async_write(socket_, boost::asio::buffer(*buffer, buffer->size()),
 		boost::bind(&SockSession::handle_written, shared_from_this(),
 				boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred,

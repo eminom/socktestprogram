@@ -11,12 +11,90 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\external\pbc\binding\lua\pbc-lua.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lapi.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lauxlib.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lbaselib.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lcode.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ldblib.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ldebug.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ldo.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ldump.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lfunc.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lgc.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\linit.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\liolib.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\llex.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lmathlib.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lmem.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\loadlib.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lobject.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lopcodes.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\loslib.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lparser.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lstate.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lstring.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lstrlib.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ltable.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ltablib.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\ltm.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lua.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\luac.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lundump.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lvm.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lzio.c" />
+    <ClCompile Include="..\Source\dependence\lua-5.1.5\src\print.c" />
+    <ClCompile Include="..\Source\interop\class\lextension.c" />
+    <ClCompile Include="..\Source\interop\lua_access\lua_access.cpp" />
+    <ClCompile Include="..\Source\interop\lua_access\refobj.cpp" />
+    <ClCompile Include="..\Source\interop\lua_access\refproto.cpp" />
+    <ClCompile Include="..\Source\interop\lua_access\refprotobase.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
+    <ClCompile Include="..\Source\script\lua_script.cpp" />
     <ClCompile Include="..\Source\SockSession.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lapi.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lauxlib.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lcode.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\ldebug.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\ldo.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lfunc.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lgc.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\llex.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\llimits.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lmem.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lobject.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lopcodes.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lparser.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lstate.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lstring.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\ltable.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\ltm.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lua.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\luaconf.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lualib.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lundump.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lvm.h" />
+    <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lzio.h" />
+    <ClInclude Include="..\Source\interop\class\lextension.h" />
+    <ClInclude Include="..\Source\interop\lua_access\lua_access.h" />
+    <ClInclude Include="..\Source\interop\lua_access\lua_access_macros.h" />
+    <ClInclude Include="..\Source\interop\lua_access\refobj.h" />
+    <ClInclude Include="..\Source\interop\lua_access\refproto.h" />
+    <ClInclude Include="..\Source\interop\lua_access\refprotobase.h" />
+    <ClInclude Include="..\Source\script\lua_script.h" />
     <ClInclude Include="..\Source\SessionProtocol.h" />
     <ClInclude Include="..\Source\SockSession.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Source\dependence\lua-5.1.5\src\Makefile" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1E4AA59C-A3E8-4965-9598-05B759F537DF}</ProjectGuid>
@@ -62,12 +140,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Boost\include\boost-1_57;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\external\pbc;C:\Boost\include\boost-1_57;$(SolutionDir)\..\Source;$(SolutionDir)\..\Source\dependence\lua-5.1.5\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;C:\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>pbc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

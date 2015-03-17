@@ -2,6 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SockTestProgram", "SockTestProgram.vcxproj", "{1E4AA59C-A3E8-4965-9598-05B759F537DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{82356F33-956B-4931-9977-BD7994B1C761} = {82356F33-956B-4931-9977-BD7994B1C761}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pbc", "..\external\pbc\pbc.vcxproj", "{82356F33-956B-4931-9977-BD7994B1C761}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +18,10 @@ Global
 		{1E4AA59C-A3E8-4965-9598-05B759F537DF}.Debug|Win32.Build.0 = Debug|Win32
 		{1E4AA59C-A3E8-4965-9598-05B759F537DF}.Release|Win32.ActiveCfg = Release|Win32
 		{1E4AA59C-A3E8-4965-9598-05B759F537DF}.Release|Win32.Build.0 = Release|Win32
+		{82356F33-956B-4931-9977-BD7994B1C761}.Debug|Win32.ActiveCfg = Debug|Win32
+		{82356F33-956B-4931-9977-BD7994B1C761}.Debug|Win32.Build.0 = Debug|Win32
+		{82356F33-956B-4931-9977-BD7994B1C761}.Release|Win32.ActiveCfg = Release|Win32
+		{82356F33-956B-4931-9977-BD7994B1C761}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@ struct SockSessionProtocol
 {
 	virtual void start() = 0;
 	virtual void close() = 0;
-	virtual void write(const std::string &msg) = 0;
+	virtual void write(const char *msg, int length) = 0;
 	virtual void read() = 0;
 };
 

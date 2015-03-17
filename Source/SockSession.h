@@ -36,7 +36,7 @@ public:
 	void setDestination(const std::string &host, const std::string &port);
 	void connect();
 	void close();
-	void write(const std::string &msg);
+	void write(const char *msg, int length);
 	void read();
 	void readBody();
 	void setTimeout(float seconds);	//~ in seconds
