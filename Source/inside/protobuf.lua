@@ -68,7 +68,6 @@ function _reader:int32(key)
 end
 
 function _reader:int64(key)
-	print('_read:int64(', key, ')')
 	return c._rmessage_int64(self._CObj , key , 0)
 end
 
