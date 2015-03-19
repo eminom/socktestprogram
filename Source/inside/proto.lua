@@ -1,5 +1,5 @@
 
-require "embed.protobuf"
+require "inside.protobuf"
 
 -- 处理协议相关的逻辑
 Proto = {}
@@ -31,14 +31,14 @@ function Proto.init()
 			"../proto/msg.pb",
 			"../proto/worldcmd.pb",
 		}
-		print "Loading protos  ..."
+		-- print "Loading protos  ..."
 
 		for i=1, #pbs do
-			print("Loading of ", pbs[i])
+			-- print("Loading of ", pbs[i])
 			protobuf.register(mm.loadBinaryFile(pbs[i]))
-			print("Loading finished")
+			-- print("Loading finished")
 		end
-		print "Loading done"
+		-- print "Loading done"
 	end
 end
 

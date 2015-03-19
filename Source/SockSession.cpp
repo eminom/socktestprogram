@@ -104,9 +104,12 @@ void SockSession::handle_bodyRead(const boost::system::error_code &error){
 	}
 	std::string data;
 	//data.swap(buffer_);
+	assert(buffer_.size() > 2);
 
 	std::string payload(&buffer_[2], buffer_.size()-2);
-	callback_(payload.c_str(), payload.size());
+	int typecode = int(buffer_[0]);
+	typecode += 16 * int(buffer_[0]);
+	callback_(typecode, payload.c_str(), payload.size());
 	//std::cout<<buffer_<<std::endl;
 	read();
 }
@@ -216,6 +219,6 @@ bool SockSession::isSocketFailed()const{
 	return socket_failed_ || connecting_timeout_;
 }
 
-void SockSession::setCallback(BufferCallback cb){
+void SockSession::setCallback(InComingBufferCallback cb){
 	callback_ = cb;
 }

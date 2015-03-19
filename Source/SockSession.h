@@ -16,7 +16,7 @@
 
 class SockSession;
 typedef boost::shared_ptr<SockSession> SockSessionPtr;
-typedef std::function<void(const char*, int length)> BufferCallback;
+typedef std::function<void(int, const char*, int length)> InComingBufferCallback;
 
 class SockSession:public boost::enable_shared_from_this<SockSession>,
 	public SockSessionProtocol,
@@ -43,7 +43,7 @@ public:
 	bool isTimeout()const;
 	bool isSocketFailed()const;
 
-	void setCallback(BufferCallback cb);
+	void setCallback(InComingBufferCallback cb);
 
 private:
 	void flushOpTime();
@@ -68,7 +68,7 @@ private:
 	std::string host_;
 	std::string port_;
 
-	BufferCallback callback_;
+	InComingBufferCallback callback_;
 };
 
 

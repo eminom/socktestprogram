@@ -3,7 +3,18 @@
 #ifndef _LUA_SCRIPT_WRAPPER_DEF__
 #define _LUA_SCRIPT_WRAPPER_DEF__
 
-struct lua_State;
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
+
+#ifdef __cplusplus
+}
+#endif
+
 
 class LuaScript
 {
