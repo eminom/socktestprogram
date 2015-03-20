@@ -31,9 +31,10 @@ void LuaScript::init(){
 	luaopen_protobuf_c(L_);
 
 	const char *traceback = 
-"function __G_TRACEBACK(...)\n"
-"	print(\"ERROR:>>>\")\n"
-"	print(debug.traceback())\n"
+"function __G_TRACEBACK(msg)\n"
+"	local msg = debug.traceback(msg, 3)\n"
+"	print(msg)\n"
+"	return msg\n"
 "end\n"
 ;
 
