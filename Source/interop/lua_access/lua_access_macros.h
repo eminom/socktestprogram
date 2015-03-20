@@ -12,6 +12,7 @@ extern "C" {
 #include "script/lua_script.h"
 
 #define _DeclareState()	\
-	lua_State *L = LuaScript::instance()->getLuaState();
+	lua_State *L = LuaScript::instance()->getLuaState();\
+	int top = lua_gettop(L);
 
 #endif
