@@ -46,7 +46,7 @@ const char* toLuaType(lua_State *L, int index){
 void executeVoidFunc(const char *funcName, const char *format, ...)
 {
 	_ExecuteBody(0)
-	lua_settop(L,0);
+	lua_settop(L,top);
 }
 
 
@@ -67,7 +67,7 @@ std::string executeStringFunc(const char *funcName, const char *format, ...)
 	if( !lua_isstring(L, -1) )
 	{
 		log("Error executing %s", funcName);
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return "";
 	}
 
@@ -77,7 +77,7 @@ std::string executeStringFunc(const char *funcName, const char *format, ...)
 	{
 		rv = topStr;
 	}
-	lua_settop(L,0);
+	lua_settop(L,top);
 	return rv;
 }
 
@@ -88,12 +88,12 @@ float executeNumberFunc(const char *funcName, const char *format, ...)
 	if( !lua_isnumber(L,-1))
 	{
 		log("Error executing %s", funcName);
-		lua_settop(L,0);
+		lua_settop(L, top);
 		return 0;
 	}
 
 	float rv = lua_tonumber(L, -1);
-	lua_settop(L, 0);
+	lua_settop(L, top);
 	return rv;
 }
 
@@ -103,11 +103,11 @@ int executeIntegerFunc(const char *funcName, const char *format,...)
 	if( !lua_isnumber(L,-1))
 	{
 		log("Error executing %s", funcName);
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return 0;
 	}
 	int rv = lua_tointeger(L, -1);
-	lua_settop(L, 0);
+	lua_settop(L, top);
 	return rv;
 }
 
@@ -117,11 +117,11 @@ float executeFloatFunc(const char *funcName, const char *format,...)
 	if( !lua_isnumber(L,-1))
 	{
 		log("Error executing %s", funcName);
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return 0;
 	}
 	float rv = lua_tonumber(L, -1);
-	lua_settop(L, 0);
+	lua_settop(L, top);
 	return rv;
 }
 
@@ -132,7 +132,7 @@ void execVoidFunc(int ref, const char *format, ...)
 	assert( lua_isfunction(L, -1) );
 	if (!lua_isfunction(L, -1)){
 		log("object on top is not a function. which is actually %s", toLuaType(L, -1));
-		lua_settop(L, 0);	//~Pop the top which is put on right now.
+		lua_settop(L, top);	//~Pop the top which is put on right now.
 		return;
 	}
 	va_list args;
@@ -140,7 +140,7 @@ void execVoidFunc(int ref, const char *format, ...)
 	const char *funcName = "anonymous func";
 	ExecuteFunctionOnTop(args, 0)
 	va_end(args);
-	lua_settop(L, 0);
+	lua_settop(L, top);
 }
 
 //These APIs are for retaining object at C
@@ -186,11 +186,11 @@ int ljRunObjInteger(int ref, const char *name, bool *result, const char *format,
 	if(!lua_isnumber(L, -1)){
 		log("%s return value is not number!", name);
 		log("which is actually %s", toLuaType(L, -1));
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return 0;
 	}
 	auto rv = lua_tointeger(L, -1);
-	lua_settop(L, 0);
+	lua_settop(L, top);
 	if(result){
 		*result = true;
 	}
@@ -208,13 +208,12 @@ void ljRunObjVoid(int ref, const char *name, bool *result, const char *format, .
 	if(result){
 		*result = true;
 	}
-	lua_settop(L,0);
+	lua_settop(L, top);
 }
 
 void ljRunObjVoidSelfUserData(int ref, const char *name, bool *result, void *p) {
 	_DeclareState()
 	_get_table_field_onto_stack(lua_isfunction)
-
 	assert(lua_istable(L, -2));
 	lua_pushvalue(L, -2);
 	const char *funcName = name;
@@ -235,13 +234,13 @@ void ljRunObjVoidSelfUserData(int ref, const char *name, bool *result, void *p) 
 	if( lua_pcall(L, parameterCount, 0, traceback) )
 	{
 		log("Error executing %s", funcName);
-		lua_settop(L,0);
+		lua_settop(L,top);
 		return;
 	}
 	if(result){
 		*result = true;	//Finally.
 	}
-	lua_settop(L,0);
+	lua_settop(L,top);
 	return;
 }
 
@@ -265,11 +264,10 @@ void ljReleaseObj(int &ref){
 
 int ljLoadObj(const char *name){
 	_DeclareState()
-	int top =lua_gettop(L);
 	lua_getglobal(L,name);
 	if( !lua_istable(L, -1)){
 		log("%s is not a table", name);
-		lua_settop(L,0);
+		lua_settop(L, top);
 		return LUA_REFNIL;
 	}
 	int rv = luaL_ref(L, LUA_REGISTRYINDEX);
@@ -282,7 +280,7 @@ int ljCreateTableFromFuncRef(int ref, int retvals, int(*checker)(lua_State *L, i
 	lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 	if (!lua_isfunction(L,-1)){
 		log("Ref %d is not a function", ref);
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return LUA_REFNIL;
 	}
 	//considering add some parameters
@@ -290,7 +288,7 @@ int ljCreateTableFromFuncRef(int ref, int retvals, int(*checker)(lua_State *L, i
     int functionIndex = -(numArgs + 1);
     if (!lua_isfunction(L, functionIndex))  {
         log("value at stack [%d] is not function", functionIndex);
-        lua_settop(L, 0);
+        lua_settop(L, top);
         return LUA_REFNIL;
     }
     int traceback = 0;
@@ -307,23 +305,23 @@ int ljCreateTableFromFuncRef(int ref, int retvals, int(*checker)(lua_State *L, i
         if (traceback == 0) {
             log("[LUA ERROR] %s", lua_tostring(L, - 1));        /* L: ... error */
         }
-		lua_settop(L, 0);
+		lua_settop(L, top);
         return LUA_REFNIL;
     }
 
 	if( 1 == retvals){
 		if( !checker(L, -1)){
 			log("return value is not a table");
-			lua_settop(L, 0);
+			lua_settop(L, top);
 			return LUA_REFNIL;
 		}
 		//Duplicate this
 		int ret = luaL_ref(L, LUA_REGISTRYINDEX);
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return ret;
 	}
 	// Do not expect to receive any return values
-	lua_settop(L,0);	//Balance
+	lua_settop(L,top);	//Balance
 	return LUA_REFNIL;
 }
 
@@ -364,7 +362,7 @@ int ljLoadFuncHandle(const char *name) {
     }
 	if( !lua_isfunction(L, -1)){
 		log("return value is a %s", toLuaType(L, -1));
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		assert(false);
 		return LUA_REFNIL;
 	}
@@ -436,7 +434,6 @@ void ObjContainer::clear(){
 
 bool ObjContainer::addObject(int obj) {
 	_DeclareState()
-	int originTop = lua_gettop(L);
 	lua_rawgeti(L, LUA_REGISTRYINDEX, _ref);
 	assert(lua_istable(L,-1)) ;
 	lua_rawgeti(L,LUA_REGISTRYINDEX, obj);
@@ -448,7 +445,7 @@ bool ObjContainer::addObject(int obj) {
 	int indexKey = _objCount + 1;	//The last one
 	lua_rawseti(L, -2, indexKey);
 	lua_pop(L, 1);
-	assert( lua_gettop(L) == originTop);
+	assert( lua_gettop(L) == top);
 	_objCount++;
 	return true;
 }

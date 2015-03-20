@@ -38,21 +38,28 @@ void RefObject::loadFromTop(){
 void RefObject::loadFromFunc(const char *name){
 	ljReleaseObj(_ref);
 	_DeclareState()
-	const int top = lua_gettop(L);
+	int traceback = 0;
+	lua_getglobal(L, "__G__TRACKBACK__");
+	if(lua_isfunction(L, -1)){
+		traceback = -2;
+	}
 	lua_getglobal(L, name);
-	if(!lua_isfunction(L,-1)){
+	if(!lua_isfunction(L, -1)){
 		printf("No a function for %s\n", name);
-		lua_pop(L,1);
+		lua_pop(L, 2);
+		assert( top == lua_gettop(L));
 		assert(0);
 		return;
 	}
-	if( lua_pcall(L, 0, 1, 0)){
+	if( lua_pcall(L, 0, 1, traceback)){
 		printf("Error running %s\n", name);
-		lua_pop(L,1);
+		lua_pop(L, 2);
+		assert( top == lua_gettop(L));
 		assert(0);
 		return;
 	}
 	_ref = luaL_ref(L, LUA_REGISTRYINDEX);
+	lua_pop(L, 1);
 	assert( top == lua_gettop(L));
 	assert( _ref != LUA_REFNIL);
 }

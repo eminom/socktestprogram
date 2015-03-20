@@ -11,6 +11,11 @@ struct lua_State;
 
 #define log(...)	printf(__VA_ARGS__);
 
+
+#ifndef CCLog
+#define CCLog(...)	{fprintf(stderr, __VA_ARGS__); fprintf(stderr,"\n");}
+#endif
+
 #define _preprocess_widget()\
 		case 'x':\
 		{\
@@ -34,66 +39,101 @@ struct lua_State;
 		_preprocess_ccnode()
 #endif
 
+#define _CheckTop()\
+	if( lua_gettop(L) != top ){\
+		CCLog("Error stack top corrupted!\n");\
+		assert(0);\
+	}
 
 #define _GetBoolFuncVoidVal(funcName)\
 	_DeclareState()	\
+	int top = lua_gettop(L);\
+	int traceback = 0;\
+	lua_getglobal(L, "__G__TRACKBACK__");\
+	if(lua_isfunction(L, -1)){\
+		traceback = -2;\
+	}\
 	lua_getglobal(L, funcName);\
 	if ( ! lua_isfunction(L, -1) )\
 	{\
 		CCLog("Error executing %s", funcName);\
-		lua_settop(L, 0);\
-		return 0;	\
+		lua_pop(L, 2);\
+		_CheckTop()\
+		return false;	\
 	}\
 	\
-	if( lua_pcall(L, 0, 1, 0) )\
+	if( lua_pcall(L, 0, 1, traceback) )\
 	{\
 		CCLog("Error executing %s", funcName);\
-		lua_settop(L, 0);\
-		return 0;\
+		lua_pop(L, 2);\
+		_CheckTop()\
+		return false;\
 	}\
 	\
 	int value = lua_toboolean(L, -1);\
-	lua_settop(L, 0);
+	lua_pop(L, 2);\
+	_CheckTop()
+
 
 #define _GetStringFuncVoidVal(funcName)\
 	_DeclareState()		\
+	int top = lua_gettop(L);\
+	int traceback = 0;\
+	lua_getglobal(L, "__G__TRACKBACK__");\
+	if(lua_isfunction(L, -1)){\
+		traceback = -2;\
+	}\
 	lua_getglobal(L, funcName);\
 	if ( ! lua_isfunction(L, -1) )\
 	{\
 		CCLog("Error executing %s", funcName);\
-		lua_settop(L, 0);\
-		return 0;	\
+		lua_pop(L, 2);\
+		_CheckTop()\
+		return "";	\
 	}\
 	\
-	if( lua_pcall(L, 0, 1, 0) )\
+	if( lua_pcall(L, 0, 1, traceback) )\
 	{\
 		CCLog("Error executing %s", funcName);\
-		lua_settop(L, 0);\
-		return 0;\
+		lua_pop(L, 2);\
+		_CheckTop()\
+		return "";\
 	}\
 	\
 	const char *value = lua_tostring(L, -1);\
-	lua_settop(L, 0);
+	value = value ? value:"";\
+	lua_pop(L, 2);\
+	_CheckTop()
+
 
 #define _GetIntegerFuncVoidVal(funcName)\
 	_DeclareState()		\
+	int top = lua_gettop(L);\
+	int traceback = 0;\
+	lua_getglobal(L, "__G__TRACKBACK__");\
+	if(lua_isfunction(L, -1)){\
+		traceback = -2;\
+	}\
 	lua_getglobal(L, funcName);\
 	if ( ! lua_isfunction(L, -1) )\
 	{\
 		CCLog("Error executing %s", funcName);\
-		lua_settop(L, 0);\
+		lua_pop(L, 2);\
+		_CheckTop()\
 		return 0;	\
 	}\
 	\
-	if( lua_pcall(L, 0, 1, 0) )\
+	if( lua_pcall(L, 0, 1, traceback) )\
 	{\
 		CCLog("Error executing %s", funcName);\
-		lua_settop(L, 0);\
+		lua_pop(L, 2);\
+		_CheckTop()\
 		return 0;\
 	}\
 	\
 	int value = lua_tointeger(L, -1);\
-	lua_settop(L, 0);
+	lua_pop(L, 2);\
+	_CheckTop()
 
 
 #define ExecuteFunctionOnTop(args, returnCount, ...)\
@@ -193,7 +233,7 @@ struct lua_State;
 	if( lua_pcall(L, parameterCount, returnCount, traceback) )\
 	{\
 		log("Error executing %s", funcName);\
-		lua_settop(L,0);\
+		lua_settop(L, top);\
 		return __VA_ARGS__;\
 	}
 
@@ -205,7 +245,7 @@ struct lua_State;
 	{\
 		log("%s is not a function. Error.", funcName);\
 		assert(false);\
-		lua_settop(L,0);\
+		lua_settop(L,top);\
 		return __VA_ARGS__;\
 	}\
 	va_list args;\
@@ -220,7 +260,7 @@ struct lua_State;
 	lua_rawgeti(L, LUA_REGISTRYINDEX, ref);\
 	if ( !lua_istable(L, -1)){\
 		log("Error get table for %s: not a table", name);\
-		lua_settop(L, 0);\
+		lua_settop(L, top);\
 		return __VA_ARGS__;\
 	}\
 	lua_pushstring(L, name);\
@@ -228,14 +268,14 @@ struct lua_State;
 	if( !type_checker(L,-1)){\
 		log("Error get table %s(%s): type error", #type_checker, name);\
 		log("(%s) is actually %s\n",name, toLuaType(L, -1));\
-		lua_settop(L, 0);\
+		lua_settop(L, top);\
 		return __VA_ARGS__;\
 	}\
 
 #define _get_table_field(type_checker, caster, def_rv)\
 	_get_table_field_onto_stack(type_checker, def_rv)\
 	auto rv = caster(L, -1);\
-	lua_settop(L, 0);\
+	lua_settop(L, top);\
 	if (result) {\
 		*result = true;\
 	}

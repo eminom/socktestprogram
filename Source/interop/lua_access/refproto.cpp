@@ -85,18 +85,18 @@ int LuaRefProto::getIntFormat(const char *name, bool *result, const char *format
 	lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 	if(!lua_istable(L, -1)){
 		log("Error ref not a table");
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return 0;
 	}
 	ExecuteFunctionWithPrepushed(args, 1, 1, 0)
 	if(!lua_isnumber(L, -1)){
 		log("Error return value is not number !!");
 		log("which is actually %s", toLuaType(L,-1));
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return 0;
 	}
 	auto rv = lua_tointeger(L, -1);
-	lua_settop(L, 0);
+	lua_settop(L, top);
 	if(result){
 		*result = true;
 	}
@@ -121,12 +121,12 @@ std::string LuaRefProto::getStringFormat(const char *name, bool *result, const c
 	lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 	if(!lua_istable(L, -1)){
 		log("Error ref not a table");
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return "";
 	}
 	ExecuteFunctionWithPrepushed(args, 1,1, "")
 	if (!lua_isstring(L,-1)){
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return "";
 	}
 	const char *rv = lua_tostring(L, -1);
@@ -134,7 +134,7 @@ std::string LuaRefProto::getStringFormat(const char *name, bool *result, const c
 	if(rv){
 		retval = rv;
 	}
-	lua_settop(L, 0);
+	lua_settop(L, top);
 	if(result){
 		*result = true;
 	}
@@ -150,18 +150,18 @@ float LuaRefProto::getFloatFormat(const char *name, bool *result, const char *fo
 	if (!lua_istable(L, -1)) {
 		log("Error ref not a table");
 		assert(false);
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return 0;
 	}
 	ExecuteFunctionWithPrepushed(args, 1,1, 0)
 	if (!lua_isnumber(L,-1)){
 		log("Error return value is not float");
 		assert(false);
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return 0;
 	}
 	float retv = lua_tonumber(L, -1);
-	lua_settop(L, 0);
+	lua_settop(L, top);
 	if(result){
 		*result = true;
 	}
@@ -187,14 +187,14 @@ void LuaRefProto::getVoidFormat(const char *name, bool *result, const char *form
 	lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 	if(!lua_istable(L, -1)){
 		log("Error ref not a table");
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return;
 	}
 	ExecuteFunctionWithPrepushed(args, 1, 0)
 	if(result){
 		*result = true;
 	}
-	lua_settop(L, 0);
+	lua_settop(L, top);
 }
 
 void LuaRefProto::execVoid(const char *name, const char *format, ...) {
@@ -219,7 +219,7 @@ void LuaRefProto::runVoidFormat(const char *name, bool *result, const char *form
 	if(result){
 		*result = true;
 	}
-	lua_settop(L, 0);
+	lua_settop(L, top);
 }
 
 bool LuaRefProto::getBooleanFormat(const char *name, bool *result, const char *format, va_list args) {
@@ -230,17 +230,17 @@ bool LuaRefProto::getBooleanFormat(const char *name, bool *result, const char *f
 	lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 	if(!lua_istable(L, -1)){
 		log("Error ref not a table");
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return 0;
 	}
 	ExecuteFunctionWithPrepushed(args, 1, 1, false)
 	if(!lua_isboolean(L, -1)){
 		log("Error return value not a boolean");
-		lua_settop(L, 0);
+		lua_settop(L, top);
 		return 0;
 	}
 	bool rv = lua_toboolean(L, -1);
-	lua_settop(L, 0);
+	lua_settop(L, top);
 	if(result){
 		*result = true;
 	}
