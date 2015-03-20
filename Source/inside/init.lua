@@ -19,11 +19,6 @@ local function send_rand_info()
 	mm.sendBuffer(buffer)
 end
 
-function __G_TRACEBACK(...)
-	print("ERROR:>>>")
-	print(debug.traceback())
-end
-
 local prePass = 0
 -- dt: in second(s)
 function frameUpdate(dt)

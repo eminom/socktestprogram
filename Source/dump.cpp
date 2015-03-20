@@ -81,7 +81,6 @@ namespace GameCore
 void frameUpdate(float dt)
 {
 	_DeclareState()
-	int top = lua_gettop(L);
 	lua_getglobal(L, "__G_TRACEBACK");
 	assert(lua_isfunction(L, -1));
 

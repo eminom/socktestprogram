@@ -24,8 +24,6 @@ void luaopen_mm(lua_State *L);
 void decodeBuffer(int typecode, const char *buffer, int bufferSize)
 {
 	_DeclareState()
-	int top = lua_gettop(L);
-
 	lua_getglobal(L, "__G_TRACEBACK");
 	assert(lua_isfunction(L, -1));
 
