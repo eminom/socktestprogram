@@ -12,6 +12,8 @@
 	<dict>
 		<key>CDB0DFB6D6575E8606F2FA71EB430FC41075B256</key>
 		<string>https://github.com/eminom/socktestprogram</string>
+		<key>F650963659C313C5BE1214E5CA00076E30F11D51</key>
+		<string>https://github.com/cloudwu/pbc</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>socktestprogram.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>CDB0DFB6D6575E8606F2FA71EB430FC41075B256</key>
 		<string>../..</string>
+		<key>F650963659C313C5BE1214E5CA00076E30F11D51</key>
+		<string>../../../socktest/external/pbc</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/eminom/socktestprogram</string>
@@ -28,6 +32,14 @@
 	<string>CDB0DFB6D6575E8606F2FA71EB430FC41075B256</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F650963659C313C5BE1214E5CA00076E30F11D51</string>
+			<key>IDESourceControlWCCName</key>
+			<string>pbc</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
