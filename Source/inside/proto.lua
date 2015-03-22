@@ -28,8 +28,8 @@ function Proto.init()
 		Proto.isRegister = true
 
 		local pbs = {
-			"../proto/msg.pb",
-			"../proto/worldcmd.pb",
+			"../proto/msg.proto.pb",
+			"../proto/worldcmd.proto.pb",
 		}
 		-- print "Loading protos  ..."
 

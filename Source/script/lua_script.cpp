@@ -5,6 +5,9 @@
 
 
 /////////////
+#ifdef __APPLE__
+extern "C"
+#endif
 int luaopen_protobuf_c(lua_State *L);
 
 static LuaScript* _instance = nullptr;
@@ -57,7 +60,16 @@ void LuaScript::loadInit(const char *file_path)
 	lua_getglobal(L_, "__G_TRACEBACK");
 	assert(lua_isfunction(L_, -1));
 	luaL_loadfile(L_, file_path);
-	lua_pcall(L_, 0, 0, -2);
+    if(!lua_isfunction(L_, -1)){
+        lua_pop(L_, 2);
+        printf("Loading \"%s\" failed\n", file_path);
+        assert( top == lua_gettop(L_));
+        return;
+    }
+    if( lua_pcall(L_, 0, 0, -2)){
+        printf("Error loading init script in \"%s\"\n", file_path);
+        lua_pop(L_, 1);
+    }
 	lua_pop(L_, 1);	//Balance
 	assert(top==lua_gettop(L_));
 }

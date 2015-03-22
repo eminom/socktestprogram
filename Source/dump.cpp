@@ -2,7 +2,14 @@
 
 #include "dump.h"
 #include "interop/lua_access/lua_access.h"
+
+#ifdef __APPLE__
+extern "C" {
+#endif
 #include "pbc.h"
+#ifdef __APPLE__
+}
+#endif
 
 #define COUNT 1000000
 
@@ -80,15 +87,21 @@ namespace GameCore
 
 void frameUpdate(float dt)
 {
+    const char *func = "frameUpdate";
 	_DeclareState()
 	lua_getglobal(L, "__G_TRACEBACK");
 	assert(lua_isfunction(L, -1));
 
-	lua_getglobal(L, "frameUpdate");
+	lua_getglobal(L, func);
 	assert(lua_isfunction(L, -1));
 
 	lua_pushnumber(L, dt);
-	int res = lua_pcall(L, 1, 0, -3);
+    if(lua_pcall(L, 1, 0, -3)){
+        lua_pop(L, 2);
+        assert( top == lua_gettop(L));
+        printf("Error running \"%s\"\n", func);
+        return;
+    }
 	lua_pop(L, 1);
 	assert( lua_gettop(L) == top );
 }

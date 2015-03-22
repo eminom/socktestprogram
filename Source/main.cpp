@@ -53,10 +53,26 @@ void decodeBuffer(int typecode, const char *buffer, int bufferSize)
 	assert( top == lua_gettop(L));
 }
 
+
+#ifdef __APPLE__
+#include <unistd.h>
+
+void adaptDebugging()
+{
+    char *path = getcwd(0,0);
+    printf("Current working path is %s\n", path);
+    free(path);
+}
+
+#else
+void adaptDebugging(){}
+#endif
+
 // Main Entry::
 int main()
 {
 	srand((unsigned int)time(0));
+    adaptDebugging();
 	boost::asio::io_service io;
 	SockSessionPtr ss(SockSession::create(io));
 	ss->setCallback(decodeBuffer);
