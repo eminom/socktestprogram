@@ -2,7 +2,7 @@
 NetworkCmd = {}
 
 NetworkCmd.Print = function(...)
-	print(...)
+	-- print(...)
 end
 
 -- local function send_rand_info()
@@ -18,20 +18,32 @@ end
 -- 	mm.SendBuffer(buffer)
 -- end
 
+function NetworkCmd.Send(proto, obj)
+	local buffer = protobuf.encode(proto, obj)
+	mm.SendBuffer(buffer, Proto.toID(proto))
+	NetworkCmd.Print(proto .. " is posted")
+end
 
 function NetworkCmd.RequestWorldList()
-	local buffer = protobuf.encode("WorldListCommand", {})
-	mm.SendBuffer(buffer, 1)  -- With Type-code = 1
-	NetworkCmd.Print("Request world list $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+	NetworkCmd.Send("WorldListCommand", {})
 end
 
 function NetworkCmd.RequestLogin()
-	local buffer = protobuf.encode("LoginCommand_anonymous", {
+	NetworkCmd.Send("LoginCommand", {
 		device_id = "iPhone 5s",
-		map_id    = 13
+		-- map_id    = 13
+		account  = Model.UserName,
+		password = Model.Password,
+		is_anonymous = false,
 	})
-	mm.SendBuffer(buffer, 20001)
-	NetworkCmd.Print("Request login  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$...")
+end
+
+function NetworkCmd.RegisterUser(account, passwd)
+	NetworkCmd.Send("RegisterUserCommand", {
+			account = account,
+			password = passwd 
+	})
+	NetworkCmd.Print("Registering user on directory server $$$$$$$$$$$$$$$$$$")
 end
 
 function NetworkCmd.ConnectToDirectory()
@@ -44,12 +56,3 @@ function NetworkCmd.ConnectToWorld(host, port)
 	NetworkCmd.Print("Connect to world server $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 end
 
-
-function NetworkCmd.RegisterUser(account, passwd)
-	local buffer = protobuf.encode("RegisterUserCommand", {
-			account = account,
-			password = passwd 
-	})
-	mm.SendBuffer(buffer, 3)
-	NetworkCmd.Print("Registering user on directory server $$$$$$$$$$$$$$$$$$")
-end

@@ -33,10 +33,10 @@ function Proto.init()
 
 	-- Testing 
 	local namesForTest = {
-		"LoginCommand_anonymous",
+		"LoginCommand",
 		"WorldListCommand",
-		"WordListNotify",
-		"WorldData",
+		"WorldListNotify",
+		-- "WorldData",
 		"RegisterUserCommand",
 		"RegisterUserNotify",
 	}
