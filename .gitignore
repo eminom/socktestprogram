@@ -7,4 +7,5 @@ Release
 *.user
 *.opensdf
 *.sdf
+exconf.rb
 .DS_Store
