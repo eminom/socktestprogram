@@ -9,3 +9,4 @@ Release
 *.sdf
 exconf.rb
 .DS_Store
+*.user
