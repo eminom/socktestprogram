@@ -1,21 +1,25 @@
 
 
+require "inside.proto"
+
+-- Ensure the initial sequence.
+Proto.init()
+
 -------   Message Pump
 
-local function MakeRule(typecode, proto_name, event_name)
+local function MakeRule(proto_name, event_name)
 	assert(event_name, "Event name must not be nil")
 	return {
-		TypeCode = typecode,
+		TypeCode = Proto.toID(proto_name) or error("No no no"),
 		Proto    = proto_name,
 		Event    = event_name
 	}
 end
 
 local distributeRules = {
-	MakeRule(2, "WorldListNotify", ModelEvent.WorldListNotify),
-	MakeRule(4, "RegisterUserNotify", ModelEvent.DirectoryRegisterUserNotify)
+	MakeRule("WorldListNotify", ModelEvent.WorldListNotify),
+	MakeRule("RegisterUserNotify", ModelEvent.DirectoryRegisterUserNotify)
 }
-
 
 function redirectNetBuffer(typecode, buffer)
 	for _, v in ipairs(distributeRules) do

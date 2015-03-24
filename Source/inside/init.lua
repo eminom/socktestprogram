@@ -4,8 +4,8 @@ require "inside.dispatcher"
 require "inside.model.model"
 require "inside.test"
 require "inside.globalmsgholder"
-require "inside.pumper"
 require "inside.networkcmd"
+require "inside.pumper"
 
 local clientState = Model.ClientState or error("Not initialized for Model.ClientState ?")
 local connectorHandler = require "inside.connectorhandler":new():init()
