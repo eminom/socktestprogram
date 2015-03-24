@@ -13,3 +13,6 @@ function redirectNetBuffer(typecode, buffer)
 	end
 end
 
+function serverConnectOn(serverEvent)
+	EventDispatcher.dispatch(serverEvent) 
+end

@@ -16,7 +16,7 @@
 #include "pbc.h"
 #include "interop/lua_access/lua_access_macros.h"
 #include "interop/lua_access/lua_access.h"
-#include "interop/exports/exports.h"
+#include "interop/exports/L_notification.h"
 #include "dump.h"
 
 //#include <windows.h>
