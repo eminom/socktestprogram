@@ -20,31 +20,35 @@ function Proto.init()
 	if not Proto.isRegister then
 		Proto.isRegister = true
 		local pbs = {
-			"../proto/data.pb",
-			"../proto/dir.pb",
-			"../proto/world.pb"
+			"data.pb",
+			"error_code.pb",
+			"dir.pb",
+			"world.pb",
 		}
 		for i=1, #pbs do
-			protobuf.register(mm.LoadBinaryFile(pbs[i]))
-			print("Loading "..pbs[i].. " finished")
+			-- print ("Loading "..pbs[i])
+			protobuf.register(mm.LoadBinaryFile("../proto/"..pbs[i]))
 		end
 	end
 
 	-- Testing 
 	local namesForTest = {
-		"WorldListCommand",
 		"LoginCommand_anonymous",
+		"WorldListCommand",
 		"WordListNotify",
-		"WorldData"
+		"WorldData",
+		"RegisterUserCommand",
+		"RegisterUserNotify",
 	}
 	for _, v in ipairs(namesForTest) do
 		local id = Proto.toID(v)
 		print(v .. ".Type(ID) is " .. tostring(id))
 	end
+	print("Proto.init done")
 end
 
-function Proto.packCmd(name, cmd)
-	return protobuf.encode(name,cmd);
+function Proto.packCmd(name,  cmd)
+	return protobuf.encode(name, cmd)
 end
 
 -- 针对pbc的optional 值做的特殊命令，忽略optional的默认值
@@ -55,5 +59,3 @@ function Proto.optionalNoDefault(msg,field)
 	setmetatable(msg,originalMt)
 	return result
 end
-
-print "proto inited"

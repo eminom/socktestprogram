@@ -8,7 +8,11 @@ function redirectNetBuffer(typecode, buffer)
 		if decode then
 			EventDispatcher.dispatch(ModelEvent.WorldListNotify, decode)
 		end
-	else
+	elseif 4 == typecode then
+		local decode = protobuf.decode("RegisterUserNotify", buffer)
+		if decode then
+			EventDispatcher.dispatch(ModelEvent.DirectoryRegisterUserNotify, decode)
+		end
 		-- TODO
 	end
 end

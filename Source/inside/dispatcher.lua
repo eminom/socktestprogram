@@ -15,6 +15,7 @@ end
 
 function EventDispatcher.addHandler(event, handler)
 	-- print("Add handler for ", event)
+	assert( type(event) == 'string', 'Event must be of type string')
 	handlers_[event] = handlers_[event] or {}
 	if type(handler) == 'function' then
 		local h = handlers_[event]

@@ -22,6 +22,8 @@ function ClientState:GetState()
 	return self.state
 end
 
+Model.UserName = "eminem"
+Model.Password = "123123"
 
 --------------- Made to be global -----------------------
 Model.ClientState = ClientState:new()
