@@ -29,14 +29,45 @@ end
 
 local clientState = Model.ClientState or error("Not initialized for Model.ClientState ?")
 
+local ConnectorHandler = {}
+
+function ConnectorHandler:new()
+	local o = {}
+	setmetatable(o, self)
+	self.__index = self
+	return o
+end
+
+function ConnectorHandler:init()
+	self.onWorldListNotified = function(event, decoded)
+		print("world list count:" .. tostring(#decoded.world_list))
+		local chosen 
+		for i=1,#decoded.world_list do
+			local one = decoded_world_list[i]
+			if not chosen then
+				chosen = one
+				break
+			end
+		end
+		if chosen then
+			-- print("Now switching to world ["..tostring(chosen.id).."]")
+		end
+	end
+	EventDispatcher.addHandler(ModelEvent.WorldListNotify, self.onWorldListNotified)
+end
+
+function ConnectorHandler:deinit()
+	EventDispatcher.removeHandler(ModelEvent.WorldListNotify, sellf.onWorldListNotified)
+end
+
+local connectorHandler = ConnectorHandler:new()
+
 local prePass = 0
 -- dt: in second(s)
 function frameUpdate(dt)
 	prePass = prePass + dt
 	if prePass >= 3 then
 		prePass = 0
-		-- send_rand_info()
-
 		local state = clientState:GetState()
 		if ClientState.Disconnected == state then
 			local buffer = protobuf.encode("WorldListCommand", {})

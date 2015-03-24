@@ -1,5 +1,5 @@
 
-
+-- Global
 EventDispatcher = {}
 
 local handlers_ = {}

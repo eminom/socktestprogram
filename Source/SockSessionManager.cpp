@@ -37,7 +37,32 @@ void SockSessionManager::write(int typeCode, const char *buffer, int length)
 	}
 }
 
-void SockSessionManager::setSession(SockSessionPtr session)
+//
+//void SockSessionManager::setSession(SockSessionPtr session)
+//{
+//	ptr_ = session;
+//}
+
+void SockSessionManager::connectTo(const std::string &host, const std::string &port)
 {
-	ptr_ = session;
+	SockSessionPtr ss(SockSession::create(*io_, host, port));
+	ss->setTimeout(3);
+	ss->setNetMessagePumper(redistribute_);
+	ss->connect();
+	ptr_ = ss;
+}
+
+SockSessionPtr& SockSessionManager::current()
+{
+	return ptr_;
+}
+
+SockSessionPtr& SockSessionManager::currentSession()
+{
+	return instance()->current();
+}
+
+void SockSessionManager::setDefaultRedistribute(InComingBufferCallback redist)
+{
+	redistribute_ = redist;
 }

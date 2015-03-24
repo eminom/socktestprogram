@@ -219,6 +219,6 @@ bool SockSession::isSocketFailed()const{
 	return socket_failed_ || connecting_timeout_;
 }
 
-void SockSession::setCallback(InComingBufferCallback cb){
+void SockSession::setNetMessagePumper(InComingBufferCallback cb){
 	callback_ = cb;
 }

@@ -15,46 +15,12 @@
 #include "script/lua_script.h"
 #include "pbc.h"
 #include "interop/lua_access/lua_access_macros.h"
-#include "dump.h"
-
 #include "interop/lua_access/lua_access.h"
-
+#include "interop/exports/exports.h"
+#include "dump.h"
 
 //#include <windows.h>
 void luaopen_mm(lua_State *L);
-
-void decodeBuffer(int typecode, const char *buffer, int bufferSize)
-{
-	_DeclareState()
-	lua_getglobal(L, "__G_TRACEBACK");
-	assert(lua_isfunction(L, -1));
-
-	lua_getglobal(L, "redirectNetBuffer");
-	assert(lua_isfunction(L, -1));
-
-	//Type-code
-	lua_pushinteger(L, typecode);
-
-	//Buffer
-	luaL_Buffer b;
-	luaL_buffinit(L, &b);
-	int n = bufferSize;
-	int rlen = LUAL_BUFFERSIZE;  /* try to read that much each time */
-	int index = 0;
-	do {
-		char *p = luaL_prepbuffer(&b);
-		if (rlen > n) rlen = n;  /* cannot read more than asked */
-		memcpy(p,buffer + index,rlen);
-		luaL_addsize(&b, rlen);
-		index += rlen;
-		n -= rlen;  /* still have to read `n' chars */
-	} while (n > 0);  /* until end of count or eof */
-	luaL_pushresult(&b);  /* close buffer */
-	int res = lua_pcall(L, 2, 0, -4); 
-	lua_pop(L, 1);
-	assert( top == lua_gettop(L));
-}
-
 
 #ifdef __APPLE__
 #include <unistd.h>
@@ -70,6 +36,7 @@ void adaptDebugging()
 void adaptDebugging(){}
 #endif
 
+
 // Main Entry::
 int main()
 {
@@ -83,19 +50,17 @@ int main()
 	std::string host = executeStringFunc("GetHostName", "");
 	std::string port = executeStringFunc("GetHostPort", "");
 
+	SockSessionManager::instance()->setDefaultRedistribute(decodeBuffer);
 	boost::asio::io_service io;
-	SockSessionPtr ss(SockSession::create(io, host, port));
-	ss->setCallback(decodeBuffer);
-	ss->connect();
-	ss->setTimeout(3);
-	SockSessionManager::instance()->setSession(ss);
+	IoServiceOwner owner(&io, SockSessionManager::instance());
+	SockSessionManager::instance()->connectTo(host, port);
 
 	auto start = boost::posix_time::microsec_clock::universal_time();
 	while(true)
 	{
 		auto now = boost::posix_time::microsec_clock::universal_time();
 		auto rv = io.poll();
-		if( !rv && ss->isSocketFailed()){
+		if( !rv && SockSessionManager::currentSession()->isSocketFailed()){
 			break;
 		}
 		auto pass = (now-start).ticks();

@@ -43,7 +43,7 @@ public:
 	bool isTimeout()const;
 	bool isSocketFailed()const;
 
-	void setCallback(InComingBufferCallback cb);
+	void setNetMessagePumper(InComingBufferCallback cb);
 
 private:
 	void flushOpTime();
