@@ -17,6 +17,7 @@
 class SockSession;
 typedef boost::shared_ptr<SockSession> SockSessionPtr;
 typedef std::function<void(int, const char*, int length)> InComingBufferCallback;
+typedef std::function<void(const char*)> OnServerConnectedCallback;
 
 class SockSession:public boost::enable_shared_from_this<SockSession>,
 	public SockSessionProtocol,
@@ -34,7 +35,7 @@ protected:
 
 public:
 	void setDestination(const std::string &host, const std::string &port);
-	void connect();
+	void connect(const char *serverID);
 	void close();
 	void write(int typeCode, const char *msg, int length);
 	void read();
@@ -44,6 +45,7 @@ public:
 	bool isSocketFailed()const;
 
 	void setNetMessagePumper(InComingBufferCallback cb);
+	void setNetConnected(OnServerConnectedCallback cb);
 
 private:
 	void flushOpTime();
@@ -69,6 +71,8 @@ private:
 	std::string port_;
 
 	InComingBufferCallback callback_;
+	OnServerConnectedCallback onConnected_;
+	std::string connectingServerStr_;
 };
 
 

@@ -63,7 +63,7 @@ static int sendBuffer(lua_State *L)
 
 static int connectServer(lua_State *L)
 {
-	if( lua_gettop(L) != 2)
+	if( lua_gettop(L) != 3)
 	{
 		luaL_error(L, "connect server parameter missing");
 	}
@@ -71,13 +71,16 @@ static int connectServer(lua_State *L)
 	host = host ? host: "";
 	const char *port = luaL_checkstring(L, 2);
 	port = port ? port: "";
-	SockSessionManager::instance()->connectTo(host, port);
+	const char *serverID = luaL_checkstring(L, 3);
+	serverID = serverID ? serverID:"";
+	SockSessionManager::instance()->connectTo(host, port, serverID);
 	return 0;
 }
 
 struct luaL_Reg entries[]={
 	{"LoadBinaryFile", loadBinaryFileForLua},
 	{"SendBuffer", sendBuffer},
+	{"ConnectServer", connectServer},
 	{0,0}
 };
 
@@ -86,7 +89,7 @@ void luaopen_mm(lua_State *L)
 	luaL_register(L, "mm", entries);
 }
 
-void decodeBuffer(int typecode, const char *buffer, int bufferSize)
+void L_onDecodeBuffer(int typecode, const char *buffer, int bufferSize)
 {
 	_DeclareState()
 	lua_getglobal(L, "__G_TRACEBACK");
@@ -118,3 +121,17 @@ void decodeBuffer(int typecode, const char *buffer, int bufferSize)
 	assert( top == lua_gettop(L));
 }
 
+void L_onServerConnectionEstablished(const char *serverID)
+{
+	_DeclareState()
+	lua_getglobal(L, "__G_TRACEBACK");
+	assert(lua_isfunction(L, -1));
+
+	lua_getglobal(L, "serverConnectOn");
+	assert(lua_isfunction(L, -1));
+
+	lua_pushstring(L, serverID);
+	int res = lua_pcall(L, 1, 0, -3);
+	lua_pop(L, 1);
+	assert( top == lua_gettop(L));
+}

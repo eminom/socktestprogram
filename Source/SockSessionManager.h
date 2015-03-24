@@ -29,17 +29,20 @@ private:
 
 public:
 	static SockSessionManager* instance();
+	static bool hasCurrentSession();
 	static SockSessionPtr& currentSession();
 
 	//void setSession(SockSessionPtr);
-	void connectTo(const std::string &host, const std::string &port);
+	void connectTo(const std::string &host, const std::string &port, const std::string &serverID);
 	SockSessionPtr& current();
 	void setDefaultRedistribute(InComingBufferCallback);
+	void setDefaultServerOn(OnServerConnectedCallback);
 
 private:
 	SockSessionPtr ptr_;
 	boost::asio::io_service *io_;
 	InComingBufferCallback redistribute_;
+	OnServerConnectedCallback serverConnected_;
 };
 
 

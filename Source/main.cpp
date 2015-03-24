@@ -50,17 +50,19 @@ int main()
 	std::string host = executeStringFunc("GetHostName", "");
 	std::string port = executeStringFunc("GetHostPort", "");
 
-	SockSessionManager::instance()->setDefaultRedistribute(decodeBuffer);
+	SockSessionManager::instance()->setDefaultRedistribute(L_onDecodeBuffer);
+	SockSessionManager::instance()->setDefaultServerOn(L_onServerConnectionEstablished);
 	boost::asio::io_service io;
 	IoServiceOwner owner(&io, SockSessionManager::instance());
-	SockSessionManager::instance()->connectTo(host, port);
+	//SockSessionManager::instance()->connectTo(host, port);
 
+	executeVoidFunc("startUp","");
 	auto start = boost::posix_time::microsec_clock::universal_time();
 	while(true)
 	{
 		auto now = boost::posix_time::microsec_clock::universal_time();
 		auto rv = io.poll();
-		if( !rv && SockSessionManager::currentSession()->isSocketFailed()){
+		if( !rv && (SockSessionManager::hasCurrentSession() && SockSessionManager::currentSession()->isSocketFailed())){
 			break;
 		}
 		auto pass = (now-start).ticks();

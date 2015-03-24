@@ -44,13 +44,13 @@ void SockSession::setDestination(const std::string &host, const std::string &por
 	port_ = port;
 }
 
-void SockSession::connect()
+void SockSession::connect(const char *serverID)
 {
 	boost::asio::ip::tcp::resolver resolver(socket_.get_io_service());
 	boost::asio::ip::tcp::resolver::query query(host_, port_);
 	boost::asio::ip::tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
 	boost::asio::ip::tcp::endpoint ep = *endpoint_iterator;
-
+	connectingServerStr_ = serverID ? serverID : "";
 	//boost::shared_ptr<SockSession> me = shared_from_this();	//
 	socket_.async_connect(ep, 
 		boost::bind(&SockSession::handle_connected, shared_from_this(), 
@@ -129,6 +129,7 @@ void SockSession::handle_connected(const boost::system::error_code &error/*, boo
             */
 			//write("Hello");
 			//write( msg[rand()% (sizeof(msg)/sizeof(*msg))]);
+			onConnected_(connectingServerStr_.c_str());
 		} else {
 			std::cerr<<"Fail to connect!"<<std::endl;
 			connecting_timeout_ = true;
@@ -221,4 +222,8 @@ bool SockSession::isSocketFailed()const{
 
 void SockSession::setNetMessagePumper(InComingBufferCallback cb){
 	callback_ = cb;
+}
+
+void SockSession::setNetConnected(OnServerConnectedCallback cb){
+	onConnected_ = cb;
 }
