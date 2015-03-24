@@ -167,6 +167,9 @@
     <ClCompile Include="..\Source\IoServiceOwner.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\interop\exports\L_notification.cpp">
+      <Filter>interop\exports</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\SessionProtocol.h">
@@ -268,14 +271,17 @@
     <ClInclude Include="..\Source\dump.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\interop\exports\exports.h">
-      <Filter>interop\exports</Filter>
-    </ClInclude>
     <ClInclude Include="..\Source\SockSessionManager.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\IoServiceOwner.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\interop\exports\exports.h">
+      <Filter>interop\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\interop\exports\L_notification.h">
+      <Filter>interop\exports</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

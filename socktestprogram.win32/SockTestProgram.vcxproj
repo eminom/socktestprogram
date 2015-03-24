@@ -53,6 +53,7 @@
     <ClCompile Include="..\Source\dump.cpp" />
     <ClCompile Include="..\Source\interop\class\lextension.c" />
     <ClCompile Include="..\Source\interop\exports\exports.cpp" />
+    <ClCompile Include="..\Source\interop\exports\L_notification.cpp" />
     <ClCompile Include="..\Source\interop\lua_access\lua_access.cpp" />
     <ClCompile Include="..\Source\interop\lua_access\refobj.cpp" />
     <ClCompile Include="..\Source\interop\lua_access\refproto.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="..\Source\dump.h" />
     <ClInclude Include="..\Source\interop\class\lextension.h" />
     <ClInclude Include="..\Source\interop\exports\exports.h" />
+    <ClInclude Include="..\Source\interop\exports\L_notification.h" />
     <ClInclude Include="..\Source\interop\lua_access\lua_access.h" />
     <ClInclude Include="..\Source\interop\lua_access\lua_access_macros.h" />
     <ClInclude Include="..\Source\interop\lua_access\refobj.h" />
