@@ -2,7 +2,15 @@
 require "fileutils"
 require_relative "exconf"
 
+def is_windows?
+  RUBY_PLATFORM =~ /mswin|mingw/
+end
+
 module ProtoSync
+	def self.current_path
+		File.dirname(__FILE__.encode("UTF-8"))
+	end	
+
 	def self.init
 		@origin_path = ConfigEx.origin_path
 		if not File.directory? @origin_path then
@@ -17,7 +25,7 @@ module ProtoSync
 			lpath = File.basename(path)
 			print "Processing #{lpath} ... "
 			lpath = lpath.chomp(File.extname(lpath)) + ".pb"
-			target_path = "#{ConfigEx.current_path}/#{lpath}"
+			target_path = "#{ProtoSync.current_path}/#{lpath}"
 			cmd = "protoc.exe --proto_path=\"#{@origin_path}\" -o #{target_path} #{path}"
 			if not system cmd then
 				print "Error compiling protocols:#{$?}\n"
@@ -29,7 +37,7 @@ module ProtoSync
 	end
 
 	def self.test
-		now_path = ConfigEx.current_path
+		now_path = ProtoSync.current_path
 		print "Testing under #{now_path}\n"
 		Dir.glob("#{now_path}/**/*.proto") do |path|
 			print "Inspecting #{path} ..."
