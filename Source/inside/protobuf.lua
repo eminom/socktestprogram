@@ -24,6 +24,11 @@ function lasterror()
 	return c._last_error(P)
 end
 
+-- The only thing changes in here.
+function get_enum_value(key, name)
+	return c._get_enum_value(P, key, name)
+end
+
 local decode_type_cache = {}
 local _R_meta = {}
 

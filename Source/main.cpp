@@ -17,6 +17,8 @@
 #include "interop/lua_access/lua_access_macros.h"
 #include "dump.h"
 
+#include "interop/lua_access/lua_access.h"
+
 
 //#include <windows.h>
 void luaopen_mm(lua_State *L);
@@ -73,14 +75,20 @@ int main()
 {
 	srand((unsigned int)time(0));
     adaptDebugging();
+
+	//Init scripting
+	luaopen_mm(LuaScript::instance()->getLuaState());
+	LuaScript::instance()->loadInit("inside/init.lua");
+
+	std::string host = executeStringFunc("GetHostName", "");
+	std::string port = executeStringFunc("GetHostPort", "");
+
 	boost::asio::io_service io;
-	SockSessionPtr ss(SockSession::create(io));
+	SockSessionPtr ss(SockSession::create(io, host, port));
 	ss->setCallback(decodeBuffer);
 	ss->connect();
 	ss->setTimeout(3);
 	SockSessionManager::instance()->setSession(ss);
-	luaopen_mm(LuaScript::instance()->getLuaState());
-	LuaScript::instance()->loadInit("inside/init.lua");
 
 	auto start = boost::posix_time::microsec_clock::universal_time();
 	while(true)

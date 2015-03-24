@@ -13,7 +13,7 @@ private:
 	~SockSessionManager();
 
 public:
-	void write(const char *buffer, int length);
+	void write(int typeCode, const char *buffer, int length);
 
 public:
 	static SockSessionManager* instance();

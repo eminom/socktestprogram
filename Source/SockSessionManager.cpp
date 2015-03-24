@@ -25,11 +25,11 @@ SockSessionManager* SockSessionManager::instance()
 
 }
 
-void SockSessionManager::write(const char *buffer, int length)
+void SockSessionManager::write(int typeCode, const char *buffer, int length)
 {
 	if(ptr_)
 	{
-		ptr_->write(buffer, length);
+		ptr_->write(typeCode, buffer, length);
 	} 
 	else 
 	{

@@ -23,11 +23,11 @@ class SockSession:public boost::enable_shared_from_this<SockSession>,
 	private boost::noncopyable
 {
 private:
-	SockSession(boost::asio::io_service &io_service);
+	SockSession(boost::asio::io_service &io_service, const std::string &host, const std::string &port);
 
 public:
 	~SockSession();
-	static SockSession* create(boost::asio::io_service &io_service);
+	static SockSession* create(boost::asio::io_service &io_service, const std::string &host, const std::string &port);
 
 protected:
 	void start();
@@ -36,7 +36,7 @@ public:
 	void setDestination(const std::string &host, const std::string &port);
 	void connect();
 	void close();
-	void write(const char *msg, int length);
+	void write(int typeCode, const char *msg, int length);
 	void read();
 	void readBody();
 	void setTimeout(float seconds);	//~ in seconds

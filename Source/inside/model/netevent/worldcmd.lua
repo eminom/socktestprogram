@@ -1,6 +1,6 @@
 
 
 ModelEvent = ModelEvent or {}
-ModelEvent.WorldCmd = "model.net.worldcmd"
+ModelEvent.WorldListNotify = "model.net.worldlistnotify"
 
 print "worldcmd init"

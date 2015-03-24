@@ -1,10 +1,12 @@
---Message Pump
+
+
+-------   Message Pump
 
 function redirectNetBuffer(typecode, buffer)
-	if 1 == typecode or 17 == typecode then
-		local decode = protobuf.decode("WorldListCommand", buffer)
+	if 2 == typecode then
+		local decode = protobuf.decode("WorldListNotify", buffer)
 		if decode then
-			EventDispatcher.dispatch(ModelEvent.WorldCmd, decode)
+			EventDispatcher.dispatch(ModelEvent.WorldListNotify, decode)
 		end
 	else
 		-- TODO

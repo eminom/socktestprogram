@@ -51,14 +51,18 @@ static int loadBinaryFileForLua(lua_State * s)
 static int sendBuffer(lua_State *L)
 {
 	size_t size = 0;
+	if( lua_gettop(L) != 2 ){
+		luaL_error(L, "Missing parameters for SenderBuffer");
+	}
 	const char *buffer = lua_tolstring(L, 1, &size);
-	SockSessionManager::instance()->write(buffer, size);
+	int typeCode = luaL_checkint(L, 2);
+	SockSessionManager::instance()->write(typeCode, buffer, size);
 	return 0;	// The return values
 }
 
 struct luaL_Reg entries[]={
-	{"loadBinaryFile", loadBinaryFileForLua},
-	{"sendBuffer", sendBuffer},
+	{"LoadBinaryFile", loadBinaryFileForLua},
+	{"SendBuffer", sendBuffer},
 	{0,0}
 };
 

@@ -1,12 +1,25 @@
 
+
+
+
 GlobalMessageHolder = {}
-function GlobalMessageHolder.handleWorldCmd(event, msg)
-	print("#####")
-	print('number is ', msg.number)
-	print('name is ', msg.name)
-	print("$$")
+function GlobalMessageHolder.handleWorldListNotify(event, msg)
+	-- print("#####")
+	-- print('number is ', msg.number)
+	-- print('name is ', msg.name)
+	-- print("$$")
+
+	print("world list count is " .. tostring(#msg.world_list))
+	for i=1, #msg.world_list do
+		local one = msg.world_list[i]
+		print("["..tostring(i).."]  >> ")
+		print("host:" .. tostring(one.host))
+		print("port:" .. tostring(one.port))
+		print("id:"   .. tostring(one.id))
+		print("name:" .. tostring(one.name))
+	end
 end
 
 function GlobalMessageHolder.init()
-	EventDispatcher.addHandler(ModelEvent.WorldCmd, GlobalMessageHolder.handleWorldCmd)
+	EventDispatcher.addHandler(ModelEvent.WorldListNotify, GlobalMessageHolder.handleWorldListNotify)
 end

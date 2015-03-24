@@ -2,7 +2,7 @@
 
 EventDispatcher = {}
 
-handlers_ = {}
+local handlers_ = {}
 
 function EventDispatcher.dispatch(event, more)
 	local chain = handlers_[event]

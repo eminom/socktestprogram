@@ -6,14 +6,14 @@
 
 #include <cstdlib>
 
-SockSession::SockSession(boost::asio::io_service &io_service)
+SockSession::SockSession(boost::asio::io_service &io_service, const std::string &host, const std::string &port)
 	:io_service_(io_service)
 	,socket_(io_service)
 	,timeout_(3)
 	,connecting_timeout_(false)
 	,socket_failed_(false)
-	,host_("192.168.2.2")
-	,port_("8000")
+	,host_(host)
+	,port_(port)
 {
 	std::cout<<"SockSession"<<std::endl;
 }
@@ -23,10 +23,10 @@ SockSession::~SockSession()
 	std::cout<<"~SockSession"<<std::endl;
 }
 
-SockSession* SockSession::create(boost::asio::io_service &io)
+SockSession* SockSession::create(boost::asio::io_service &io, const std::string &host, const std::string &port)
 {
 	//return boost::make_shared(new SockSession(io));
-	return new SockSession(io);
+	return new SockSession(io, host, port);
 }
 
 void SockSession::start()
@@ -169,7 +169,7 @@ void SockSession::handle_written(const boost::system::error_code &error,
 	}
 }
 
-void SockSession::write(const char *msg, int rlength)
+void SockSession::write(int typeCode, const char *msg, int rlength)
 {
 	try{
 		std::string *buffer = new std::string;
@@ -180,7 +180,7 @@ void SockSession::write(const char *msg, int rlength)
 		//htonl(
 		//~
 		*(int*)&((*buffer)[0]) = length;   // local seq.
-		*(unsigned short*)&((*buffer)[4]) = 1;	//type code
+		*(unsigned short*)&((*buffer)[4]) = typeCode;	//type code
 		std::string &ref = *buffer;
 		memcpy(&ref[6], &msg[0], rlength);
 		boost::asio::async_write(socket_, boost::asio::buffer(*buffer, buffer->size()),
