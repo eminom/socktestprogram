@@ -14,7 +14,7 @@ function EventDispatcher.dispatch(event, more)
 end
 
 function EventDispatcher.addHandler(event, handler)
-	print("Add handler for ", event)
+	-- print("Add handler for ", event)
 	handlers_[event] = handlers_[event] or {}
 	if type(handler) == 'function' then
 		local h = handlers_[event]

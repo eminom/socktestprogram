@@ -1,6 +1,6 @@
 
 Model = {}
-ModelEvent = {}
+ModelEvent = ModelEvent or {}
 
 require "inside.model.netevent.events"
 

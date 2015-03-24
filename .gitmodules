@@ -1,6 +1,3 @@
 [submodule "script"]
 	path = script
 	url = https://github.com/eminom/script-tool-box
-[submodule "external/pbc"]
-	path = external/pbc
-	url = https://github.com/cloudwu/pbc
