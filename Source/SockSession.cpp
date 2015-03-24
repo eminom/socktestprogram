@@ -108,7 +108,7 @@ void SockSession::handle_bodyRead(const boost::system::error_code &error){
 
 	std::string payload(&buffer_[2], buffer_.size()-2);
 	int typecode = int(buffer_[0]);
-	typecode += 16 * int(buffer_[0]);
+	typecode += 16 * int(buffer_[1]);
 	callback_(typecode, payload.c_str(), payload.size());
 	//std::cout<<buffer_<<std::endl;
 	read();

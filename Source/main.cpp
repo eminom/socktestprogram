@@ -33,7 +33,7 @@ void decodeBuffer(int typecode, const char *buffer, int bufferSize)
 	assert(lua_isfunction(L, -1));
 
 	//Type-code
-	lua_pushinteger(L, 1);
+	lua_pushinteger(L, typecode);
 
 	//Buffer
 	luaL_Buffer b;
