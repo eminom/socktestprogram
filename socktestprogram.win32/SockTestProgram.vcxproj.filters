@@ -164,6 +164,9 @@
     <ClCompile Include="..\Source\SockSessionManager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\IoServiceOwner.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\SessionProtocol.h">
@@ -269,6 +272,9 @@
       <Filter>interop\exports</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\SockSessionManager.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\IoServiceOwner.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

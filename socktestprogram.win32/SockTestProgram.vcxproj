@@ -57,6 +57,7 @@
     <ClCompile Include="..\Source\interop\lua_access\refobj.cpp" />
     <ClCompile Include="..\Source\interop\lua_access\refproto.cpp" />
     <ClCompile Include="..\Source\interop\lua_access\refprotobase.cpp" />
+    <ClCompile Include="..\Source\IoServiceOwner.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\script\lua_script.cpp" />
     <ClCompile Include="..\Source\SockSession.cpp" />
@@ -94,6 +95,7 @@
     <ClInclude Include="..\Source\interop\lua_access\refobj.h" />
     <ClInclude Include="..\Source\interop\lua_access\refproto.h" />
     <ClInclude Include="..\Source\interop\lua_access\refprotobase.h" />
+    <ClInclude Include="..\Source\IoServiceOwner.h" />
     <ClInclude Include="..\Source\script\lua_script.h" />
     <ClInclude Include="..\Source\SessionProtocol.h" />
     <ClInclude Include="..\Source\SockSession.h" />
