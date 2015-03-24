@@ -2,7 +2,7 @@
 Model = {}
 ModelEvent = {}
 
-require "inside.model.netevent.worldcmd"
+require "inside.model.netevent.events"
 
 ClientState = {
 	Disconnected = 1,

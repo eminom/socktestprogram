@@ -1,6 +1,6 @@
 
 
-
+require "inside.model.netevent.events"
 
 GlobalMessageHolder = {}
 function GlobalMessageHolder.handleWorldListNotify(event, msg)
@@ -21,5 +21,6 @@ function GlobalMessageHolder.handleWorldListNotify(event, msg)
 end
 
 function GlobalMessageHolder.init()
+	print("WorldListNotify: <<< ", ModelEvent.WorldListNotify)
 	EventDispatcher.addHandler(ModelEvent.WorldListNotify, GlobalMessageHolder.handleWorldListNotify)
 end

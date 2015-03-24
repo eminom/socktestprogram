@@ -1,5 +1,6 @@
 
 require "inside.protobuf"
+require "inside.model.netevent.events"
 
 Proto = {
 	nameToIDTable = {}

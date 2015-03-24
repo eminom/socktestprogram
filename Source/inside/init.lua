@@ -24,7 +24,7 @@ function GetHostName()
 end
 
 function GetHostPort()
-	return "8000"
+	return "10000"
 end
 
 local clientState = Model.ClientState or error("Not initialized for Model.ClientState ?")
