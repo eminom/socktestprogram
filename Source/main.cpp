@@ -46,10 +46,6 @@ int main()
 	//Init scripting
 	luaopen_mm(LuaScript::instance()->getLuaState());
 	LuaScript::instance()->loadInit("inside/init.lua");
-
-	std::string host = executeStringFunc("GetHostName", "");
-	std::string port = executeStringFunc("GetHostPort", "");
-
 	SockSessionManager::instance()->setDefaultRedistribute(L_onDecodeBuffer);
 	SockSessionManager::instance()->setDefaultServerOn(L_onServerConnectionEstablished);
 	boost::asio::io_service io;
