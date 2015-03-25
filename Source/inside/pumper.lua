@@ -28,7 +28,7 @@ function redirectNetBuffer(typecode, buffer)
 			if decode then
 				EventDispatcher.dispatch(v.Event, decode)
 			else
-				error("Decoding error")
+				error("Decoding error with typecode:"..tostring(typecode))
 			end
 		end
 	end

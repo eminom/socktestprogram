@@ -47,12 +47,12 @@ function Proto.init()
 	print("Proto.init done")
 end
 
-function Proto.packCmd(name,  cmd)
+function Proto.packCmd(name, cmd)
 	return protobuf.encode(name, cmd)
 end
 
 -- 针对pbc的optional 值做的特殊命令，忽略optional的默认值
-function Proto.optionalNoDefault(msg,field)
+function Proto.optionalNoDefault(msg, field)
 	local originalMt = getmetatable(msg)
 	setmetatable(msg,nil)
 	local result = msg[field]
