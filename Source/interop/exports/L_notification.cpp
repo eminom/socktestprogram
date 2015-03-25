@@ -34,6 +34,9 @@ void L_onDecodeBuffer(int typecode, const char *buffer, int bufferSize)
 	} while (n > 0);  /* until end of count or eof */
 	luaL_pushresult(&b);  /* close buffer */
 	int res = lua_pcall(L, 2, 0, -4); 
+	if(res){
+		lua_pop(L, 1);
+	}
 	lua_pop(L, 1);
 	assert( top == lua_gettop(L));
 }

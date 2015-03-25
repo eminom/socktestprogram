@@ -2,7 +2,7 @@
 NetworkCmd = {}
 
 NetworkCmd.Print = function(...)
-	-- print(...)
+	print(...)
 end
 
 -- local function send_rand_info()
@@ -47,7 +47,7 @@ function NetworkCmd.RegisterUser(account, passwd)
 end
 
 function NetworkCmd.ConnectToDirectory()
-	mm.ConnectServer("192.168.2.2", "11000", ModelEvent.DirectoryConnected)
+	mm.ConnectServer("192.168.2.23", "11000", ModelEvent.DirectoryConnected)
 	NetworkCmd.Print("Connect to directory server $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 end
 

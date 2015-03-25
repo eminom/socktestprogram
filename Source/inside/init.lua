@@ -1,4 +1,4 @@
-
+	
 require "inside.proto"
 require "inside.dispatcher"
 require "inside.model.model"
@@ -14,7 +14,7 @@ local prePass = 0
 -- dt: in second(s)
 function frameUpdate(dt)
 	prePass = prePass + dt
-	if prePass >= 5 then
+	if prePass >= 3 then
 		prePass = 0
 		local state = clientState:GetState()
 		-- if ClientState.Disconnected == state then
@@ -23,6 +23,15 @@ function frameUpdate(dt)
 		-- elseif ClientState.Connecting == state then
 		-- elseif ClientState.Connected == state then
 		-- end
+		-- local handle = {
+		-- 	NetworkCmd.RequestWorldList,
+		-- 	-- NetworkCmd.RequestLogin,
+		-- 	function()
+		-- 		NetworkCmd.RegisterUser(Model.UserName, Model.Password)
+		-- 	end
+		-- }
+		-- local func = handle[math.random(#handle)]
+		-- func()
 	end
 end
 
