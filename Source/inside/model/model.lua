@@ -25,6 +25,11 @@ end
 Model.UserName = "eminem1"
 Model.Password = "123123"
 
+Model.DirectoryServer = {
+	Host = "192.168.2.12",
+	Port = "11000"
+}
+
 --------------- Made to be global -----------------------
 Model.ClientState = ClientState:new()
 

@@ -21,7 +21,7 @@ end
 function NetworkCmd.Send(proto, obj)
 	local buffer = protobuf.encode(proto, obj)
 	mm.SendBuffer(buffer, Proto.toID(proto))
-	NetworkCmd.Print(proto .. " is posted")
+	NetworkCmd.Print(proto .. " IS POSTED" .. " : ID = "..Proto.toID(proto).."")
 end
 
 function NetworkCmd.RequestWorldList()
@@ -43,11 +43,11 @@ function NetworkCmd.RegisterUser(account, passwd)
 			account = account,
 			password = passwd 
 	})
-	NetworkCmd.Print("Registering user on directory server $$$$$$$$$$$$$$$$$$")
+	-- NetworkCmd.Print("Registering user on directory server $$$$$$$$$$$$$$$$$$")
 end
 
 function NetworkCmd.ConnectToDirectory()
-	mm.ConnectServer("192.168.2.23", "11000", ModelEvent.DirectoryConnected)
+	mm.ConnectServer(Model.DirectoryServer.Host, Model.DirectoryServer.Port, ModelEvent.DirectoryConnected)
 	NetworkCmd.Print("Connect to directory server $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 end
 

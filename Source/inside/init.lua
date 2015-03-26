@@ -43,5 +43,5 @@ end
 Proto.init()
 GlobalMessageHolder.init()
 
-print("INIT FINISHED")
+print("INIT FINISHED\n\n\n")
 

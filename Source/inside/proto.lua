@@ -42,7 +42,8 @@ function Proto.init()
 	}
 	for _, v in ipairs(namesForTest) do
 		local id = Proto.toID(v)
-		print(v .. ".Type(ID) is " .. tostring(id))
+		assert(id > 0, "Message type id must be greater than zero")
+		-- print(v .. ".Type(ID) is " .. tostring(id))
 	end
 	print("Proto.init done")
 end

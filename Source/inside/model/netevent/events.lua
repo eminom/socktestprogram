@@ -9,7 +9,7 @@ ModelEvent.WorldConnected = "model.net.worldconnected"
 ModelEvent.DirectoryRegisterUserNotify = "model.net.directoryregisterusernotify"
 
 
-ModelEvent.WorldLoginNotify = "model.net.worldloginnotify"
+ModelEvent.LoginNotify = "model.net.worldloginnotify"
 ModelEvent.WorldListNotify = "model.net.worldlistnotify"
 
 print "worldcmd init"

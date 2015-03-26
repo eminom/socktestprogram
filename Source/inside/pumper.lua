@@ -18,7 +18,8 @@ end
 
 local distributeRules = {
 	MakeRule("WorldListNotify", ModelEvent.WorldListNotify),
-	MakeRule("RegisterUserNotify", ModelEvent.DirectoryRegisterUserNotify)
+	MakeRule("RegisterUserNotify", ModelEvent.DirectoryRegisterUserNotify),
+	MakeRule("LoginNotify", ModelEvent.LoginNotify)
 }
 
 function redirectNetBuffer(typecode, buffer)
@@ -26,6 +27,8 @@ function redirectNetBuffer(typecode, buffer)
 		if v.TypeCode == typecode then
 			local decode = protobuf.decode(v.Proto, buffer)
 			if decode then
+				print("\n\n")
+				print("Distributing event(driven by network):"..tostring(v.Event))
 				EventDispatcher.dispatch(v.Event, decode)
 			else
 				error("Decoding error with typecode:"..tostring(typecode).. ":"..v.Proto)

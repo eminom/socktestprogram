@@ -11,7 +11,7 @@ function ConnectorHandler:new()
 end
 
 function ConnectorHandler:initWorldNotify()
-	self.onWorldListNotified = function(event, decoded)
+	self.onWorldListNotify = function(event, decoded)
 		print("ConnectorHandler: world list count:" .. tostring(#decoded.world_list))
 		local chosen 
 		for i=1,#decoded.world_list do
@@ -28,7 +28,7 @@ function ConnectorHandler:initWorldNotify()
 		self.chosenServer = chosen
 		NetworkCmd.RegisterUser(Model.UserName, Model.Password)
 	end
-	EventDispatcher.addHandler(ModelEvent.WorldListNotify, self.onWorldListNotified)
+	EventDispatcher.addHandler(ModelEvent.WorldListNotify, self.onWorldListNotify)
 end
 
 function ConnectorHandler:initDisconnected()
@@ -72,21 +72,31 @@ function ConnectorHandler:initRegisterUser()
 	EventDispatcher.addHandler(ModelEvent.DirectoryRegisterUserNotify, self.onUserRegistered)
 end
 
+function ConnectorHandler:initLoginNotify()
+	self.onLoginNotify = function(event, decoded)
+		-- print("\n")
+		print("Logged with token = " .. tostring(decoded.token))
+	end
+	EventDispatcher.addHandler(ModelEvent.LoginNotify, self.onLoginNotify)
+end
+
 function ConnectorHandler:init()
 	self:initWorldNotify()
 	self:initDisconnected()
 	self:initDirectoryConnected()
 	self:initWorldConnected()
 	self:initRegisterUser()
+	self:initLoginNotify()
 	return self
 end
 
 function ConnectorHandler:deinit()
-	EventDispatcher.removeHandler(ModelEvent.WorldListNotify, sellf.onWorldListNotified)
+	EventDispatcher.removeHandler(ModelEvent.WorldListNotify, sellf.onWorldListNotify)
 	EventDispatcher.removeHandler(ModelEvent.DisconnectedFromServer, self.onDisconnected)
 	EventDispatcher.removeHandler(ModelEvent.DirectoryConnected, self.onDirectoryConnected)
 	EventDispatcher.removeHandler(ModelEvent.WorldConnected, self.onWorldConnected)
 	EventDispatcher.removeHandler(ModelEvent.DirectoryRegisterUserNotify, self.onUserRegistered)
+	EventDispatcher.removeHandler(ModelEvent.LoginNotify, self.onLoginNotify)
 end
 
 return ConnectorHandler
