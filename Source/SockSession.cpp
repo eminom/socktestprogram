@@ -101,9 +101,12 @@ void SockSession::handle_bodyRead(const boost::system::error_code &error){
 	}
 	std::string data;
 	//data.swap(buffer_);
-	assert(buffer_.size() > 2);
-
-	std::string payload(&buffer_[2], buffer_.size()-2);
+	//assert(buffer_.size() > 2);
+	std::string payload;
+	if(buffer_.size() > 2 )
+	{
+		payload = std::string(&buffer_[2], buffer_.size()-2);
+	}
 	int typecode = 0;
 	StreamBuffer is(&buffer_[0], 2);
 	is.readInt16(typecode);
