@@ -89,10 +89,10 @@ void SockSession::handle_headerRead(const boost::system::error_code &error){
 	int p = 1;
 	int length = 0;
 	for(int i=0;i<headLength_.size();++i){
-		length += p * headLength_[i];
-		p<<=4;
+		length += p * ((unsigned char)(headLength_[i]));
+		p<<=8;
 	}
-	std::cout<<"("<<length<<"):";
+	std::cout<<"In Comming("<<length<<")bytes.";
 	buffer_.resize(length - 4);
 	readBody();
 }
@@ -107,8 +107,9 @@ void SockSession::handle_bodyRead(const boost::system::error_code &error){
 	assert(buffer_.size() > 2);
 
 	std::string payload(&buffer_[2], buffer_.size()-2);
-	int typecode = int(buffer_[0]);
-	typecode += 16 * int(buffer_[1]);
+	int typecode = int((unsigned char)(buffer_[0]));
+	typecode += 256 * int((unsigned char)(buffer_[1]));
+	std::cout<<" : typecode["<<typecode<<"]"<<std::endl;
 	callback_(typecode, payload.c_str(), payload.size());
 	//std::cout<<buffer_<<std::endl;
 	read();
@@ -177,6 +178,8 @@ void SockSession::write(int typeCode, const char *msg, int rlength)
 		int length = rlength + 4 + 2;
 		buffer->resize(length);
 		memset(&(*buffer)[0], 0, length * sizeof(char));
+
+		std::cout<<"Writing to server:"<<"typecode:"<<typeCode<<" bytes = "<<length<<std::endl;
 
 		//htonl(
 		//~
