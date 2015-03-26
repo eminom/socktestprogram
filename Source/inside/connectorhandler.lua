@@ -12,7 +12,7 @@ end
 
 function ConnectorHandler:initWorldNotify()
 	self.onWorldListNotify = function(event, decoded)
-		print("ConnectorHandler: world list count:" .. tostring(#decoded.world_list))
+		-- print("ConnectorHandler: world list count:" .. tostring(#decoded.world_list))
 		local chosen 
 		for i=1,#decoded.world_list do
 			local one = decoded.world_list[i]
@@ -74,20 +74,26 @@ end
 
 function ConnectorHandler:initLoginNotify()
 	self.onLoginNotify = function(event, decoded)
-		-- print("\n")
-		print("============LoginNotify========= ")
-		print("Logged with token = " .. tostring(decoded.token))
-		print("Exception = "..tostring(decoded.exception))
-		print("")
-		NetworkCmd.CreatePlayer(true, "X51", Model.UserName)
+		if "ET_NO_DATA" == decoded.exception then
+			NetworkCmd.CreatePlayer(Model.IsAnonymous(), Model.DeviceID(), Model.UserName)
+		elseif "ET_FAIL" == decoded.exception then
+			print("Login failed")
+			print("Hanged\n.")
+		elseif "ET_OK" == decoded.exception then
+			-- Request for user data
+			print("Login OK ! Waiting for the next step !")
+			print("Hanged\n.")
+		end
 	end
 	EventDispatcher.addHandler(ModelEvent.LoginNotify, self.onLoginNotify)
 end
 
 function ConnectorHandler:initCreatePlayerNotify()
 	self.onCreatePlayerNotify = function(event, decoded)
-		print("===========CreatePlayer ======")
-		print(" Exception = ", decoded.exception)
+		print("=========== CreatePlayer ===========")
+		print(" Exception = " .. tostring(decoded.exception))
+		print(" Done.")
+		print(" Hanged")
 	end
 	EventDispatcher.addHandler(ModelEvent.CreatePlayerNotify, self.onCreatePlayerNotify)
 end
@@ -110,6 +116,7 @@ function ConnectorHandler:deinit()
 	EventDispatcher.removeHandler(ModelEvent.WorldConnected, self.onWorldConnected)
 	EventDispatcher.removeHandler(ModelEvent.DirectoryRegisterUserNotify, self.onUserRegistered)
 	EventDispatcher.removeHandler(ModelEvent.LoginNotify, self.onLoginNotify)
+	EventDispatcher.removeHandler(ModelEvent.CreatePlayerNotify, self.onCreatePlayerNotify)
 end
 
 return ConnectorHandler

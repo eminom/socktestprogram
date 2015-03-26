@@ -30,11 +30,11 @@ end
 
 function NetworkCmd.RequestLogin()
 	NetworkCmd.Send("LoginCommand", {
-		device_id = "iPhone 5s",
+		device_id = Model.DeviceID(),
 		-- map_id    = 13
 		account  = Model.UserName,
 		password = Model.Password,
-		is_anonymous = false,
+		is_anonymous = Model.IsAnonymous(),
 	})
 end
 

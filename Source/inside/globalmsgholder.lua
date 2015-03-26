@@ -6,6 +6,7 @@ require "inside.model.netevent.events"
 local function PrintSumMsg(title, cb)
 	print("\n####      Global Watch     ########################")
 	print("##################   "..title.."##############")
+	cb()
 	print("##################   "..title.."  finished <<<")
 	print("")
 end
@@ -22,7 +23,6 @@ function GlobalMessageHolder.handleWorldListNotify(event, msg)
 			print("id:"   .. tostring(one.id))
 			print("name:" .. tostring(one.name))
 		end
-		print("")
 	end)
 end
 
@@ -32,6 +32,7 @@ function GlobalMessageHolder.handleLoginNotify(event, msg)
 		print("token: ".. tostring(msg.token))
 	end)
 end
+
 
 function GlobalMessageHolder.init()
 	-- print("WorldListNotify: <<< ", ModelEvent.WorldListNotify)

@@ -7,12 +7,15 @@ require "inside.globalmsgholder"
 require "inside.networkcmd"
 require "inside.pumper"
 
+
+GlobalMessageHolder.init()
 local clientState = Model.ClientState or error("Not initialized for Model.ClientState ?")
 local connectorHandler = require "inside.connectorhandler":new():init()
 
 local prePass = 0
 -- dt: in second(s)
 function frameUpdate(dt)
+	EventDispatcher.check()
 	prePass = prePass + dt
 	if prePass >= 3 then
 		prePass = 0
@@ -41,7 +44,7 @@ function startUp()
 end
 
 Proto.init()
-GlobalMessageHolder.init()
+
 
 print("INIT FINISHED\n\n\n")
 

@@ -30,6 +30,14 @@ Model.DirectoryServer = {
 	Port = "11000"
 }
 
+function Model.DeviceID()
+	return "X51"
+end
+
+function Model.IsAnonymous()
+	return true
+end
+
 --------------- Made to be global -----------------------
 Model.ClientState = ClientState:new()
 
