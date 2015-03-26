@@ -90,10 +90,7 @@ end
 
 function ConnectorHandler:initCreatePlayerNotify()
 	self.onCreatePlayerNotify = function(event, decoded)
-		print("=========== CreatePlayer ===========")
-		print(" Exception = " .. tostring(decoded.exception))
-		print(" Done.")
-		print(" Hanged")
+		print(" Create-player done. hanged")
 	end
 	EventDispatcher.addHandler(ModelEvent.CreatePlayerNotify, self.onCreatePlayerNotify)
 end

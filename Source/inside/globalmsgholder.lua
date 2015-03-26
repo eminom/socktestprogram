@@ -4,10 +4,10 @@
 require "inside.model.netevent.events"
 
 local function PrintSumMsg(title, cb)
-	print("\n####      Global Watch     ########################")
-	print("##################   "..title.."##############")
+	print("#######################===G===########################")
+	print("##################   "..title.."  ##############")
 	cb()
-	print("##################   "..title.."  finished <<<")
+	print("#############################################")
 	print("")
 end
 
@@ -33,9 +33,15 @@ function GlobalMessageHolder.handleLoginNotify(event, msg)
 	end)
 end
 
+function GlobalMessageHolder.handleCreatePlayerNotify(event, msg)
+	PrintSumMsg("CreatePlayer", function()
+		print("exception = " .. tostring(decoded.exception))
+	end)
+end
 
 function GlobalMessageHolder.init()
 	-- print("WorldListNotify: <<< ", ModelEvent.WorldListNotify)
 	EventDispatcher.addHandler(ModelEvent.WorldListNotify, GlobalMessageHolder.handleWorldListNotify)
 	EventDispatcher.addHandler(ModelEvent.LoginNotify, GlobalMessageHolder.handleLoginNotify)
+	EventDispatcher.addHandler(ModelEvent.CreatePlayerNotify, GlobalMessageHolder.handleCreatePlayerNotify)
 end
