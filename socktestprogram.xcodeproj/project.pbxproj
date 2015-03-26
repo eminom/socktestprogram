@@ -61,9 +61,12 @@
 		DB325D5D1ABE78DE00CCE8BF /* refproto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB325D551ABE78DE00CCE8BF /* refproto.cpp */; };
 		DB325D5E1ABE78DE00CCE8BF /* refprotobase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB325D571ABE78DE00CCE8BF /* refprotobase.cpp */; };
 		DB325D621ABE78EB00CCE8BF /* lua_script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB325D601ABE78EB00CCE8BF /* lua_script.cpp */; };
-		DB60803A1ABE8D31003CAC45 /* pbc-lua.c in Sources */ = {isa = PBXBuildFile; fileRef = DB6080391ABE8D31003CAC45 /* pbc-lua.c */; };
 		DB736CA61AAAB1DC00506290 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB736CA21AAAB1DC00506290 /* main.cpp */; };
 		DB736CA71AAAB1DC00506290 /* SockSession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB736CA41AAAB1DC00506290 /* SockSession.cpp */; };
+		DBDE2D2B1AC4444D004D5631 /* IoServiceOwner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBDE2D291AC4444D004D5631 /* IoServiceOwner.cpp */; };
+		DBDE2D2E1AC44459004D5631 /* L_notification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBDE2D2C1AC44459004D5631 /* L_notification.cpp */; };
+		DBDE2D321AC44475004D5631 /* StreamBuffer.cc in Sources */ = {isa = PBXBuildFile; fileRef = DBDE2D301AC44475004D5631 /* StreamBuffer.cc */; };
+		DBDE2D3A1AC4460C004D5631 /* pbc-lua.c in Sources */ = {isa = PBXBuildFile; fileRef = DBDE2D391AC4460C004D5631 /* pbc-lua.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -182,11 +185,17 @@
 		DB325D601ABE78EB00CCE8BF /* lua_script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_script.cpp; sourceTree = "<group>"; };
 		DB325D611ABE78EB00CCE8BF /* lua_script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_script.h; sourceTree = "<group>"; };
 		DB325D631ABE821900CCE8BF /* inside */ = {isa = PBXFileReference; lastKnownFileType = folder; name = inside; path = Source/inside; sourceTree = "<group>"; };
-		DB6080391ABE8D31003CAC45 /* pbc-lua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "pbc-lua.c"; path = "Source/pbc-lua.c"; sourceTree = "<group>"; };
 		DB736CA21AAAB1DC00506290 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Source/main.cpp; sourceTree = "<group>"; };
 		DB736CA31AAAB1DC00506290 /* SessionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionProtocol.h; path = Source/SessionProtocol.h; sourceTree = "<group>"; };
 		DB736CA41AAAB1DC00506290 /* SockSession.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SockSession.cpp; path = Source/SockSession.cpp; sourceTree = "<group>"; };
 		DB736CA51AAAB1DC00506290 /* SockSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SockSession.h; path = Source/SockSession.h; sourceTree = "<group>"; };
+		DBDE2D291AC4444D004D5631 /* IoServiceOwner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IoServiceOwner.cpp; path = Source/IoServiceOwner.cpp; sourceTree = "<group>"; };
+		DBDE2D2A1AC4444D004D5631 /* IoServiceOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IoServiceOwner.h; path = Source/IoServiceOwner.h; sourceTree = "<group>"; };
+		DBDE2D2C1AC44459004D5631 /* L_notification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = L_notification.cpp; sourceTree = "<group>"; };
+		DBDE2D2D1AC44459004D5631 /* L_notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L_notification.h; sourceTree = "<group>"; };
+		DBDE2D301AC44475004D5631 /* StreamBuffer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamBuffer.cc; path = Source/io/StreamBuffer.cc; sourceTree = "<group>"; };
+		DBDE2D311AC44475004D5631 /* StreamBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamBuffer.h; path = Source/io/StreamBuffer.h; sourceTree = "<group>"; };
+		DBDE2D391AC4460C004D5631 /* pbc-lua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "pbc-lua.c"; path = "external/pbc/binding/lua/pbc-lua.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +355,8 @@
 		DB325D4C1ABE78DE00CCE8BF /* exports */ = {
 			isa = PBXGroup;
 			children = (
+				DBDE2D2C1AC44459004D5631 /* L_notification.cpp */,
+				DBDE2D2D1AC44459004D5631 /* L_notification.h */,
 				DB325D4D1ABE78DE00CCE8BF /* exports.cpp */,
 				DB325D4E1ABE78DE00CCE8BF /* exports.h */,
 			);
@@ -381,7 +392,10 @@
 		DB736CA11AAAB1C800506290 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				DB6080391ABE8D31003CAC45 /* pbc-lua.c */,
+				DBDE2D391AC4460C004D5631 /* pbc-lua.c */,
+				DBDE2D2F1AC44467004D5631 /* io */,
+				DBDE2D291AC4444D004D5631 /* IoServiceOwner.cpp */,
+				DBDE2D2A1AC4444D004D5631 /* IoServiceOwner.h */,
 				DB325D5F1ABE78EB00CCE8BF /* script */,
 				DB325D481ABE78DE00CCE8BF /* interop */,
 				DB325D411ABE78CD00CCE8BF /* dump.cpp */,
@@ -396,6 +410,15 @@
 				DB736CA51AAAB1DC00506290 /* SockSession.h */,
 			);
 			name = src;
+			sourceTree = "<group>";
+		};
+		DBDE2D2F1AC44467004D5631 /* io */ = {
+			isa = PBXGroup;
+			children = (
+				DBDE2D301AC44475004D5631 /* StreamBuffer.cc */,
+				DBDE2D311AC44475004D5631 /* StreamBuffer.h */,
+			);
+			name = io;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,6 +508,7 @@
 				DB325D5E1ABE78DE00CCE8BF /* refprotobase.cpp in Sources */,
 				DB736CA71AAAB1DC00506290 /* SockSession.cpp in Sources */,
 				DB325D371ABE780800CCE8BF /* proto.c in Sources */,
+				DBDE2D2B1AC4444D004D5631 /* IoServiceOwner.cpp in Sources */,
 				DB325CF91ABE77D300CCE8BF /* lbaselib.c in Sources */,
 				DB325D331ABE780800CCE8BF /* context.c in Sources */,
 				DB325D0A1ABE77D300CCE8BF /* lparser.c in Sources */,
@@ -494,10 +518,10 @@
 				DB325D3C1ABE780800CCE8BF /* wmessage.c in Sources */,
 				DB325D071ABE77D300CCE8BF /* lobject.c in Sources */,
 				DB325CFA1ABE77D300CCE8BF /* lcode.c in Sources */,
-				DB60803A1ABE8D31003CAC45 /* pbc-lua.c in Sources */,
 				DB325D341ABE780800CCE8BF /* decode.c in Sources */,
 				DB325CFC1ABE77D300CCE8BF /* ldebug.c in Sources */,
 				DB325D391ABE780800CCE8BF /* rmessage.c in Sources */,
+				DBDE2D3A1AC4460C004D5631 /* pbc-lua.c in Sources */,
 				DB325D041ABE77D300CCE8BF /* lmathlib.c in Sources */,
 				DB325D011ABE77D300CCE8BF /* linit.c in Sources */,
 				DB325D0F1ABE77D300CCE8BF /* ltablib.c in Sources */,
@@ -514,8 +538,10 @@
 				DB325D101ABE77D300CCE8BF /* ltm.c in Sources */,
 				DB325D051ABE77D300CCE8BF /* lmem.c in Sources */,
 				DB325D0C1ABE77D300CCE8BF /* lstring.c in Sources */,
+				DBDE2D2E1AC44459004D5631 /* L_notification.cpp in Sources */,
 				DB325D351ABE780800CCE8BF /* map.c in Sources */,
 				DB325D081ABE77D300CCE8BF /* lopcodes.c in Sources */,
+				DBDE2D321AC44475004D5631 /* StreamBuffer.cc in Sources */,
 				DB736CA61AAAB1DC00506290 /* main.cpp in Sources */,
 				DB325CFF1ABE77D300CCE8BF /* lfunc.c in Sources */,
 				DB325D0B1ABE77D300CCE8BF /* lstate.c in Sources */,
