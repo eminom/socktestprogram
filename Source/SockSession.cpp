@@ -3,8 +3,8 @@
 #include <iostream>
 #include <boost/bind.hpp>
 #include <boost/make_shared.hpp>
-
 #include <cstdlib>
+#include "io/StreamBuffer.h"
 
 SockSession::SockSession(boost::asio::io_service &io_service, const std::string &host, const std::string &port)
 	:io_service_(io_service)
@@ -86,12 +86,9 @@ void SockSession::handle_headerRead(const boost::system::error_code &error){
 		socket_failed_ = true;
 		return;
 	}
-	int p = 1;
 	int length = 0;
-	for(int i=0;i<headLength_.size();++i){
-		length += p * ((unsigned char)(headLength_[i]));
-		p<<=8;
-	}
+	StreamBuffer is(&headLength_[0], headLength_.size());
+	is.readInt32(length);
 	std::cout<<"In Comming("<<length<<")bytes.";
 	buffer_.resize(length - 4);
 	readBody();
@@ -107,8 +104,9 @@ void SockSession::handle_bodyRead(const boost::system::error_code &error){
 	assert(buffer_.size() > 2);
 
 	std::string payload(&buffer_[2], buffer_.size()-2);
-	int typecode = int((unsigned char)(buffer_[0]));
-	typecode += 256 * int((unsigned char)(buffer_[1]));
+	int typecode = 0;
+	StreamBuffer is(&buffer_[0], 2);
+	is.readInt16(typecode);
 	std::cout<<" : typecode["<<typecode<<"]"<<std::endl;
 	callback_(typecode, payload.c_str(), payload.size());
 	//std::cout<<buffer_<<std::endl;

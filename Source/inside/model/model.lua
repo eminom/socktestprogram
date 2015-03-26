@@ -22,8 +22,8 @@ function ClientState:GetState()
 	return self.state
 end
 
-Model.UserName = "eminem1"
-Model.Password = "123123"
+Model.UserName = "baihai"
+Model.Password = "baipasswd"
 
 Model.DirectoryServer = {
 	Host = "192.168.2.12",
