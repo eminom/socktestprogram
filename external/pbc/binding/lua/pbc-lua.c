@@ -8,7 +8,9 @@ extern "C" {
 }
 #endif
 
+#ifndef __APPLE__
 #include <malloc.h>
+#endif
 
 #ifndef _MSC_VER
 #include <stdbool.h>
