@@ -46,6 +46,14 @@ function NetworkCmd.RegisterUser(account, passwd)
 	-- NetworkCmd.Print("Registering user on directory server $$$$$$$$$$$$$$$$$$")
 end
 
+function NetworkCmd.CreatePlayer(is_anonymous, device_id, account)
+	NetworkCmd.Send("CreatePlayerCommand", {
+		is_anonymous = is_anonymous,
+		device_id    = device_id,
+		account      = account
+	})
+end
+
 function NetworkCmd.ConnectToDirectory()
 	mm.ConnectServer(Model.DirectoryServer.Host, Model.DirectoryServer.Port, ModelEvent.DirectoryConnected)
 	NetworkCmd.Print("Connect to directory server $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")

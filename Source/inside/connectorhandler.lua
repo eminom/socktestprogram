@@ -75,9 +75,21 @@ end
 function ConnectorHandler:initLoginNotify()
 	self.onLoginNotify = function(event, decoded)
 		-- print("\n")
+		print("============LoginNotify========= ")
 		print("Logged with token = " .. tostring(decoded.token))
+		print("Exception = "..tostring(decoded.exception))
+		print("")
+		NetworkCmd.CreatePlayer(true, "X51", Model.UserName)
 	end
 	EventDispatcher.addHandler(ModelEvent.LoginNotify, self.onLoginNotify)
+end
+
+function ConnectorHandler:initCreatePlayerNotify()
+	self.onCreatePlayerNotify = function(event, decoded)
+		print("===========CreatePlayer ======")
+		print(" Exception = ", decoded.exception)
+	end
+	EventDispatcher.addHandler(ModelEvent.CreatePlayerNotify, self.onCreatePlayerNotify)
 end
 
 function ConnectorHandler:init()
@@ -87,6 +99,7 @@ function ConnectorHandler:init()
 	self:initWorldConnected()
 	self:initRegisterUser()
 	self:initLoginNotify()
+	self:initCreatePlayerNotify()
 	return self
 end
 

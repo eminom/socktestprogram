@@ -30,6 +30,9 @@
     <Filter Include="interop\exports">
       <UniqueIdentifier>{823b52fb-c550-490c-8fff-cc34d61fbf45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\io">
+      <UniqueIdentifier>{c0ebf2ba-c841-427e-a1dd-70d73908fbf5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
@@ -170,6 +173,9 @@
     <ClCompile Include="..\Source\interop\exports\L_notification.cpp">
       <Filter>interop\exports</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\io\StreamBuffer.cc">
+      <Filter>Source\io</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\SessionProtocol.h">
@@ -282,6 +288,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\interop\exports\L_notification.h">
       <Filter>interop\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\io\StreamBuffer.h">
+      <Filter>Source\io</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

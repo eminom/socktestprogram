@@ -11,5 +11,6 @@ ModelEvent.DirectoryRegisterUserNotify = "model.net.directoryregisterusernotify"
 
 ModelEvent.LoginNotify = "model.net.worldloginnotify"
 ModelEvent.WorldListNotify = "model.net.worldlistnotify"
+ModelEvent.CreatePlayerNotify = "model.net.createplayernotify"
 
 print "worldcmd init"
