@@ -33,7 +33,7 @@ void SockSession::start()
 {
 	//Socket not initialized. 
 	// Connect first. 
-	socket_.set_option(boost::asio::ip::tcp::acceptor::linger(true,0));
+	socket_.set_option(boost::asio::ip::tcp::acceptor::linger(false,0));
 	socket_.set_option(boost::asio::socket_base::keep_alive(true));
 	boost::system::error_code error;
 	//handle_read_header(error);

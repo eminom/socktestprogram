@@ -50,6 +50,10 @@ void SockSessionManager::connectTo(const std::string &host, const std::string &p
 	ss->setNetMessagePumper(redistribute_);
 	ss->setNetConnected(serverConnected_);
 	ss->connect(serverID.c_str());
+	if(ptr_)
+	{
+		ptr_->close();
+	}
 	ptr_ = ss;
 }
 
