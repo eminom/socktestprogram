@@ -1,3 +1,6 @@
 [submodule "script"]
 	path = script
 	url = https://github.com/eminom/script-tool-box
+[submodule "third/linterop"]
+	path = third/linterop
+	url = https://github.com/eminom/linterop
