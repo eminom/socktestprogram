@@ -94,6 +94,7 @@
     <ClInclude Include="..\Source\dump.h" />
     <ClInclude Include="..\Source\interop\exports\exports.h" />
     <ClInclude Include="..\Source\interop\exports\L_notification.h" />
+    <ClInclude Include="..\Source\interop\interopconf.h" />
     <ClInclude Include="..\Source\IoServiceOwner.h" />
     <ClInclude Include="..\Source\io\StreamBuffer.h" />
     <ClInclude Include="..\Source\script\lua_script.h" />
@@ -105,7 +106,6 @@
     <ClInclude Include="..\third\linterop\src\interop\access\lua_access_macros.h" />
     <ClInclude Include="..\third\linterop\src\interop\access\refobj.h" />
     <ClInclude Include="..\third\linterop\src\interop\access\refproto.h" />
-    <ClInclude Include="..\third\linterop\src\interop\interopconf.h" />
     <ClInclude Include="..\third\linterop\src\interop\lextension.h" />
     <ClInclude Include="..\third\linterop\src\interop\luacomm.h" />
     <ClInclude Include="..\third\linterop\src\interop\luathread.hpp" />

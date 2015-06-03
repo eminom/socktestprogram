@@ -310,7 +310,7 @@
     <ClInclude Include="..\third\linterop\src\interop\luavm.h">
       <Filter>third\interop</Filter>
     </ClInclude>
-    <ClInclude Include="..\third\linterop\src\interop\interopconf.h">
+    <ClInclude Include="..\Source\interop\interopconf.h">
       <Filter>interop</Filter>
     </ClInclude>
   </ItemGroup>
