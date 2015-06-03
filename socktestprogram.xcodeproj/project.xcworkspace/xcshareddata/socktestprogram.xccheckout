@@ -22,7 +22,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>040ABA90E9DE1A8089DB9B4BFF2A62CD7554E0E9</key>
-		<string>../../third/linterop/</string>
+		<string>../../third/linterop</string>
 		<key>CDB0DFB6D6575E8606F2FA71EB430FC41075B256</key>
 		<string>../..</string>
 		<key>F650963659C313C5BE1214E5CA00076E30F11D51</key>
