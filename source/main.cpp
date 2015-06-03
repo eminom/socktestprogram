@@ -9,8 +9,8 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/noncopyable.hpp>
-#include "SockSession.h"
-#include "SockSessionManager.h"
+#include "socket/SockSession.h"
+#include "socket/SockSessionManager.h"
 
 #include "script/lua_script.h"
 #include "pbc.h"

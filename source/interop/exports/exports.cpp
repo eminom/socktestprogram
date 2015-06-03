@@ -17,7 +17,7 @@ extern "C"{
 #endif
 
 
-#include "SockSessionManager.h"
+#include "socket/SockSessionManager.h"
 
 
 static int loadBinaryFileForLua(lua_State * s)

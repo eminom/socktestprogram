@@ -5,10 +5,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="interop">
       <UniqueIdentifier>{c716692d-079a-4d29-a314-abf62e4caf03}</UniqueIdentifier>
     </Filter>
@@ -24,9 +20,6 @@
     <Filter Include="interop\exports">
       <UniqueIdentifier>{823b52fb-c550-490c-8fff-cc34d61fbf45}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\io">
-      <UniqueIdentifier>{c0ebf2ba-c841-427e-a1dd-70d73908fbf5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="third">
       <UniqueIdentifier>{ee26b44d-535e-4879-873f-1e81adb39b64}</UniqueIdentifier>
     </Filter>
@@ -36,13 +29,20 @@
     <Filter Include="third\interop\access">
       <UniqueIdentifier>{175e52aa-f748-4c5c-89ed-bb829e758f97}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="source\io">
+      <UniqueIdentifier>{c0ebf2ba-c841-427e-a1dd-70d73908fbf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\socket">
+      <UniqueIdentifier>{08ad778d-002e-405c-bcf7-de043d5c6999}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\SockSession.cpp">
-      <Filter>Source</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\script\lua_script.cpp">
       <Filter>script</Filter>
@@ -144,25 +144,19 @@
       <Filter>dependence\lua</Filter>
     </ClCompile>
     <ClCompile Include="..\external\pbc\binding\lua\pbc-lua.c">
-      <Filter>Source</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\dump.cpp">
-      <Filter>Source</Filter>
+      <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\interop\exports\exports.cpp">
       <Filter>interop\exports</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\SockSessionManager.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\IoServiceOwner.cpp">
-      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\interop\exports\L_notification.cpp">
       <Filter>interop\exports</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\io\StreamBuffer.cc">
-      <Filter>Source\io</Filter>
+      <Filter>source\io</Filter>
     </ClCompile>
     <ClCompile Include="..\third\linterop\src\interop\access\lua_access.cpp">
       <Filter>third\interop\access</Filter>
@@ -185,14 +179,17 @@
     <ClCompile Include="..\third\linterop\src\interop\luavm.cc">
       <Filter>third\interop</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\socket\IoServiceOwner.cpp">
+      <Filter>source\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\socket\SockSession.cpp">
+      <Filter>source\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\socket\SockSessionManager.cpp">
+      <Filter>source\socket</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Source\SessionProtocol.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\SockSession.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="..\Source\script\lua_script.h">
       <Filter>script</Filter>
     </ClInclude>
@@ -266,13 +263,7 @@
       <Filter>dependence\lua</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\dump.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\SockSessionManager.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\IoServiceOwner.h">
-      <Filter>Source</Filter>
+      <Filter>source</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\interop\exports\exports.h">
       <Filter>interop\exports</Filter>
@@ -281,7 +272,7 @@
       <Filter>interop\exports</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\io\StreamBuffer.h">
-      <Filter>Source\io</Filter>
+      <Filter>source\io</Filter>
     </ClInclude>
     <ClInclude Include="..\third\linterop\src\interop\access\lua_access.h">
       <Filter>third\interop\access</Filter>
@@ -312,6 +303,18 @@
     </ClInclude>
     <ClInclude Include="..\Source\interop\interopconf.h">
       <Filter>interop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\socket\IoServiceOwner.h">
+      <Filter>source\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\socket\SessionProtocol.h">
+      <Filter>source\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\socket\SockSession.h">
+      <Filter>source\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\socket\SockSessionManager.h">
+      <Filter>source\socket</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
