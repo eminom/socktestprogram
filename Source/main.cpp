@@ -14,13 +14,13 @@
 
 #include "script/lua_script.h"
 #include "pbc.h"
-#include "interop/lua_access/lua_access_macros.h"
-#include "interop/lua_access/lua_access.h"
+#include "interop/access/lua_access_macros.h"
+#include "interop/access/lua_access.h"
 #include "interop/exports/L_notification.h"
 #include "dump.h"
 
 //#include <windows.h>
-void luaopen_mm(lua_State *L);
+#include "interop/exports/exports.h"
 
 #ifdef __APPLE__
 #include <unistd.h>
@@ -52,7 +52,7 @@ int main()
 	IoServiceOwner owner(&io, SockSessionManager::instance());
 	//SockSessionManager::instance()->connectTo(host, port);
 
-	executeVoidFunc("startUp","");
+	executeVoidFunc(LuaScript::instance()->getLuaState(), "startUp","");
 	auto start = boost::posix_time::microsec_clock::universal_time();
 	while(true)
 	{

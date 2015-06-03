@@ -13,11 +13,12 @@
 #include <boost/asio.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/array.hpp>
+#include "script/lua_script.h"
 
 class SockSession;
 typedef boost::shared_ptr<SockSession> SockSessionPtr;
-typedef std::function<void(int, const char*, int length)> InComingBufferCallback;
-typedef std::function<void(const char*)> OnServerConnectedCallback;
+typedef std::function<void(lua_State*, int, const char*, int length)> InComingBufferCallback;
+typedef std::function<void(lua_State*, const char*)> OnServerConnectedCallback;
 
 class SockSession:public boost::enable_shared_from_this<SockSession>,
 	public SockSessionProtocol,

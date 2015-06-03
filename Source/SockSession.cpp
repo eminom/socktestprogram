@@ -111,7 +111,8 @@ void SockSession::handle_bodyRead(const boost::system::error_code &error){
 	StreamBuffer is(&buffer_[0], 2);
 	is.readInt16(typecode);
 	std::cout<<" : typecode["<<typecode<<"]"<<std::endl;
-	callback_(typecode, payload.c_str(), payload.size());
+	auto L = LuaScript::instance()->getLuaState();
+	callback_(L, typecode, payload.c_str(), payload.size());
 	//std::cout<<buffer_<<std::endl;
 	read();
 }
@@ -131,7 +132,8 @@ void SockSession::handle_connected(const boost::system::error_code &error/*, boo
             */
 			//write("Hello");
 			//write( msg[rand()% (sizeof(msg)/sizeof(*msg))]);
-			onConnected_(connectingServerStr_.c_str());
+			auto L = LuaScript::instance()->getLuaState();
+			onConnected_(L, connectingServerStr_.c_str());
 		} else {
 			std::cerr<<"Fail to connect!"<<std::endl;
 			connecting_timeout_ = true;

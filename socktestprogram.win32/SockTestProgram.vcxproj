@@ -51,19 +51,21 @@
     <ClCompile Include="..\Source\dependence\lua-5.1.5\src\lzio.c" />
     <ClCompile Include="..\Source\dependence\lua-5.1.5\src\print.c" />
     <ClCompile Include="..\Source\dump.cpp" />
-    <ClCompile Include="..\Source\interop\class\lextension.c" />
     <ClCompile Include="..\Source\interop\exports\exports.cpp" />
     <ClCompile Include="..\Source\interop\exports\L_notification.cpp" />
-    <ClCompile Include="..\Source\interop\lua_access\lua_access.cpp" />
-    <ClCompile Include="..\Source\interop\lua_access\refobj.cpp" />
-    <ClCompile Include="..\Source\interop\lua_access\refproto.cpp" />
-    <ClCompile Include="..\Source\interop\lua_access\refprotobase.cpp" />
     <ClCompile Include="..\Source\IoServiceOwner.cpp" />
     <ClCompile Include="..\Source\io\StreamBuffer.cc" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\script\lua_script.cpp" />
     <ClCompile Include="..\Source\SockSession.cpp" />
     <ClCompile Include="..\Source\SockSessionManager.cpp" />
+    <ClCompile Include="..\third\linterop\src\interop\access\lua_access.cpp" />
+    <ClCompile Include="..\third\linterop\src\interop\access\lua_access_class.cc" />
+    <ClCompile Include="..\third\linterop\src\interop\access\refobj.cpp" />
+    <ClCompile Include="..\third\linterop\src\interop\access\refproto.cpp" />
+    <ClCompile Include="..\third\linterop\src\interop\lextension.c" />
+    <ClCompile Include="..\third\linterop\src\interop\luacomm.cc" />
+    <ClCompile Include="..\third\linterop\src\interop\luavm.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lapi.h" />
@@ -90,20 +92,24 @@
     <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lvm.h" />
     <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lzio.h" />
     <ClInclude Include="..\Source\dump.h" />
-    <ClInclude Include="..\Source\interop\class\lextension.h" />
     <ClInclude Include="..\Source\interop\exports\exports.h" />
     <ClInclude Include="..\Source\interop\exports\L_notification.h" />
-    <ClInclude Include="..\Source\interop\lua_access\lua_access.h" />
-    <ClInclude Include="..\Source\interop\lua_access\lua_access_macros.h" />
-    <ClInclude Include="..\Source\interop\lua_access\refobj.h" />
-    <ClInclude Include="..\Source\interop\lua_access\refproto.h" />
-    <ClInclude Include="..\Source\interop\lua_access\refprotobase.h" />
     <ClInclude Include="..\Source\IoServiceOwner.h" />
     <ClInclude Include="..\Source\io\StreamBuffer.h" />
     <ClInclude Include="..\Source\script\lua_script.h" />
     <ClInclude Include="..\Source\SessionProtocol.h" />
     <ClInclude Include="..\Source\SockSession.h" />
     <ClInclude Include="..\Source\SockSessionManager.h" />
+    <ClInclude Include="..\third\linterop\src\interop\access\lua_access.h" />
+    <ClInclude Include="..\third\linterop\src\interop\access\lua_access_class.hpp" />
+    <ClInclude Include="..\third\linterop\src\interop\access\lua_access_macros.h" />
+    <ClInclude Include="..\third\linterop\src\interop\access\refobj.h" />
+    <ClInclude Include="..\third\linterop\src\interop\access\refproto.h" />
+    <ClInclude Include="..\third\linterop\src\interop\interopconf.h" />
+    <ClInclude Include="..\third\linterop\src\interop\lextension.h" />
+    <ClInclude Include="..\third\linterop\src\interop\luacomm.h" />
+    <ClInclude Include="..\third\linterop\src\interop\luathread.hpp" />
+    <ClInclude Include="..\third\linterop\src\interop\luavm.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\dependence\lua-5.1.5\src\Makefile" />
@@ -152,7 +158,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\external\pbc;C:\Boost\include\boost-1_57;$(SolutionDir)\..\Source;$(SolutionDir)\..\Source\dependence\lua-5.1.5\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\external\pbc;C:\Boost\include\boost-1_57;$(SolutionDir)\..\Source;$(SolutionDir)\..\Source\dependence\lua-5.1.5\src;$(SolutionDir)\..\third\linterop\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>

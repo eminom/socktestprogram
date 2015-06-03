@@ -12,9 +12,6 @@
     <Filter Include="interop">
       <UniqueIdentifier>{c716692d-079a-4d29-a314-abf62e4caf03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="interop\lua_access">
-      <UniqueIdentifier>{dada24f7-3b6d-41f6-879f-d5fd72c4478c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="script">
       <UniqueIdentifier>{c9f9d032-e49c-4a53-9d61-276b410ff157}</UniqueIdentifier>
     </Filter>
@@ -24,14 +21,20 @@
     <Filter Include="dependence\lua">
       <UniqueIdentifier>{28b31301-1c0d-4cbe-bf85-b1b36f88d6cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="interop\class">
-      <UniqueIdentifier>{84cc8c68-b2c6-469e-a548-ddd211d9d0f8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="interop\exports">
       <UniqueIdentifier>{823b52fb-c550-490c-8fff-cc34d61fbf45}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\io">
       <UniqueIdentifier>{c0ebf2ba-c841-427e-a1dd-70d73908fbf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third">
+      <UniqueIdentifier>{ee26b44d-535e-4879-873f-1e81adb39b64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third\interop">
+      <UniqueIdentifier>{6aac6189-9a67-48fa-ba3b-bef6af9c20dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third\interop\access">
+      <UniqueIdentifier>{175e52aa-f748-4c5c-89ed-bb829e758f97}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -40,18 +43,6 @@
     </ClCompile>
     <ClCompile Include="..\Source\SockSession.cpp">
       <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\interop\lua_access\lua_access.cpp">
-      <Filter>interop\lua_access</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\interop\lua_access\refobj.cpp">
-      <Filter>interop\lua_access</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\interop\lua_access\refproto.cpp">
-      <Filter>interop\lua_access</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\interop\lua_access\refprotobase.cpp">
-      <Filter>interop\lua_access</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\script\lua_script.cpp">
       <Filter>script</Filter>
@@ -155,9 +146,6 @@
     <ClCompile Include="..\external\pbc\binding\lua\pbc-lua.c">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\interop\class\lextension.c">
-      <Filter>interop\class</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\dump.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -176,6 +164,27 @@
     <ClCompile Include="..\Source\io\StreamBuffer.cc">
       <Filter>Source\io</Filter>
     </ClCompile>
+    <ClCompile Include="..\third\linterop\src\interop\access\lua_access.cpp">
+      <Filter>third\interop\access</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third\linterop\src\interop\access\lua_access_class.cc">
+      <Filter>third\interop\access</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third\linterop\src\interop\access\refobj.cpp">
+      <Filter>third\interop\access</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third\linterop\src\interop\access\refproto.cpp">
+      <Filter>third\interop\access</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third\linterop\src\interop\lextension.c">
+      <Filter>third\interop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third\linterop\src\interop\luacomm.cc">
+      <Filter>third\interop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third\linterop\src\interop\luavm.cc">
+      <Filter>third\interop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\SessionProtocol.h">
@@ -183,21 +192,6 @@
     </ClInclude>
     <ClInclude Include="..\Source\SockSession.h">
       <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\interop\lua_access\lua_access.h">
-      <Filter>interop\lua_access</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\interop\lua_access\lua_access_macros.h">
-      <Filter>interop\lua_access</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\interop\lua_access\refobj.h">
-      <Filter>interop\lua_access</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\interop\lua_access\refproto.h">
-      <Filter>interop\lua_access</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\interop\lua_access\refprotobase.h">
-      <Filter>interop\lua_access</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\script\lua_script.h">
       <Filter>script</Filter>
@@ -271,9 +265,6 @@
     <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lzio.h">
       <Filter>dependence\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\interop\class\lextension.h">
-      <Filter>interop\class</Filter>
-    </ClInclude>
     <ClInclude Include="..\Source\dump.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -291,6 +282,36 @@
     </ClInclude>
     <ClInclude Include="..\Source\io\StreamBuffer.h">
       <Filter>Source\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\linterop\src\interop\access\lua_access.h">
+      <Filter>third\interop\access</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\linterop\src\interop\access\lua_access_class.hpp">
+      <Filter>third\interop\access</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\linterop\src\interop\access\lua_access_macros.h">
+      <Filter>third\interop\access</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\linterop\src\interop\access\refobj.h">
+      <Filter>third\interop\access</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\linterop\src\interop\access\refproto.h">
+      <Filter>third\interop\access</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\linterop\src\interop\lextension.h">
+      <Filter>third\interop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\linterop\src\interop\luacomm.h">
+      <Filter>third\interop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\linterop\src\interop\luathread.hpp">
+      <Filter>third\interop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\linterop\src\interop\luavm.h">
+      <Filter>third\interop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\linterop\src\interop\interopconf.h">
+      <Filter>interop</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

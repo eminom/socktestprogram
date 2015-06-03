@@ -1,12 +1,12 @@
 
 #include "L_notification.h"
-#include "interop/lua_access/lua_access_macros.h"
+#include "interop/access/lua_access_macros.h"
 #include <cassert>
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
 
-void L_onDecodeBuffer(int typecode, const char *buffer, int bufferSize)
+void L_onDecodeBuffer(lua_State *L, int typecode, const char *buffer, int bufferSize)
 {
 	_DeclareState()
 	lua_getglobal(L, "__G_TRACEBACK");
@@ -41,7 +41,7 @@ void L_onDecodeBuffer(int typecode, const char *buffer, int bufferSize)
 	assert( top == lua_gettop(L));
 }
 
-void L_onServerConnectionEstablished(const char *serverID)
+void L_onServerConnectionEstablished(lua_State *L, const char *serverID)
 {
 	_DeclareState()
 	lua_getglobal(L, "__G_TRACEBACK");

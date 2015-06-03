@@ -1,7 +1,8 @@
 
 
 #include "dump.h"
-#include "interop/lua_access/lua_access.h"
+#include "interop/access/lua_access.h"
+#include "script/lua_script.h"
 
 #ifdef __APPLE__
 extern "C" {
@@ -88,6 +89,7 @@ namespace GameCore
 void frameUpdate(float dt)
 {
     const char *func = "frameUpdate";
+	lua_State *L = LuaScript::instance()->getLuaState();
 	_DeclareState()
 	lua_getglobal(L, "__G_TRACEBACK");
 	assert(lua_isfunction(L, -1));
