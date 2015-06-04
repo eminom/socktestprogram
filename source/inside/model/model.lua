@@ -1,4 +1,6 @@
 
+local ReadOnly = require "inside.ReadOnly"
+
 Model = {}
 ModelEvent = ModelEvent or {}
 
@@ -25,8 +27,8 @@ end
 Model.UserName = "baihai"
 Model.Password = "baipasswd"
 
-Model.DirectoryServer = {
-	Host = "192.168.2.12",
+Model.DirectoryServer = ReadOnly{
+	Host = "localhost",
 	Port = "11000"
 }
 

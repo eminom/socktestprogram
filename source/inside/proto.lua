@@ -40,7 +40,7 @@ function Proto.test()
 	local namesForTest = {
 		--Dir server
 		"RequestWorldList",
-		"RequestRegisterUser",
+		"RequestUserRegister",
 
 		"ResponseWorldList",
 		"ResponseUserRegister",

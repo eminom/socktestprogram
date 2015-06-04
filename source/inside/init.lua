@@ -1,4 +1,9 @@
 	
+
+require "inside.libs.functions"
+require "inside.libs.json"
+
+--
 require "inside.proto"
 require "inside.dispatcher"
 require "inside.model.model"
@@ -6,7 +11,6 @@ require "inside.test"
 require "inside.globalmsgholder"
 require "inside.networkcmd"
 require "inside.pumper"
-
 
 GlobalMessageHolder.init()
 local clientState = Model.ClientState or error("Not initialized for Model.ClientState ?")
@@ -39,7 +43,7 @@ function frameUpdate(dt)
 end
 
 function startUp()
-	print("disconnected from server")
+	print("<START>Disconnected from server")
 	EventDispatcher.dispatch(ModelEvent.DisconnectedFromServer)
 end
 

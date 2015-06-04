@@ -33,7 +33,7 @@ end
 
 function ConnectorHandler:initDisconnected()
 	self.onDisconnected = function(event)
-		print("Reconnecting to directory server ########################")
+		print("Reconnecting to directory server ...")
 		NetworkCmd.ConnectToDirectory()
 	end
 	EventDispatcher.addHandler(ModelEvent.DisconnectedFromServer, self.onDisconnected)
@@ -41,7 +41,7 @@ end
 
 function ConnectorHandler:initDirectoryConnected()
 	self.onDirectoryConnected = function()
-		print("Directory connected ! ##############  ########")
+		print("Directory connected !")
 		NetworkCmd.RequestWorldList()
 	end
 	EventDispatcher.addHandler(ModelEvent.DirectoryConnected, self.onDirectoryConnected)
@@ -49,7 +49,7 @@ end
 
 function ConnectorHandler:initWorldConnected()
 	self.onWorldConnected = function()
-		print("World connected ! ################################")
+		print("World connected !")
 		NetworkCmd.RequestLogin()
 	end
 	EventDispatcher.addHandler(ModelEvent.WorldConnected, self.onWorldConnected)
@@ -96,13 +96,16 @@ function ConnectorHandler:initCreatePlayerNotify()
 end
 
 function ConnectorHandler:init()
-	self:initWorldNotify()
 	self:initDisconnected()
 	self:initDirectoryConnected()
 	self:initWorldConnected()
+
 	self:initRegisterUser()
+	self:initWorldNotify()
+
 	self:initLoginNotify()
 	self:initCreatePlayerNotify()
+
 	return self
 end
 

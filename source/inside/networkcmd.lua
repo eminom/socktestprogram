@@ -19,17 +19,19 @@ end
 -- end
 
 function NetworkCmd.Send(proto, obj)
+	local id = Proto.toID(proto)
+	assert( type(id)=="number" and id > 0, "Must be greater than zero")
 	local buffer = protobuf.encode(proto, obj)
-	mm.SendBuffer(buffer, Proto.toID(proto))
+	mm.SendBuffer(buffer, id)
 	NetworkCmd.Print(proto .. " IS POSTED" .. " : ID = "..Proto.toID(proto).."")
 end
 
 function NetworkCmd.RequestWorldList()
-	NetworkCmd.Send("WorldListCommand", {})
+	NetworkCmd.Send("RequestWorldList", {})
 end
 
 function NetworkCmd.RequestLogin()
-	NetworkCmd.Send("LoginCommand", {
+	NetworkCmd.Send("RequestLogin", {
 		device_id = Model.DeviceID(),
 		-- map_id    = 13
 		account  = Model.UserName,
@@ -39,7 +41,7 @@ function NetworkCmd.RequestLogin()
 end
 
 function NetworkCmd.RegisterUser(account, passwd)
-	NetworkCmd.Send("RegisterUserCommand", {
+	NetworkCmd.Send("Request", {
 			account = account,
 			password = passwd 
 	})
@@ -56,7 +58,7 @@ end
 
 function NetworkCmd.ConnectToDirectory()
 	mm.ConnectServer(Model.DirectoryServer.Host, Model.DirectoryServer.Port, ModelEvent.DirectoryConnected)
-	NetworkCmd.Print("Connect to directory server $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+	NetworkCmd.Print("Connect to directory server...")
 end
 
 function NetworkCmd.ConnectToWorld(host, port)
