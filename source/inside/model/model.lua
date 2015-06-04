@@ -28,7 +28,7 @@ Model.UserName = "baihai"
 Model.Password = "baipasswd"
 
 Model.DirectoryServer = ReadOnly{
-	Host = "localhost",
+	Host = "192.168.1.231",
 	Port = "11000"
 }
 

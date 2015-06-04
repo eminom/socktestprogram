@@ -63,7 +63,7 @@ void SockSession::close()
 	io_service_.post(boost::bind(&SockSession::handle_closed, shared_from_this()));
 }
 
-void SockSession::read(){
+void SockSession::readStart(){
 	boost::asio::async_read(socket_,
 		boost::asio::buffer(headLength_),
 		boost::bind(&SockSession::handle_headerRead, shared_from_this(),
@@ -114,7 +114,7 @@ void SockSession::handle_bodyRead(const boost::system::error_code &error){
 	auto L = LuaScript::instance()->getLuaState();
 	callback_(L, typecode, payload.c_str(), payload.size());
 	//std::cout<<buffer_<<std::endl;
-	read();
+	readStart();
 }
 
 //on connected
@@ -138,7 +138,7 @@ void SockSession::handle_connected(const boost::system::error_code &error/*, boo
 			std::cerr<<"Fail to connect!"<<std::endl;
 			connecting_timeout_ = true;
 		}
-		read();
+		readStart();
 	}
 	catch(std::exception&ex){
 		std::cerr<<"Error"<<std::endl;

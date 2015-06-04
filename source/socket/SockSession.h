@@ -39,7 +39,7 @@ public:
 	void connect(const char *serverID);
 	void close();
 	void write(int typeCode, const char *msg, int length);
-	void read();
+	void readStart();
 	void readBody();
 	void setTimeout(float seconds);	//~ in seconds
 	bool isTimeout()const;
