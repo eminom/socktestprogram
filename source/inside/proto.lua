@@ -21,31 +21,41 @@ function Proto.init()
 		Proto.isRegister = true
 		local pbs = {
 			"data.pb",
-			"error_code.pb",
-			"dir.pb",
-			"world.pb",
+			"exceptiontype.pb",
+			"cs_dir.pb",
+			"cs_world.pb",
 		}
 		for i=1, #pbs do
 			-- print ("Loading "..pbs[i])
 			protobuf.register(mm.LoadBinaryFile("../proto/"..pbs[i]))
 		end
+		Proto.test()
+		print("Proto.init done")
+	else
+		print("Proto.init already done")
 	end
+end
 
-	-- Testing 
+function Proto.test()
 	local namesForTest = {
-		"LoginCommand",
-		"WorldListCommand",
-		"WorldListNotify",
-		-- "WorldData",
-		"RegisterUserCommand",
-		"RegisterUserNotify",
+		--Dir server
+		"RequestWorldList",
+		"RequestRegisterUser",
+
+		"ResponseWorldList",
+		"ResponseUserRegister",
+
+		-- World server
+		"RequestLogin",
+		"RequestCreatePlayer",
+		"ResponseLogin",
+		"ResponseCreatePlayer"
 	}
 	for _, v in ipairs(namesForTest) do
 		local id = Proto.toID(v)
 		assert(id > 0, "Message type id must be greater than zero")
-		-- print(v .. ".Type(ID) is " .. tostring(id))
+		print("Protocol<"..v .. ">.Type(ID) is " .. tostring(id))
 	end
-	print("Proto.init done")
 end
 
 function Proto.packCmd(name, cmd)

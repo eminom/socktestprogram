@@ -17,10 +17,10 @@ local function MakeRule(proto_name, event_name)
 end
 
 local distributeRules = {
-	MakeRule("WorldListNotify", ModelEvent.WorldListNotify),
-	MakeRule("RegisterUserNotify", ModelEvent.DirectoryRegisterUserNotify),
-	MakeRule("LoginNotify", ModelEvent.LoginNotify),
-	MakeRule("CreatePlayerNotify", ModelEvent.CreatePlayerNotify)
+	MakeRule("ResponseWorldList", ModelEvent.WorldListNotify),
+	MakeRule("ResponseUserRegister", ModelEvent.DirectoryRegisterUserNotify),
+	MakeRule("ResponseLogin", ModelEvent.LoginNotify),
+	MakeRule("ResponseCreatePlayer", ModelEvent.CreatePlayerNotify)
 }
 
 function redirectNetBuffer(typecode, buffer)
