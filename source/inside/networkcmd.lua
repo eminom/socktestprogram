@@ -41,7 +41,7 @@ function NetworkCmd.RequestLogin()
 end
 
 function NetworkCmd.RegisterUser(account, passwd)
-	NetworkCmd.Send("Request", {
+	NetworkCmd.Send("RequestUserRegister", {
 			account = account,
 			password = passwd 
 	})
