@@ -1,4 +1,0 @@
-message TextMessage {
-    required int32 time = 1;
-    required string msg = 2;
-}

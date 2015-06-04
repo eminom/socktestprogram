@@ -1,9 +1,26 @@
+#!/usr/local/bin/ruby
+
+# Everything is fine.
+# Autorhed by eminom(eminem)
 
 require "fileutils"
 require_relative "exconf"
 
 def is_windows?
   RUBY_PLATFORM =~ /mswin|mingw/
+end
+
+def is_darwin?
+	RUBY_PLATFORM =~ /darwin/
+end
+
+def proto_cmd
+	if is_windows? then
+		return "protoc.exe"
+	elsif is_darwin? then
+		return "protoc"
+	end
+	throw Exception.new("Unknonwn platform")
 end
 
 module ProtoSync
@@ -26,13 +43,16 @@ module ProtoSync
 			print "Processing #{lpath} ... "
 			lpath = lpath.chomp(File.extname(lpath)) + ".pb"
 			target_path = "#{ProtoSync.current_path}/#{lpath}"
-			cmd = "protoc.exe --proto_path=\"#{@origin_path}\" -o #{target_path} #{path}"
+			cmd = "#{proto_cmd} "\
+				"--proto_path=\"#{@origin_path}\" "\
+				"-o #{target_path} #{path} "
+			puts cmd
 			if not system cmd then
 				print "Error compiling protocols:#{$?}\n"
 				print "Command line: #{cmd}\n"
 				exit
 			end
-			print "\n"
+			puts
 		end
 	end
 
@@ -41,16 +61,21 @@ module ProtoSync
 		print "Testing under #{now_path}\n"
 		Dir.glob("#{now_path}/**/*.proto") do |path|
 			print "Inspecting #{path} ..."
-			cmd = "protoc.exe --proto_path=\"#{now_path}\" -o #{path}.pb #{path}"
+			cmd = "#{proto_cmd} "\
+				"--proto_path=\"#{now_path}\" "\
+				"-o #{path}.pb #{path}"
 			res = system cmd
-			print "executing result: #{res} : #{$?}\n"
+			puts "executing result: #{res} : #{$?}"
 		end
 	end
 end	
 
+puts "Starting sync >>>"
+
 # ProtoSync.test
+
 ProtoSync.init
 ProtoSync.process
-print "Finished\n"
-
+puts "Finished"
+puts
 

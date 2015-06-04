@@ -1,7 +1,0 @@
-message WorldListCommand
-{
-    enum Type { ID = 1; } 
-	
-    required uint64 number = 1; 
-    required string name = 2;
-};
