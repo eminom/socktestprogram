@@ -46,7 +46,7 @@ module ProtoSync
 			cmd = "#{proto_cmd} "\
 				"--proto_path=\"#{@origin_path}\" "\
 				"-o #{target_path} #{path} "
-			puts cmd
+			#puts cmd
 			if not system cmd then
 				print "Error compiling protocols:#{$?}\n"
 				print "Command line: #{cmd}\n"
