@@ -316,6 +316,9 @@
     <ClInclude Include="..\source\socket\SockSessionManager.h">
       <Filter>source\socket</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\config.h">
+      <Filter>source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Source\dependence\lua-5.1.5\src\Makefile">

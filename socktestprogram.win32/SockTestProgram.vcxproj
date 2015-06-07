@@ -68,6 +68,7 @@
     <ClCompile Include="..\third\linterop\src\interop\luavm.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\source\config.h" />
     <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lapi.h" />
     <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lauxlib.h" />
     <ClInclude Include="..\Source\dependence\lua-5.1.5\src\lcode.h" />

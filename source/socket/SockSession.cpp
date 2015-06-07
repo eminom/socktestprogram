@@ -1,4 +1,5 @@
 
+#include "config.h"
 #include "SockSession.h"
 #include <iostream>
 #include <boost/bind.hpp>
@@ -16,12 +17,16 @@ SockSession::SockSession(boost::asio::io_service &io_service, const std::string 
 	,port_(port)
 	,description_(descr)
 {
+#ifdef _CltVerbose2
 	std::cout<<"SockSession:"<<descr<<std::endl;
+#endif
 }
 
 SockSession::~SockSession()
 {
+#ifdef _CltVerbose2
 	std::cout<<"~SockSession:"<<description_<<std::endl;
+#endif
 }
 
 SockSession* SockSession::create(boost::asio::io_service &io, const std::string &host, const std::string &port, const std::string &description)
@@ -90,7 +95,9 @@ void SockSession::handle_headerRead(const boost::system::error_code &error){
 	int length = 0;
 	StreamBuffer is(&headLength_[0], headLength_.size());
 	is.readInt32(length);
+#ifdef _CltVerbose2
 	std::cout<<"In Comming("<<length<<")bytes.";
+#endif
 	buffer_.resize(length - 4);
 	readBody();
 }
@@ -107,7 +114,9 @@ void SockSession::handle_bodyRead(const boost::system::error_code &error){
 	int typecode = 0;
 	StreamBuffer is(&buffer_[0], 4);
 	is.readInt32(typecode);
+#ifdef _CltVerbose2
 	std::cout<<" : typecode["<<typecode<<"]"<<std::endl;
+#endif
 	auto L = LuaScript::instance()->getLuaState();
 	callback_(L, typecode, payload.c_str(), payload.size());
 	//std::cout<<buffer_<<std::endl;
@@ -166,7 +175,9 @@ void SockSession::write(int typeCode, const char *msg, int rlength)
 		int length = rlength + 4 + 4;
 		buffer->resize(length);
 		memset(&(*buffer)[0], 0, length * sizeof(char));
+#ifdef _CltVerbose2
 		std::cout<<"Writing to server:"<<"typecode:"<<typeCode<<" bytes = "<<length<<std::endl;
+#endif
 		*(int*)&((*buffer)[0]) = length;    //local seq.
 		*(int*)&((*buffer)[4]) = typeCode;	//type code
 		std::string &ref = *buffer;

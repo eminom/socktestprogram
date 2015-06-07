@@ -57,12 +57,12 @@ function NetworkCmd.CreatePlayer(is_anonymous, device_id, account)
 end
 
 function NetworkCmd.ConnectToDirectory()
-	mm.ConnectServer(Model.DirectoryServer.Host, Model.DirectoryServer.Port, ModelEvent.DirectoryConnected)
+	mm.ConnectServer(Model.DirectoryServer.Host, Model.DirectoryServer.Port, ModelEvent.DirectoryConnected, "directory")
 	NetworkCmd.Print("Connect to directory server...")
 end
 
 function NetworkCmd.ConnectToWorld(host, port)
-	mm.ConnectServer(host, port, ModelEvent.WorldConnected)
+	mm.ConnectServer(host, port, ModelEvent.WorldConnected, "world")
 	NetworkCmd.Print("Connect to world server $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 end
 
