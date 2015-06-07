@@ -1,8 +1,6 @@
 xcuserdata
 Debug
 Release
-*.pb
-*.pdf
 *.suo
 *.user
 *.opensdf
