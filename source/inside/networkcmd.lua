@@ -58,11 +58,11 @@ end
 
 function NetworkCmd.ConnectToDirectory()
 	mm.ConnectServer(Model.DirectoryServer.Host, Model.DirectoryServer.Port, ModelEvent.DirectoryConnected, "directory")
-	NetworkCmd.Print("Connect to directory server...")
+	NetworkCmd.Print("<Connecting to directory server>")
 end
 
 function NetworkCmd.ConnectToWorld(host, port)
 	mm.ConnectServer(host, port, ModelEvent.WorldConnected, "world")
-	NetworkCmd.Print("Connect to world server $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+	NetworkCmd.Print("<Connecting to world server>")
 end
 
