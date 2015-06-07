@@ -75,7 +75,7 @@ static int sendBuffer(lua_State *L)
 
 static int connectServer(lua_State *L)
 {
-	if( lua_gettop(L) != 3)
+	if( lua_gettop(L) != 4)
 	{
 		luaL_error(L, "connect server parameter missing");
 	}
@@ -85,7 +85,9 @@ static int connectServer(lua_State *L)
 	port = port ? port: "";
 	const char *serverID = luaL_checkstring(L, 3);
 	serverID = serverID ? serverID:"";
-	SockSessionManager::instance()->connectTo(host, port, serverID);
+	const char *descr = luaL_checkstring(L, 4);
+	descr = descr ? descr:"";
+	SockSessionManager::instance()->connectTo(host, port, serverID, descr);
 	return 0;
 }
 

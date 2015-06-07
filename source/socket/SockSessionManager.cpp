@@ -43,9 +43,9 @@ void SockSessionManager::write(int typeCode, const char *buffer, int length)
 //	ptr_ = session;
 //}
 
-void SockSessionManager::connectTo(const std::string &host, const std::string &port, const std::string &serverID)
+void SockSessionManager::connectTo(const std::string &host, const std::string &port, const std::string &serverID, const std::string &descr)
 {
-	SockSessionPtr ss(SockSession::create(*io_, host, port));
+	SockSessionPtr ss(SockSession::create(*io_, host, port, descr));
 	ss->setTimeout(3);
 	ss->setNetMessagePumper(redistribute_);
 	ss->setNetConnected(serverConnected_);

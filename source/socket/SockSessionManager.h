@@ -33,7 +33,7 @@ public:
 	static SockSessionPtr& currentSession();
 
 	//void setSession(SockSessionPtr);
-	void connectTo(const std::string &host, const std::string &port, const std::string &serverID);
+	void connectTo(const std::string &host, const std::string &port, const std::string &serverID, const std::string &descr);
 	SockSessionPtr& current();
 	void setDefaultRedistribute(InComingBufferCallback);
 	void setDefaultServerOn(OnServerConnectedCallback);

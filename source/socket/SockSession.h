@@ -25,11 +25,11 @@ class SockSession:public boost::enable_shared_from_this<SockSession>,
 	private boost::noncopyable
 {
 private:
-	SockSession(boost::asio::io_service &io_service, const std::string &host, const std::string &port);
+	SockSession(boost::asio::io_service &io_service, const std::string &host, const std::string &port, const std::string &description);
 
 public:
 	~SockSession();
-	static SockSession* create(boost::asio::io_service &io_service, const std::string &host, const std::string &port);
+	static SockSession* create(boost::asio::io_service &io_service, const std::string &host, const std::string &port, const std::string &description);
 
 protected:
 	void start();
@@ -70,6 +70,7 @@ private:
 	std::string buffer_;
 	std::string host_;
 	std::string port_;
+	std::string description_;
 
 	InComingBufferCallback callback_;
 	OnServerConnectedCallback onConnected_;

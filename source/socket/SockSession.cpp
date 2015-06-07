@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include "io/StreamBuffer.h"
 
-SockSession::SockSession(boost::asio::io_service &io_service, const std::string &host, const std::string &port)
+SockSession::SockSession(boost::asio::io_service &io_service, const std::string &host, const std::string &port, const std::string &descr)
 	:io_service_(io_service)
 	,socket_(io_service)
 	,timeout_(3)
@@ -14,19 +14,20 @@ SockSession::SockSession(boost::asio::io_service &io_service, const std::string 
 	,socket_failed_(false)
 	,host_(host)
 	,port_(port)
+	,description_(descr)
 {
-	std::cout<<"SockSession"<<std::endl;
+	std::cout<<"SockSession:"<<descr<<std::endl;
 }
 
 SockSession::~SockSession()
 {
-	std::cout<<"~SockSession"<<std::endl;
+	std::cout<<"~SockSession:"<<description_<<std::endl;
 }
 
-SockSession* SockSession::create(boost::asio::io_service &io, const std::string &host, const std::string &port)
+SockSession* SockSession::create(boost::asio::io_service &io, const std::string &host, const std::string &port, const std::string &description)
 {
 	//return boost::make_shared(new SockSession(io));
-	return new SockSession(io, host, port);
+	return new SockSession(io, host, port, description);
 }
 
 void SockSession::start()
