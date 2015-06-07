@@ -99,17 +99,13 @@ void SockSession::handle_bodyRead(const boost::system::error_code &error){
 		socket_failed_ = true;
 		return;
 	}
-	std::string data;
-	//data.swap(buffer_);
-	//assert(buffer_.size() > 2);
 	std::string payload;
-	if(buffer_.size() > 2 )
-	{
-		payload = std::string(&buffer_[2], buffer_.size()-2);
+	if(buffer_.size() > 4 )	{
+		payload = std::string(&buffer_[4], buffer_.size() - 4);
 	}
 	int typecode = 0;
-	StreamBuffer is(&buffer_[0], 2);
-	is.readInt16(typecode);
+	StreamBuffer is(&buffer_[0], 4);
+	is.readInt32(typecode);
 	std::cout<<" : typecode["<<typecode<<"]"<<std::endl;
 	auto L = LuaScript::instance()->getLuaState();
 	callback_(L, typecode, payload.c_str(), payload.size());
@@ -122,16 +118,6 @@ void SockSession::handle_connected(const boost::system::error_code &error/*, boo
 {
 	try{
 		if(!error){
-            /*
-			const char *msg[]={
-				"Stan",
-				"Eric",
-				"Kyle",
-				"Kenny"
-			};
-            */
-			//write("Hello");
-			//write( msg[rand()% (sizeof(msg)/sizeof(*msg))]);
 			auto L = LuaScript::instance()->getLuaState();
 			onConnected_(L, connectingServerStr_.c_str());
 		} else {
@@ -148,7 +134,6 @@ void SockSession::handle_connected(const boost::system::error_code &error/*, boo
 	}
 }
 
-// on close
 void SockSession::handle_closed()
 {
 	try{
@@ -163,7 +148,6 @@ void SockSession::handle_closed()
 	}
 }
 	
-//on written
 void SockSession::handle_written(const boost::system::error_code &error, 
 	std::size_t byteWritten, std::string *buffer)
 {
@@ -178,18 +162,16 @@ void SockSession::write(int typeCode, const char *msg, int rlength)
 {
 	try{
 		std::string *buffer = new std::string;
-		int length = rlength + 4 + 2;
+		int length = rlength + 4 + 4;
 		buffer->resize(length);
 		memset(&(*buffer)[0], 0, length * sizeof(char));
-
 		std::cout<<"Writing to server:"<<"typecode:"<<typeCode<<" bytes = "<<length<<std::endl;
-
-		//htonl(
-		//~
-		*(int*)&((*buffer)[0]) = length;   // local seq.
-		*(unsigned short*)&((*buffer)[4]) = typeCode;	//type code
+		*(int*)&((*buffer)[0]) = length;    //local seq.
+		*(int*)&((*buffer)[4]) = typeCode;	//type code
 		std::string &ref = *buffer;
-		memcpy(&ref[6], &msg[0], rlength);
+		if(rlength>0){
+			memcpy(&ref[8], &msg[0], rlength);
+		}
 		boost::asio::async_write(socket_, boost::asio::buffer(*buffer, buffer->size()),
 		boost::bind(&SockSession::handle_written, shared_from_this(),
 				boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred,
