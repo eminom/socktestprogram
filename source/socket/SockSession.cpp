@@ -35,6 +35,7 @@ SockSession* SockSession::create(boost::asio::io_service &io, const std::string 
 	return new SockSession(io, host, port, description);
 }
 
+/*
 void SockSession::start()
 {
 	//Socket not initialized. 
@@ -43,7 +44,7 @@ void SockSession::start()
 	socket_.set_option(boost::asio::socket_base::keep_alive(true));
 	boost::system::error_code error;
 	//handle_read_header(error);
-}
+}*/
 
 void SockSession::setDestination(const std::string &host, const std::string &port){
 	host_ = host;

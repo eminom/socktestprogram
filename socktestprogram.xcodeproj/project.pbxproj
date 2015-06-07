@@ -17,7 +17,6 @@
 		DB0D48811B1F11FE002CBEA2 /* IoServiceOwner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB0D487A1B1F11FE002CBEA2 /* IoServiceOwner.cpp */; };
 		DB0D48821B1F11FE002CBEA2 /* SockSession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB0D487D1B1F11FE002CBEA2 /* SockSession.cpp */; };
 		DB0D48831B1F11FE002CBEA2 /* SockSessionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB0D487F1B1F11FE002CBEA2 /* SockSessionManager.cpp */; };
-		DB2A1D6D1AA6009500E04F93 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2A1D6C1AA6009500E04F93 /* libboost_system.a */; };
 		DB325CF71ABE77D300CCE8BF /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = DB325CBF1ABE77D300CCE8BF /* lapi.c */; };
 		DB325CF81ABE77D300CCE8BF /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = DB325CC11ABE77D300CCE8BF /* lauxlib.c */; };
 		DB325CF91ABE77D300CCE8BF /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = DB325CC31ABE77D300CCE8BF /* lbaselib.c */; };
@@ -66,6 +65,7 @@
 		DB325D5A1ABE78DE00CCE8BF /* exports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB325D4D1ABE78DE00CCE8BF /* exports.cpp */; };
 		DB325D621ABE78EB00CCE8BF /* lua_script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB325D601ABE78EB00CCE8BF /* lua_script.cpp */; };
 		DB736CA61AAAB1DC00506290 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB736CA21AAAB1DC00506290 /* main.cpp */; };
+		DB7C1A001B244D6100EBD990 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7C19FF1B244D6100EBD990 /* libboost_system.a */; };
 		DBDE2D2E1AC44459004D5631 /* L_notification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBDE2D2C1AC44459004D5631 /* L_notification.cpp */; };
 		DBDE2D321AC44475004D5631 /* StreamBuffer.cc in Sources */ = {isa = PBXBuildFile; fileRef = DBDE2D301AC44475004D5631 /* StreamBuffer.cc */; };
 		DBDE2D3A1AC4460C004D5631 /* pbc-lua.c in Sources */ = {isa = PBXBuildFile; fileRef = DBDE2D391AC4460C004D5631 /* pbc-lua.c */; };
@@ -109,7 +109,6 @@
 		DB0D487F1B1F11FE002CBEA2 /* SockSessionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SockSessionManager.cpp; path = source/socket/SockSessionManager.cpp; sourceTree = "<group>"; };
 		DB0D48801B1F11FE002CBEA2 /* SockSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SockSessionManager.h; path = source/socket/SockSessionManager.h; sourceTree = "<group>"; };
 		DB2A1D5E1AA5FE6200E04F93 /* socktestprogram */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = socktestprogram; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB2A1D6C1AA6009500E04F93 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../../../dev/boost/macosx/lib/libboost_system.a; sourceTree = "<group>"; };
 		DB325CBF1ABE77D300CCE8BF /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lapi.c; path = "Source/dependence/lua-5.1.5/src/lapi.c"; sourceTree = "<group>"; };
 		DB325CC01ABE77D300CCE8BF /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lapi.h; path = "Source/dependence/lua-5.1.5/src/lapi.h"; sourceTree = "<group>"; };
 		DB325CC11ABE77D300CCE8BF /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lauxlib.c; path = "Source/dependence/lua-5.1.5/src/lauxlib.c"; sourceTree = "<group>"; };
@@ -199,6 +198,7 @@
 		DB325D611ABE78EB00CCE8BF /* lua_script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_script.h; sourceTree = "<group>"; };
 		DB325D631ABE821900CCE8BF /* inside */ = {isa = PBXFileReference; lastKnownFileType = folder; name = inside; path = Source/inside; sourceTree = "<group>"; };
 		DB736CA21AAAB1DC00506290 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Source/main.cpp; sourceTree = "<group>"; };
+		DB7C19FF1B244D6100EBD990 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../../dev/boost/macosx/lib/libboost_system.a; sourceTree = "<group>"; };
 		DBDE2D2C1AC44459004D5631 /* L_notification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = L_notification.cpp; sourceTree = "<group>"; };
 		DBDE2D2D1AC44459004D5631 /* L_notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L_notification.h; sourceTree = "<group>"; };
 		DBDE2D301AC44475004D5631 /* StreamBuffer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamBuffer.cc; path = Source/io/StreamBuffer.cc; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB2A1D6D1AA6009500E04F93 /* libboost_system.a in Frameworks */,
+				DB7C1A001B244D6100EBD990 /* libboost_system.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,10 +266,10 @@
 		DB2A1D551AA5FE6200E04F93 = {
 			isa = PBXGroup;
 			children = (
+				DB7C19FF1B244D6100EBD990 /* libboost_system.a */,
 				DB325D631ABE821900CCE8BF /* inside */,
 				DB325D3D1ABE781F00CCE8BF /* pbc */,
 				DB736CA11AAAB1C800506290 /* src */,
-				DB2A1D6C1AA6009500E04F93 /* libboost_system.a */,
 				DB2A1D5F1AA5FE6200E04F93 /* Products */,
 				DB0D485E1B1F065C002CBEA2 /* third */,
 			);
@@ -662,10 +662,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/Users/eminom/dev/boost/macosx/include,
-					"$(SRCROOT)/Source",
+					"$(SRCROOT)/source",
 					"$(SRCROOT)/third/linterop/src",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "";
@@ -678,10 +676,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/Users/eminom/dev/boost/macosx/include,
-					"$(SRCROOT)/Source",
+					"$(SRCROOT)/source",
 					"$(SRCROOT)/third/linterop/src",
 				);
 				LD_RUNPATH_SEARCH_PATHS = "";

@@ -32,7 +32,7 @@ public:
 	static SockSession* create(boost::asio::io_service &io_service, const std::string &host, const std::string &port, const std::string &description);
 
 protected:
-	void start();
+	//void start();
 
 public:
 	void setDestination(const std::string &host, const std::string &port);

@@ -57,17 +57,16 @@ int main()
 	while(true)
 	{
 		auto now = boost::posix_time::microsec_clock::universal_time();
-		auto rv = io.poll();
-		if( !rv && (SockSessionManager::hasCurrentSession() && SockSessionManager::currentSession()->isSocketFailed())){
-			break;
-		}
 		auto pass = (now-start).ticks();
 		start = now;
 		float passf = pass / 1000.0f / 1000.0f;
-		GameCore::frameUpdate(passf);
+        GameCore::frameUpdate(passf);
+        auto rv = io.poll();
+        if( !rv && (SockSessionManager::hasCurrentSession() && SockSessionManager::currentSession()->isSocketFailed())){
+            break;
+        }
 	}
 
-	//
 	std::cout<<"End of program"<<std::endl;
 	system("pause");
 	return 0;
