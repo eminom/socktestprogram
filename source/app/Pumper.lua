@@ -1,12 +1,10 @@
 
 
-require "inside.proto"
-
--- Ensure the initial sequence.
-Proto.init()
+local Proto = require "app.proto"
+local EventDispatcher = require "app.Dispatcher"
+local ModelEvent = require "app.model.NetEvent.Events"
 
 -------   Message Pump
-
 local function MakeRule(proto_name, event_name)
 	assert(event_name, "Event name must not be nil")
 	return {
@@ -23,7 +21,7 @@ local distributeRules = {
 	MakeRule("ResponseCreatePlayer", ModelEvent.CreatePlayerNotify)
 }
 
-function redirectNetBuffer(typecode, buffer)
+dd.exports.redirectNetBuffer = function(typecode, buffer)
 	for _, v in ipairs(distributeRules) do
 		if v.TypeCode == typecode then
 			local decode = protobuf.decode(v.Proto, buffer)
@@ -37,6 +35,7 @@ function redirectNetBuffer(typecode, buffer)
 	end
 end
 
-function serverConnectOn(serverEvent)
+dd.exports.serverConnectOn = function(serverEvent)
 	EventDispatcher.dispatch(serverEvent) 
 end
+

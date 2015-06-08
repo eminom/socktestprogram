@@ -1,7 +1,8 @@
 
 
 
-require "inside.model.netevent.events"
+local ModelEvent = require "app.model.NetEvent.Events"
+local EventDispatcher = require "app.Dispatcher"
 
 local function PrintSumMsg(title, cb)
 	print("#######################===G===########################")
@@ -11,7 +12,7 @@ local function PrintSumMsg(title, cb)
 	print("")
 end
 
-GlobalMessageHolder = {}
+local GlobalMessageHolder = class("GlobalMessageHolder")
 function GlobalMessageHolder.handleWorldListNotify(event, msg)
 	PrintSumMsg( "WorldListNotify", function()
 		print("world list count is " .. tostring(#msg.world_list))
@@ -45,3 +46,5 @@ function GlobalMessageHolder.init()
 	EventDispatcher.addHandler(ModelEvent.LoginNotify, GlobalMessageHolder.handleLoginNotify)
 	EventDispatcher.addHandler(ModelEvent.CreatePlayerNotify, GlobalMessageHolder.handleCreatePlayerNotify)
 end
+
+return GlobalMessageHolder

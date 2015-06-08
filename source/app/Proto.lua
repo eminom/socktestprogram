@@ -1,11 +1,18 @@
 
-require "inside.protobuf"
-require "inside.model.netevent.events"
+require "app.libs.protobuf"
 
-local DebugLog = require "inside.libs.DebugLog"
-local ReadOnly = require "inside.libs.ReadOnly"
+local DebugLog = require "app.libs.DebugLog"
+local ReadOnly = require "app.libs.ReadOnly"
 local Proto = {
-	nameToIDTable = {}
+	nameToIDTable = {},
+	isRegister = false,  -- Flag for "not init yet"
+}
+
+local _pbs = {
+	"data.pb",
+	"exceptiontype.pb",
+	"cs_dir.pb",
+	"cs_world.pb",
 }
 
 function Proto.toID(name)
@@ -18,18 +25,12 @@ function Proto.toID(name)
 	return id
 end
 
-function Proto.init()
+function Proto.__init()
 	if not Proto.isRegister then
 		Proto.isRegister = true
-		local pbs = {
-			"data.pb",
-			"exceptiontype.pb",
-			"cs_dir.pb",
-			"cs_world.pb",
-		}
-		for i=1, #pbs do
-			-- print ("Loading "..pbs[i])
-			protobuf.register(mm.LoadBinaryFile("../proto/"..pbs[i]))
+		for i=1, #_pbs do
+			DebugLog("Loading ".._pbs[i])
+			protobuf.register(mm.LoadBinaryFile("../proto/".._pbs[i]))
 		end
 		Proto.test()
 		print("Proto.init done")
@@ -62,9 +63,7 @@ function Proto.test()
 	end
 end
 
-function Proto.packCmd(name, cmd)
-	return protobuf.encode(name, cmd)
-end
+Proto.packCmd = protobuf.encode
 
 -- 针对pbc的optional 值做的特殊命令，忽略optional的默认值
 function Proto.optionalNoDefault(msg, field)
@@ -74,6 +73,8 @@ function Proto.optionalNoDefault(msg, field)
 	setmetatable(msg, originalMt)
 	return result
 end
+
+Proto.__init()
 
 --------------
 --- No global defined. Ever since. 

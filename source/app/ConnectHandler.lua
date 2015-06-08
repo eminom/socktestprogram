@@ -1,15 +1,9 @@
 
-require "inside.networkcmd"
+local NetworkCmd = require "app.NetworkCmd"
+local EventDispatcher = require "app.Dispatcher"
+local ModelEvent = require "app.model.NetEvent.Events"
 
-local ConnectorHandler = {}
-
-function ConnectorHandler:new()
-	local o = {}
-	setmetatable(o, self)
-	self.__index = self
-	return o
-end
-
+local ConnectorHandler = class("ConnectorHandler")
 function ConnectorHandler:initWorldNotify()
 	self.onWorldListNotify = function(event, decoded)
 		-- print("ConnectorHandler: world list count:" .. tostring(#decoded.world_list))
@@ -33,7 +27,6 @@ end
 
 function ConnectorHandler:initDisconnected()
 	self.onDisconnected = function(event)
-		print("Reconnecting to directory server ...")
 		NetworkCmd.ConnectToDirectory()
 	end
 	EventDispatcher.addHandler(ModelEvent.DisconnectedFromServer, self.onDisconnected)

@@ -2,28 +2,25 @@
 
 
 -- from apps.
-require "inside.libs.functions"
-require "inside.libs.json"
+require "app.libs.functions"
+require "app.libs.json"
 
-require "inside.Config"
-require "inside.EnvInit"
+require "app.Config"
+require "app.EnvInit"
+require "app.Pumper"
 
 -------
-require "inside.proto"
-require "inside.dispatcher"
-require "inside.model.model"
-require "inside.test"
-require "inside.globalmsgholder"
-require "inside.networkcmd"
-require "inside.pumper"
+local Model = require "app.model.Model"
+local EventDispatcher = require "app.Dispatcher"
+local GlobalMsgH = require "app.GlobalMsgHolder"
+GlobalMsgH.init()
 
-GlobalMessageHolder.init()
 local clientState = Model.ClientState or error("Not initialized for Model.ClientState ?")
-local connectorHandler = require "inside.connectorhandler":new():init()
+local connectorHandler = require "app.ConnectHandler":create():init()
 
 local prePass = 0
 -- dt: in second(s)
-function frameUpdate(dt)
+local function frameUpdate(dt)
 	EventDispatcher.check()
 	prePass = prePass + dt
 	if prePass >= 3 then
@@ -47,13 +44,10 @@ function frameUpdate(dt)
 	end
 end
 
-function startUp()
+local function startUp()
 	print("<START>Disconnected from server")
 	EventDispatcher.dispatch(ModelEvent.DisconnectedFromServer)
 end
 
-Proto.init()
-
-
-print("INIT FINISHED\n\n\n")
-
+dd.exports.frameUpdate = frameUpdate
+dd.exports.startUp = startUp

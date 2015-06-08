@@ -1,47 +1,20 @@
 
-local ReadOnly = require "inside.ReadOnly"
+local ReadOnly = require "app.libs.ReadOnly"
+local ClientState = require "app.model.ClientState"
 
-Model = {}
-ModelEvent = ModelEvent or {}
-
-require "inside.model.netevent.events"
-
-ClientState = {
-	Disconnected = 1,
-	Connecting   = 2,
-	Connected    = 3
+local Model = ReadOnly{
+	UserName = "baihai",
+	Password = "baipasswd",
+	DirectoryServer = ReadOnly{
+		Host = "192.168.1.109",
+		Port = "11000"
+	},
+	ClientState = ClientState:create(),
+	DeviceID = function() return "X51" end,
+	IsAnonymous = function() return true end
 }
 
-function ClientState:new()
-	local o = {}
-	setmetatable(o, self)
-	self.__index = self
-	self.state = ClientState.Disconnected
-	return o
-end
-
-function ClientState:GetState()
-	return self.state
-end
-
-Model.UserName = "baihai"
-Model.Password = "baipasswd"
-
-Model.DirectoryServer = ReadOnly{
-	Host = "192.168.1.104",
-	Port = "11000"
-}
-
-function Model.DeviceID()
-	return "X51"
-end
-
-function Model.IsAnonymous()
-	return true
-end
-
---------------- Made to be global -----------------------
-Model.ClientState = ClientState:new()
+return Model
 
 
 

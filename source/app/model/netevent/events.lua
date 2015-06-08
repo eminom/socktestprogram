@@ -1,16 +1,20 @@
 
+local ReadOnly = require "app.libs.ReadOnly"
+local ModelEvent = {}
 
-ModelEvent = ModelEvent or {}
+ModelEvent.DisconnectedFromServer = "Model.Net.DisconnectedFromServer"
+ModelEvent.DirectoryConnected = "Model.Net.DirectoryConnected"
+ModelEvent.WorldConnected = "Model.Net.WorldConnected"
 
-ModelEvent.DisconnectedFromServer = "model.net.disconnectedfromserver"
-ModelEvent.DirectoryConnected = "model.net.directoryconnected"
-ModelEvent.WorldConnected = "model.net.worldconnected"
+-- The Directory
+ModelEvent.WorldListNotify = "Model.Net.WorldListNotify"
+ModelEvent.DirectoryRegisterUserNotify = "Model.Net.DirectoryRegisterUserNotify"
 
-ModelEvent.DirectoryRegisterUserNotify = "model.net.directoryregisterusernotify"
+-- World
+ModelEvent.LoginNotify = "Model.Net.WorldLoginNotify"
+ModelEvent.CreatePlayerNotify = "Model.Net.CreatePlayerNotify"
 
+-------- Wrapp it again.>>>
+ModelEvent = ReadOnly(ModelEvent)
 
-ModelEvent.LoginNotify = "model.net.worldloginnotify"
-ModelEvent.WorldListNotify = "model.net.worldlistnotify"
-ModelEvent.CreatePlayerNotify = "model.net.createplayernotify"
-
-print "worldcmd init"
+return ModelEvent

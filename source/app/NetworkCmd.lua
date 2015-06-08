@@ -1,9 +1,10 @@
 
-NetworkCmd = {}
+local Proto = require "app.Proto"
+local Model = require "app.model.Model"
+local ModelEvent = require "app.model.NetEvent.Events"
 
-NetworkCmd.Print = function(...)
-	print(...)
-end
+local NetworkCmd = class("Network")
+NetworkCmd.Print = print
 
 -- local function send_rand_info()
 -- 	local randStr = {
@@ -18,16 +19,27 @@ end
 -- 	mm.SendBuffer(buffer)
 -- end
 
-function NetworkCmd.Send(proto, obj)
-	local id = Proto.toID(proto)
+function NetworkCmd.Send(pn, obj)
+	assert( type(pn)=="string", "Protocol must be string")
+	local id = Proto.toID(pn)
 	assert( type(id)=="number" and id > 0, "Must be greater than zero")
-	local buffer = protobuf.encode(proto, obj)
+	assert( type(obj)=="table", "Obj must be table")
+	local buffer = Proto.packCmd(pn, obj)
 	mm.SendBuffer(buffer, id)
-	NetworkCmd.Print(proto .. " IS POSTED" .. " : ID = "..Proto.toID(proto).."")
+	--NetworkCmd.Print(proto .. " IS POSTED" .. " : ID = "..Proto.toID(proto).."")
 end
 
+-- Protocols processing for Directory
 function NetworkCmd.RequestWorldList()
 	NetworkCmd.Send("RequestWorldList", {})
+end
+
+function NetworkCmd.RegisterUser(account, passwd)
+	NetworkCmd.Send("RequestUserRegister", {
+			account = account,
+			password = passwd 
+	})
+	-- NetworkCmd.Print("Registering user on directory server $$$$$$$$$$$$$$$$$$")
 end
 
 function NetworkCmd.RequestLogin()
@@ -40,16 +52,8 @@ function NetworkCmd.RequestLogin()
 	})
 end
 
-function NetworkCmd.RegisterUser(account, passwd)
-	NetworkCmd.Send("RequestUserRegister", {
-			account = account,
-			password = passwd 
-	})
-	-- NetworkCmd.Print("Registering user on directory server $$$$$$$$$$$$$$$$$$")
-end
-
 function NetworkCmd.CreatePlayer(is_anonymous, device_id, account)
-	NetworkCmd.Send("CreatePlayerCommand", {
+	NetworkCmd.Send("RequestCreatePlayer", {
 		is_anonymous = is_anonymous,
 		device_id    = device_id,
 		account      = account
@@ -65,4 +69,6 @@ function NetworkCmd.ConnectToWorld(host, port)
 	mm.ConnectServer(host, port, ModelEvent.WorldConnected, "world")
 	NetworkCmd.Print("<Connecting to world server>")
 end
+
+return NetworkCmd
 
