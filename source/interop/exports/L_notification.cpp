@@ -10,7 +10,7 @@
 void L_onDecodeBuffer(lua_State *L, int typecode, const char *buffer, int bufferSize)
 {
 	_DeclareState()
-	lua_getglobal(L, _G_TB);
+	lua_getglobal(L, _GTrackBack);
 	assert(lua_isfunction(L, -1));
 
 	lua_getglobal(L, "redirectNetBuffer");
@@ -45,7 +45,7 @@ void L_onDecodeBuffer(lua_State *L, int typecode, const char *buffer, int buffer
 void L_onServerConnectionEstablished(lua_State *L, const char *serverID)
 {
 	_DeclareState()
-	lua_getglobal(L, _G_TB);
+	lua_getglobal(L, _GTrackBack);
 	assert(lua_isfunction(L, -1));
 
 	lua_getglobal(L, "serverConnectOn");

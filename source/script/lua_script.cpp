@@ -2,6 +2,7 @@
 
 #include "dump.h"
 #include "lua_script.h"
+#include "interop/access/lua_access_macros.h"
 #include <cassert>
 
 
@@ -35,7 +36,7 @@ void LuaScript::init(){
 	luaopen_protobuf_c(L_);
 
 	const char *traceback = 
-"function __G_TRACEBACK(msg)\n"
+"function __G__TRACKBACK__(msg)\n"
 "	local msg = debug.traceback(msg, 3)\n"
 "	print(msg)\n"
 "	return msg\n"
@@ -58,7 +59,7 @@ LuaScript* LuaScript::instance()
 void LuaScript::loadInit(const char *file_path)
 {
 	int top = lua_gettop(L_);
-	lua_getglobal(L_, _G_TB);
+	lua_getglobal(L_, _GTrackBack);
 	assert(lua_isfunction(L_, -1));
 	luaL_loadfile(L_, file_path);
     if(!lua_isfunction(L_, -1)){

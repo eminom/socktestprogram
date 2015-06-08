@@ -45,13 +45,13 @@ int main()
 
 	//Init scripting
 	luaopen_mm(LuaScript::instance()->getLuaState());
-	LuaScript::instance()->loadInit("inside/init.lua");
+	LuaScript::instance()->loadInit("app/init.lua");
 	SockSessionManager::instance()->setDefaultRedistribute(L_onDecodeBuffer);
 	SockSessionManager::instance()->setDefaultServerOn(L_onServerConnectionEstablished);
 	boost::asio::io_service io;
 	IoServiceOwner owner(&io, SockSessionManager::instance());
 	//SockSessionManager::instance()->connectTo(host, port);
-	//executeVoidFunc(LuaScript::instance()->getLuaState(), "startUp","");
+	executeVoidFunc(LuaScript::instance()->getLuaState(), "startUp","");
 	auto start = boost::posix_time::microsec_clock::universal_time();
 	while (true) {
 		auto now = boost::posix_time::microsec_clock::universal_time();
