@@ -36,7 +36,13 @@ end
 
 function GlobalMessageHolder.handleCreatePlayerNotify(event, msg)
 	PrintSumMsg("CreatePlayer", function()
-		print("exception = " .. tostring(decoded.exception))
+		print("exception = " .. tostring(msg.exception))
+	end)
+end
+
+function GlobalMessageHolder.handleUserRegister(event, msg)
+	PrintSumMsg("UserRegister", function()
+		print("exception = " .. tostring(msg.exception))
 	end)
 end
 
@@ -45,6 +51,7 @@ function GlobalMessageHolder.init()
 	EventDispatcher.addHandler(ModelEvent.WorldListNotify, GlobalMessageHolder.handleWorldListNotify)
 	EventDispatcher.addHandler(ModelEvent.LoginNotify, GlobalMessageHolder.handleLoginNotify)
 	EventDispatcher.addHandler(ModelEvent.CreatePlayerNotify, GlobalMessageHolder.handleCreatePlayerNotify)
+	EventDispatcher.addHandler(ModelEvent.DirectoryRegisterUserNotify, GlobalMessageHolder.handleUserRegister)
 end
 
 return GlobalMessageHolder
