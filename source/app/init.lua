@@ -1,9 +1,14 @@
 	
 
+
+-- from apps.
 require "inside.libs.functions"
 require "inside.libs.json"
 
---
+require "inside.Config"
+require "inside.EnvInit"
+
+-------
 require "inside.proto"
 require "inside.dispatcher"
 require "inside.model.model"

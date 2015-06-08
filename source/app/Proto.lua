@@ -2,7 +2,9 @@
 require "inside.protobuf"
 require "inside.model.netevent.events"
 
-Proto = {
+local DebugLog = require "inside.libs.DebugLog"
+local ReadOnly = require "inside.libs.ReadOnly"
+local Proto = {
 	nameToIDTable = {}
 }
 
@@ -36,12 +38,14 @@ function Proto.init()
 	end
 end
 
+--------------
+--------------
+--- The test are performed by loading the known ones.
 function Proto.test()
 	local namesForTest = {
 		--Dir server
 		"RequestWorldList",
 		"RequestUserRegister",
-
 		"ResponseWorldList",
 		"ResponseUserRegister",
 
@@ -54,7 +58,7 @@ function Proto.test()
 	for _, v in ipairs(namesForTest) do
 		local id = Proto.toID(v)
 		assert(id > 0, "Message type id must be greater than zero")
-		print("Protocol<"..v .. ">.Type(ID) is " .. tostring(id))
+		DebugLog("Protocol<"..v .. ">.Type(ID) is " .. tostring(id))
 	end
 end
 
@@ -65,8 +69,12 @@ end
 -- 针对pbc的optional 值做的特殊命令，忽略optional的默认值
 function Proto.optionalNoDefault(msg, field)
 	local originalMt = getmetatable(msg)
-	setmetatable(msg,nil)
+	setmetatable(msg, nil)
 	local result = msg[field]
-	setmetatable(msg,originalMt)
+	setmetatable(msg, originalMt)
 	return result
 end
+
+--------------
+--- No global defined. Ever since. 
+return Proto
