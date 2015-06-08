@@ -11,6 +11,7 @@ require "app.Pumper"
 
 -------
 local Model = require "app.model.Model"
+local ModelEvent = require "app.model.NetEvent.Events"
 local EventDispatcher = require "app.Dispatcher"
 local GlobalMsgH = require "app.GlobalMsgHolder"
 GlobalMsgH.init()

@@ -30,6 +30,7 @@ function EventDispatcher.check()
 		if not now then
 			break
 		end
+		now()  -- Execute it !
 		table.remove(eventCache, 1)
 	end
 end

@@ -1,6 +1,7 @@
 
 local NetworkCmd = require "app.NetworkCmd"
 local EventDispatcher = require "app.Dispatcher"
+local Model = require "app.model.Model"
 local ModelEvent = require "app.model.NetEvent.Events"
 
 local ConnectorHandler = class("ConnectorHandler")
@@ -27,6 +28,7 @@ end
 
 function ConnectorHandler:initDisconnected()
 	self.onDisconnected = function(event)
+		--print("Reconnect to directory >>")
 		NetworkCmd.ConnectToDirectory()
 	end
 	EventDispatcher.addHandler(ModelEvent.DisconnectedFromServer, self.onDisconnected)
@@ -99,6 +101,7 @@ function ConnectorHandler:init()
 	self:initLoginNotify()
 	self:initCreatePlayerNotify()
 
+	print("ConnectorHandler is initialized")
 	return self
 end
 
