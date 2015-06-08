@@ -196,7 +196,6 @@
 		DB325D4E1ABE78DE00CCE8BF /* exports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exports.h; sourceTree = "<group>"; };
 		DB325D601ABE78EB00CCE8BF /* lua_script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_script.cpp; sourceTree = "<group>"; };
 		DB325D611ABE78EB00CCE8BF /* lua_script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_script.h; sourceTree = "<group>"; };
-		DB325D631ABE821900CCE8BF /* inside */ = {isa = PBXFileReference; lastKnownFileType = folder; name = inside; path = Source/inside; sourceTree = "<group>"; };
 		DB736CA21AAAB1DC00506290 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Source/main.cpp; sourceTree = "<group>"; };
 		DB7C19FF1B244D6100EBD990 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../../dev/boost/macosx/lib/libboost_system.a; sourceTree = "<group>"; };
 		DBDE2D2C1AC44459004D5631 /* L_notification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = L_notification.cpp; sourceTree = "<group>"; };
@@ -267,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				DB7C19FF1B244D6100EBD990 /* libboost_system.a */,
-				DB325D631ABE821900CCE8BF /* inside */,
 				DB325D3D1ABE781F00CCE8BF /* pbc */,
 				DB736CA11AAAB1C800506290 /* src */,
 				DB2A1D5F1AA5FE6200E04F93 /* Products */,
@@ -508,7 +506,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo ${TARGET_BUILD_DIR}\ncp -R ${SRCROOT}/Source/inside ${TARGET_BUILD_DIR}\ncp -R ${SRCROOT}/proto ${TARGET_BUILD_DIR}/..";
+			shellScript = "echo ${TARGET_BUILD_DIR}\ncp -fR ${SRCROOT}/source/app ${TARGET_BUILD_DIR}\ncp -fR ${SRCROOT}/proto ${TARGET_BUILD_DIR}/..";
 		};
 /* End PBXShellScriptBuildPhase section */
 

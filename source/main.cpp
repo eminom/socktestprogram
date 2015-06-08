@@ -51,11 +51,9 @@ int main()
 	boost::asio::io_service io;
 	IoServiceOwner owner(&io, SockSessionManager::instance());
 	//SockSessionManager::instance()->connectTo(host, port);
-
-	executeVoidFunc(LuaScript::instance()->getLuaState(), "startUp","");
+	//executeVoidFunc(LuaScript::instance()->getLuaState(), "startUp","");
 	auto start = boost::posix_time::microsec_clock::universal_time();
-	while(true)
-	{
+	while (true) {
 		auto now = boost::posix_time::microsec_clock::universal_time();
 		auto pass = (now-start).ticks();
 		start = now;

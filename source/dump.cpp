@@ -91,7 +91,7 @@ void frameUpdate(float dt)
     const char *func = "frameUpdate";
 	lua_State *L = LuaScript::instance()->getLuaState();
 	_DeclareState()
-	lua_getglobal(L, "__G_TRACEBACK");
+	lua_getglobal(L, _G_TB);
 	assert(lua_isfunction(L, -1));
 
 	lua_getglobal(L, func);

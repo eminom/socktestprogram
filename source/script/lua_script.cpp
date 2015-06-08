@@ -1,5 +1,6 @@
 
 
+#include "dump.h"
 #include "lua_script.h"
 #include <cassert>
 
@@ -57,7 +58,7 @@ LuaScript* LuaScript::instance()
 void LuaScript::loadInit(const char *file_path)
 {
 	int top = lua_gettop(L_);
-	lua_getglobal(L_, "__G_TRACEBACK");
+	lua_getglobal(L_, _G_TB);
 	assert(lua_isfunction(L_, -1));
 	luaL_loadfile(L_, file_path);
     if(!lua_isfunction(L_, -1)){
