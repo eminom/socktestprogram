@@ -198,6 +198,7 @@
 		DB325D611ABE78EB00CCE8BF /* lua_script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_script.h; sourceTree = "<group>"; };
 		DB736CA21AAAB1DC00506290 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Source/main.cpp; sourceTree = "<group>"; };
 		DB7C19FF1B244D6100EBD990 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../../dev/boost/macosx/lib/libboost_system.a; sourceTree = "<group>"; };
+		DBCF46041B289148007EE0BB /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = source/config.h; sourceTree = "<group>"; };
 		DBDE2D2C1AC44459004D5631 /* L_notification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = L_notification.cpp; sourceTree = "<group>"; };
 		DBDE2D2D1AC44459004D5631 /* L_notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L_notification.h; sourceTree = "<group>"; };
 		DBDE2D301AC44475004D5631 /* StreamBuffer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamBuffer.cc; path = Source/io/StreamBuffer.cc; sourceTree = "<group>"; };
@@ -418,6 +419,7 @@
 		DB736CA11AAAB1C800506290 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				DBCF46041B289148007EE0BB /* config.h */,
 				DB0D48791B1F11F1002CBEA2 /* socket */,
 				DBDE2D391AC4460C004D5631 /* pbc-lua.c */,
 				DBDE2D2F1AC44467004D5631 /* io */,
