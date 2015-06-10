@@ -26,7 +26,7 @@ function NetworkCmd.Send(pn, obj)
 	assert( type(obj)=="table", "Obj must be table")
 	local buffer = Proto.packCmd(pn, obj)
 	mm.SendBuffer(buffer, id)
-	--NetworkCmd.Print(proto .. " IS POSTED" .. " : ID = "..Proto.toID(proto).."")
+	NetworkCmd.Print(pn .. " IS POSTED" .. " : ID = "..Proto.toID(pn).."")
 end
 
 -- Protocols processing for Directory
