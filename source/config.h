@@ -8,6 +8,6 @@
 #define _CltVerbose3
 */
 
-#define _TO_ERLANG
+//#define _TO_ERLANG
 
 #endif

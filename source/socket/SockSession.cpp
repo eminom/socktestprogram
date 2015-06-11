@@ -6,6 +6,7 @@
 #include <boost/make_shared.hpp>
 #include <cstdlib>
 #include "io/StreamBuffer.h"
+#include "LengthStyle.h"
 
 SockSession::SockSession(boost::asio::io_service &io_service, const std::string &host, const std::string &port, const std::string &descr)
 	:io_service_(io_service)
@@ -103,7 +104,7 @@ void SockSession::handle_headerRead(const boost::system::error_code &error){
 #ifdef _CltVerbose2
 	std::cout<<"In Comming("<<length<<")bytes.";
 #endif
-	buffer_.resize(length - 4);
+	buffer_.resize(length - 4 - _HeaderLengthFix);
 	readBody();
 }
 
@@ -185,12 +186,12 @@ void SockSession::write(int typeCode, const char *msg, int rlength)
 #endif
         //int _sz = sizeof(boost::asio::detail::socket_ops::host_to_network_long(length));
 #ifdef _TO_ERLANG
-        unsigned int rlen = boost::asio::detail::socket_ops::host_to_network_long(length);
+        unsigned int rlen = boost::asio::detail::socket_ops::host_to_network_long(length + _HeaderLengthFix);
 #else
-        unsigned int rlen = length;
+        unsigned int rlen = length + _HeaderLengthFix;
 #endif
-		*(int*)&((*buffer)[0]) = rlen;    //local seq.
-		*(int*)&((*buffer)[4]) = typeCode;	//type code
+		*(int*)&((*buffer)[0]) = rlen;      //local seq.
+		*(int*)&((*buffer)[4]) = typeCode;	//type code //~little endian
 		std::string &ref = *buffer;
 		if(rlength>0){
 			memcpy(&ref[8], &msg[0], rlength);
