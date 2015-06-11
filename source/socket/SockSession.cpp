@@ -97,9 +97,6 @@ void SockSession::handle_headerRead(const boost::system::error_code &error){
 	int length = 0;
 	StreamBuffer is(&headLength_[0], headLength_.size());
 	is.readInt32(length);
-#ifdef _TO_ERLANG
-    length = boost::asio::detail::socket_ops::network_to_host_long(length);
-#endif
     
 #ifdef _CltVerbose2
 	std::cout<<"In Comming("<<length<<")bytes.";
@@ -185,11 +182,8 @@ void SockSession::write(int typeCode, const char *msg, int rlength)
 		std::cout<<"Writing to server:"<<"typecode:"<<typeCode<<" bytes = "<<length<<std::endl;
 #endif
         //int _sz = sizeof(boost::asio::detail::socket_ops::host_to_network_long(length));
-#ifdef _TO_ERLANG
         unsigned int rlen = boost::asio::detail::socket_ops::host_to_network_long(length + _HeaderLengthFix);
-#else
-        unsigned int rlen = length + _HeaderLengthFix;
-#endif
+        typeCode = boost::asio::detail::socket_ops::host_to_network_long(typeCode);
 		*(int*)&((*buffer)[0]) = rlen;      //local seq.
 		*(int*)&((*buffer)[4]) = typeCode;	//type code //~little endian
 		std::string &ref = *buffer;

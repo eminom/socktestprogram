@@ -6,6 +6,9 @@
 #include <string>
 #include <cassert>
 
+//~
+#include <boost/asio.hpp>
+
 StreamBuffer::StreamBuffer():owned_(true)
 {
 	int sizePrefer = 2;
@@ -94,7 +97,7 @@ bool StreamBuffer::readInt32(int &value)
 		v += (unsigned char)(read_ptr_[i]) * b;
 		b <<= 8;
 	}
-	value = v;
+	value = boost::asio::detail::socket_ops::network_to_host_long(v);
 	commit(4);
 	return true;
 }
@@ -110,7 +113,7 @@ bool StreamBuffer::readInt16(int &value)
 		v += (unsigned char)(read_ptr_[i]) * b;
 		b <<= 8;
 	}
-	value = v;
+	value = boost::asio::detail::socket_ops::network_to_host_short(v);
 	commit(2);
 	return true;
 }
