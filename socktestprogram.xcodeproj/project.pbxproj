@@ -670,7 +670,9 @@
 				);
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = /Users/eminom/dev/boost/macosx/lib;
+				MACH_O_TYPE = mh_execute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = /Users/eminom/Projects/socktestprogram/build;
 			};
 			name = Debug;
 		};
@@ -684,7 +686,9 @@
 				);
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = /Users/eminom/dev/boost/macosx/lib;
+				MACH_O_TYPE = mh_execute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = /Users/eminom/Projects/socktestprogram/build;
 			};
 			name = Release;
 		};
