@@ -36,36 +36,87 @@ void adaptDebugging()
 void adaptDebugging(){}
 #endif
 
+typedef std::function<void()> PrepareHandle;
+typedef std::function<void()> BeforeHandle;
+typedef std::function<void()> AfterHandle;
+typedef std::function<void(float)> UpdateHandle;
 
-// Main Entry::
-int main()
+class ConnFw
 {
-	srand((unsigned int)time(0));
-    adaptDebugging();
-
-	//Init scripting
-	luaopen_mm(LuaScript::instance()->getLuaState());
-	LuaScript::instance()->loadInit("app/init.lua");
-	SockSessionManager::instance()->setDefaultRedistribute(L_onDecodeBuffer);
-	SockSessionManager::instance()->setDefaultServerOn(L_onServerConnectionEstablished);
-	boost::asio::io_service io;
-	IoServiceOwner owner(&io, SockSessionManager::instance());
-	//SockSessionManager::instance()->connectTo(host, port);
-	executeVoidFunc(LuaScript::instance()->getLuaState(), "startUp","");
-	auto start = boost::posix_time::microsec_clock::universal_time();
-	while (true) {
-		auto now = boost::posix_time::microsec_clock::universal_time();
-		auto pass = (now-start).ticks();
-		start = now;
-		float passf = pass / 1000.0f / 1000.0f;
-        GameCore::frameUpdate(passf);
-        auto rv = io.poll();
-        if( !rv && (SockSessionManager::hasCurrentSession() && SockSessionManager::currentSession()->isSocketFailed())){
-            break;
-        }
+public:
+	ConnFw(){
+		prepare_ = [](){};
+		before_  = [](){};
+		after_   = [](){};
+		update_  = [](float dt){};
+	}
+	void setPrepare(PrepareHandle ph){
+		prepare_ = ph;
+	}
+	void setBefore(BeforeHandle bh){
+		before_ = bh;
+	}
+	void setAfter(AfterHandle ah){
+		after_ = ah;
+	}
+	void setUpdate(UpdateHandle uh){
+		update_ = uh;
 	}
 
-	std::cout<<"End of program"<<std::endl;
-	system("pause");
+	void run()
+	{
+		prepare_();
+		boost::asio::io_service io;
+		IoServiceOwner owner(&io, SockSessionManager::instance());
+		before_();
+		// master loop
+		auto start = boost::posix_time::microsec_clock::universal_time();
+		while (true) {
+			auto now = boost::posix_time::microsec_clock::universal_time();
+			auto pass = (now-start).ticks();
+			start = now;
+			float passf = pass / 1000.0f / 1000.0f;
+			update_(passf);
+			auto rv = io.poll();
+			if( !rv && (SockSessionManager::hasCurrentSession() && SockSessionManager::currentSession()->isSocketFailed())){
+				break;
+			}
+		}
+		after_();
+	}
+
+private:
+	PrepareHandle prepare_;
+	BeforeHandle before_;
+	AfterHandle after_;
+	UpdateHandle update_;
+};
+
+// Main Entry::
+int main() {
+	srand((unsigned int)time(0));
+    adaptDebugging();
+	ConnFw cf;
+	cf.setPrepare([](){
+			luaopen_mm(LuaScript::instance()->getLuaState()); //Init scripting
+			LuaScript::instance()->loadInit("app/init.lua");
+			SockSessionManager::instance()->setDefaultRedistribute(L_onDecodeBuffer);
+			SockSessionManager::instance()->setDefaultServerOn(L_onServerConnectionEstablished);
+		});
+	cf.setBefore([](){
+			executeVoidFunc(LuaScript::instance()->getLuaState(), "startUp","");
+		}
+	);
+	//cf.setBefore([](){
+	//	SockSessionManager::instance()->connectTo("192.168.1.105", "11000", "Connection");
+	//});
+	cf.setAfter([](){
+		std::cout<<"End of program"<<std::endl;
+		system("pause");
+	});
+	cf.setUpdate([](float dt){
+		GameCore::frameUpdate(dt);
+	});
+	cf.run();
 	return 0;
 }
