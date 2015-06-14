@@ -6,7 +6,7 @@ local Model = ReadOnly{
 	UserName = "baihai",
 	Password = "baipasswd",
 	DirectoryServer = ReadOnly{
-		Host = "192.168.1.106",
+		Host = "192.168.1.105",
 		Port = "11000"
 	},
 	ClientState = ClientState:create(),
